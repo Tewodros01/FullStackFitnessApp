@@ -7,7 +7,6 @@ import 'package:frontend/src/features/authentication/screens/splash_screen/splas
 import 'package:frontend/src/features/core/models/workout_model.dart';
 import 'package:frontend/src/features/core/screens/bmi_calculatore/bmi_calculatore_screen.dart';
 import 'package:frontend/src/features/core/screens/dashboard/dashboard_screen.dart';
-import 'package:frontend/src/features/core/screens/food_display/food_display_screen.dart';
 import 'package:frontend/src/features/core/screens/profile/profile_screen.dart';
 import 'package:frontend/src/localization/languge_services.dart';
 import 'package:frontend/src/localization/local_string.dart';
