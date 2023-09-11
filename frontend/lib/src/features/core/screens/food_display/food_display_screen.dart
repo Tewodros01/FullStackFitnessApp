@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:frontend/src/constants/colors.dart';
+import 'package:frontend/src/constants/text_strings.dart';
 import 'package:frontend/src/features/core/models/food_model.dart';
 import 'package:frontend/src/features/core/models/macronutrient_model.dart';
 
@@ -55,9 +56,9 @@ class _FoodListViewScreenState extends State<FoodListViewScreen> {
         backgroundColor: Colors.white,
         centerTitle: true,
         foregroundColor: Colors.black,
-        title: const Text(
-          "Food List",
-          style: TextStyle(
+        title: Text(
+          cFoodList,
+          style: const TextStyle(
             fontSize: 17.0,
             color: Colors.black,
             fontWeight: FontWeight.bold,
@@ -79,7 +80,7 @@ class _FoodListViewScreenState extends State<FoodListViewScreen> {
                   ),
                   filled: true,
                   contentPadding: const EdgeInsets.all(10),
-                  hintText: 'Search',
+                  hintText: cSearch,
                   suffixIcon: Padding(
                     padding: const EdgeInsets.all(12.0),
                     child: IconButton(
@@ -150,7 +151,8 @@ class _FoodListViewScreenState extends State<FoodListViewScreen> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                    'Carbohydrates: ${foodItem.carbohydrates}g, '),
+                                  'Carbohydrates: ${foodItem.carbohydrates}g, ',
+                                ),
                                 Text('Protein: ${foodItem.protein}g, '),
                                 Text('Fat: ${foodItem.fat}g'),
                               ],
@@ -197,13 +199,11 @@ class _FoodListViewScreenState extends State<FoodListViewScreen> {
   }
 
   void displayFoodSize() {
-    final foodList = selectedItems.map((item) => item.name).toList();
     final carbohydrates = widget.macronutrientsData.macronutrientCarbohydrates;
     final protein = widget.macronutrientsData.macronutrientProtein;
     final fat = widget.macronutrientsData.macronutrientFat;
 
-    List<double> sizes =
-        calculateFoodSize(foodList, carbohydrates, protein, fat);
+    List<double> sizes = calculateFoodSize(carbohydrates, protein, fat);
 
     showDialog(
       context: context,
@@ -244,28 +244,24 @@ class _FoodListViewScreenState extends State<FoodListViewScreen> {
   }
 
   List<double> calculateFoodSize(
-      List<String> foodList, double carbohydrates, double protein, double fat) {
-    final len = foodList.length;
-    final ch = carbohydrates / len;
-    final pr = protein / len;
-    final fa = fat / len;
+      double carbohydrates, double protein, double fat) {
+    final len = selectedItems.length;
+    final ch = (carbohydrates != 0) ? carbohydrates / len : 0.0;
+    final pr = (protein != 0) ? protein / len : 0.0;
+    final fa = (fat != 0) ? fat / len : 0.0;
     final arr = <double>[];
 
-    for (final foodItem in foodList) {
-      for (final obj in data) {
-        if (obj.containsKey("name") && obj["name"] == foodItem) {
-          final gram1 = (ch / obj["carbohydrates"]) * 10;
-          final gram2 = (pr / obj["protein"]) * 10;
-          final gram3 = (fa / obj["fat"]) * 10;
-          final gramsNeeded = (gram1 + gram2 + gram3) / 1000;
+    for (final foodItem in selectedItems) {
+      final gram1 =
+          (foodItem.carbohydrates != 0) ? (ch / foodItem.carbohydrates) : 0.0;
+      final gram2 = (foodItem.protein != 0) ? (pr / foodItem.protein) : 0.0;
+      final gram3 = (foodItem.fat != 0) ? (fa / foodItem.fat) : 0.0;
 
-          if (obj["source"] == "source2") {
-            arr.add(gramsNeeded);
-          } else {
-            arr.add(gramsNeeded * 0.1);
-          }
-        }
-      }
+      // Calculate gramsNeeded independently for each macronutrient
+      final gramsNeeded = (gram1 + gram2 + gram3) / 1000;
+
+      final multiplier = (foodItem.isSeasoning) ? 0.1 : 1.0;
+      arr.add(gramsNeeded * multiplier);
     }
     return arr;
   }

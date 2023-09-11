@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:frontend/src/constants/text_strings.dart';
 import 'package:frontend/src/features/authentication/models/user_model.dart';
 import 'package:frontend/src/features/core/models/meal_model.dart';
 import 'package:frontend/src/features/core/screens/food_display/food_display_screen.dart';
@@ -90,7 +91,7 @@ class ProfileWidget extends StatelessWidget {
                       ),
                     ),
                     subtitle: Text(
-                      "Hello, ${user.fullName}",
+                      "$cHello, ${user.fullName}",
                       style: const TextStyle(
                         fontWeight: FontWeight.w800,
                         fontSize: 26,
@@ -181,11 +182,11 @@ class ProfileWidget extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Padding(
-                      padding: EdgeInsets.only(left: 10.0, bottom: 10.0),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10.0, bottom: 10.0),
                       child: Text(
-                        "MEALS FOR TODAY",
-                        style: TextStyle(
+                        cProfileMealsForToday,
+                        style: const TextStyle(
                           color: Colors.blueGrey,
                           fontSize: 16,
                           fontWeight: FontWeight.w700,
@@ -204,9 +205,9 @@ class ProfileWidget extends StatelessWidget {
                             ),
                           );
                         },
-                        child: const Text(
-                          "FOOD LIST",
-                          style: TextStyle(
+                        child: Text(
+                          cProfileFoodList,
+                          style: const TextStyle(
                             color: Colors.blueGrey,
                             fontSize: 16,
                             fontWeight: FontWeight.w700,
@@ -227,7 +228,7 @@ class ProfileWidget extends StatelessWidget {
                     },
                   ),
                 ),
-                const SizedBox(height: 20),
+                const SizedBox(height: 18),
                 Expanded(child: BodyMeasurementView(user: user)),
               ],
             ),

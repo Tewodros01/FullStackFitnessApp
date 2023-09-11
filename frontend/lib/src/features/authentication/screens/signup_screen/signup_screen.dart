@@ -24,7 +24,7 @@ class SignUpScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const FormHeaderWidget(
+                FormHeaderWidget(
                   image: cAppLogoImage,
                   title: cSignUpTitle,
                   subTitle: cSignUpSubTitle,
@@ -34,7 +34,7 @@ class SignUpScreen extends StatelessWidget {
                 const SizedBox(height: cDefaultSize - 10),
                 Column(
                   children: [
-                    const Center(child: Text("OR")),
+                    Center(child: Text(cOr)),
                     const SizedBox(height: cDefaultSize - 10),
                     TextButton(
                       onPressed: () {
@@ -47,7 +47,7 @@ class SignUpScreen extends StatelessWidget {
                               text: cAlreadyHaveAnAccount,
                               style: Theme.of(context).textTheme.bodyLarge,
                             ),
-                            const TextSpan(text: cSignin),
+                            TextSpan(text: cSignin),
                           ],
                         ),
                       ),

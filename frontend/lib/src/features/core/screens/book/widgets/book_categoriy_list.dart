@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:frontend/src/constants/colors.dart';
+import 'package:frontend/src/features/core/models/book_category_model.dart';
 
 class BookCategoryList extends StatefulWidget {
-  const BookCategoryList({Key? key}) : super(key: key);
-
+  const BookCategoryList({Key? key, required this.categories})
+      : super(key: key);
+  final List<CategoryModel> categories;
   @override
   State<BookCategoryList> createState() => _BookCategoryListState();
 }
@@ -18,7 +20,7 @@ class _BookCategoryListState extends State<BookCategoryList> {
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         physics: const BouncingScrollPhysics(),
-        itemCount: 4,
+        itemCount: widget.categories.length,
         itemBuilder: (ctx, i) {
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -41,7 +43,7 @@ class _BookCategoryListState extends State<BookCategoryList> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "Category Name",
+                      widget.categories[i].categoryName!,
                       style: TextStyle(
                         fontWeight: currentSelected == i
                             ? FontWeight.bold

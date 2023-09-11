@@ -1,0 +1,4 @@
+CREATE TABLE gym (
+  gym_id SERIAL PRIMARY KEY,
+  gym_name VARCHAR(255) NOT NULL
+);

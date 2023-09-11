@@ -2,7 +2,7 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.ts",
   "type": "module",
   "scripts": {
     "build": "yarn prebuild && npx tsc",
@@ -26,6 +26,7 @@
     "adminjs": "^7.2.1",
     "bcrypt": "^5.1.0",
     "connect-pg-simple": "^9.0.0",
+    "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "express-formidable": "^1.2.0",
@@ -35,6 +36,8 @@
     "jasmine-spec-reporter": "^7.0.0",
     "jsonwebtoken": "^9.0.0",
     "multer": "^1.4.5-lts.1",
+    "node-cron": "^3.0.2",
+    "nodemailer": "^6.9.5",
     "pg": "^8.10.0",
     "tslib": "^2.6.2",
     "uuid": "^9.0.0"
@@ -42,6 +45,7 @@
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",
     "@types/connect-pg-simple": "^7.0.0",
+    "@types/cors": "^2.8.14",
     "@types/express": "^4.17.17",
     "@types/express-session": "^1.17.7",
     "@types/fs-extra": "^11.0.1",
@@ -49,6 +53,8 @@
     "@types/jsonwebtoken": "^9.0.1",
     "@types/multer": "^1.4.7",
     "@types/node": "^18.15.11",
+    "@types/node-cron": "^3.0.8",
+    "@types/nodemailer": "^6.4.10",
     "@types/pg": "^8.6.6",
     "@types/uuid": "^9.0.1",
     "@typescript-eslint/eslint-plugin": "^5.57.1",

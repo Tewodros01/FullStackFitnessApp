@@ -1,7 +1,19 @@
 import { MikroORM } from "@mikro-orm/core";
+import { Options } from "@mikro-orm/postgresql";
 import { User } from "../entity/user.entity.js";
 import { Book } from "../entity/book.entity.js";
-import { config } from "../config/mikro_orm_config.js";
+import { Exercise } from "../entity/exercise.entity.js";
+import { Workout } from "../entity/workout.entity.js";
+import { ExerciseCategory } from "../entity/exercis_ceategory.entity.js";
+
+const config: Options = {
+  entities: [User, Book, Exercise, Workout, ExerciseCategory],
+  dbName: "fitness_db",
+  type: "postgresql",
+  user: "postgres",
+  password: "tewodros",
+  clientUrl: "postgresql://localhost:5432",
+};
 
 // Initialize MikroORM
 const orm = await MikroORM.init(config);
@@ -28,6 +40,18 @@ const adminOptions = {
           },
         },
       },
+    },
+    {
+      resource: { model: Exercise, orm },
+      options: {},
+    },
+    {
+      resource: { model: Workout, orm },
+      options: {},
+    },
+    {
+      resource: { model: ExerciseCategory, orm },
+      options: {},
     },
   ],
 };

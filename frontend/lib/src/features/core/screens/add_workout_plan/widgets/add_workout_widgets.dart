@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:frontend/src/constants/sizes.dart';
+import 'package:frontend/src/constants/text_strings.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:frontend/src/features/core/controllers/workout_plan_controller.dart';
@@ -30,18 +31,18 @@ class _AddWorkoutPlanDialogState extends State<AddWorkoutPlanDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: const Text("Add Workout Plan"),
+      title: Text(cAddWorkoutPlan),
       content: SingleChildScrollView(
         child: Column(
           children: [
             const SizedBox(height: cFormHeigth - 20),
             DropdownButtonFormField<String>(
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 fillColor: Colors.black,
-                labelText: 'Workout Type',
-                prefixIcon: Icon(Icons.person_2_outlined),
+                labelText: cWorkoutType,
+                prefixIcon: const Icon(Icons.person_2_outlined),
               ),
-              validator: (value) => validate(value, 'Gender'),
+              validator: (value) => validate(value, cGender),
               onChanged: (value) {
                 if (value != null) {
                   workoutType = value;
@@ -64,10 +65,10 @@ class _AddWorkoutPlanDialogState extends State<AddWorkoutPlanDialog> {
             TextFormField(
               controller: _noteController,
               decoration: InputDecoration(
-                label: Text("workoutNote".tr),
+                label: Text(cworkoutNote),
                 prefixIcon: const Icon(Icons.phone_outlined),
               ),
-              validator: (value) => validate(value, "workoutNote".tr),
+              validator: (value) => validate(value, cworkoutNote),
             ),
             const SizedBox(height: cFormHeigth - 20),
             TextFormField(
@@ -85,7 +86,7 @@ class _AddWorkoutPlanDialogState extends State<AddWorkoutPlanDialog> {
                   },
                 ),
               ),
-              validator: (value) => validate(value, "Birth Day"),
+              validator: (value) => validate(value, cBirthDay),
             ),
             const SizedBox(height: cFormHeigth - 20),
             Row(
@@ -94,7 +95,7 @@ class _AddWorkoutPlanDialogState extends State<AddWorkoutPlanDialog> {
                   child: Column(
                     children: [
                       Text(
-                        "start_date".tr,
+                        cStartDate,
                         style: titleStyle,
                       ),
                       TextFormField(
@@ -122,7 +123,7 @@ class _AddWorkoutPlanDialogState extends State<AddWorkoutPlanDialog> {
                   child: Column(
                     children: [
                       Text(
-                        "end_date".tr,
+                        cEndDate,
                         style: titleStyle,
                       ),
                       TextFormField(
@@ -229,7 +230,7 @@ class _AddWorkoutPlanDialogState extends State<AddWorkoutPlanDialog> {
                       onPressed: () async {
                         _validateData();
                       },
-                      child: Text("createworkoutPlan".tr),
+                      child: Text(cCreateWorkout),
                     ),
                   ),
                 ),
@@ -243,7 +244,7 @@ class _AddWorkoutPlanDialogState extends State<AddWorkoutPlanDialog> {
           onPressed: () {
             Get.back();
           },
-          child: const Text("Cancel"),
+          child: Text(cCancel),
         ),
       ],
     );
@@ -254,7 +255,7 @@ class _AddWorkoutPlanDialogState extends State<AddWorkoutPlanDialog> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          "color".tr,
+          cColors,
           style: titleStyle,
         ),
         const SizedBox(height: 8.0),

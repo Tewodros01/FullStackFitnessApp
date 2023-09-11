@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:frontend/src/constants/colors.dart';
+import 'package:frontend/src/constants/text_strings.dart';
 import 'package:frontend/src/features/core/screens/book/book_screen.dart';
 import 'package:frontend/src/features/core/screens/home/home_page.dart';
 import 'package:frontend/src/features/core/screens/profile/profile_screen.dart';
@@ -45,34 +46,34 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
           unselectedIconTheme: const IconThemeData(
             color: Colors.black12,
           ),
-          items: const [
+          items: [
             BottomNavigationBarItem(
-              icon: Padding(
+              icon: const Padding(
                 padding: EdgeInsets.only(top: 8.0),
                 child: Icon(Icons.home),
               ),
-              label: "Home",
+              label: cHome,
             ),
             BottomNavigationBarItem(
-              icon: Padding(
+              icon: const Padding(
                 padding: EdgeInsets.only(top: 8.0),
                 child: Icon(Icons.book),
               ),
-              label: "Book",
+              label: cBook,
             ),
             BottomNavigationBarItem(
-              icon: Padding(
+              icon: const Padding(
                 padding: EdgeInsets.only(top: 8.0),
                 child: Icon(Icons.fitness_center),
               ),
-              label: "Excercise",
+              label: cExercise,
             ),
             BottomNavigationBarItem(
-              icon: Padding(
+              icon: const Padding(
                 padding: EdgeInsets.only(top: 8.0),
                 child: Icon(Icons.person),
               ),
-              label: "Profile",
+              label: cProfile,
             ),
           ],
         ),

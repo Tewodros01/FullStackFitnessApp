@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:frontend/src/constants/text_strings.dart';
 import 'package:frontend/src/features/core/models/exercise_model.dart';
 import 'package:frontend/src/providers/providers.dart';
 
@@ -26,7 +27,7 @@ class ExerciseList extends ConsumerWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    "Categories",
+                    cCategories,
                     style: TextStyle(
                       fontSize: 16.sp,
                       color: Colors.black,

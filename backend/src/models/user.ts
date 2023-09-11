@@ -22,6 +22,7 @@ export type User = {
   user_password?: string;
   profile_picture?: string;
   token?: string;
+  join_date?: string; // Add the join_date field
 };
 
 export class UserStore {
@@ -59,6 +60,36 @@ export class UserStore {
       return result.rows;
     } catch (err) {
       throw new Error(`Colud not select ${err}`);
+    }
+  }
+  async getAllUsersNotPaid(): Promise<User[]> {
+    try {
+      const conn = await DB.connect();
+      const sql = `
+        SELECT u.*
+        FROM users u
+        JOIN user_gym_membership ugm ON u.id = ugm.user_id
+        WHERE ugm.is_paid = false
+      `;
+      const result = await conn.query(sql);
+      conn.release();
+      return result.rows;
+    } catch (err) {
+      throw new Error(`Could not select users who have not paid: ${err}`);
+    }
+  }
+
+  async updateUserPaymentStatus(
+    userId: number,
+    isPaid: boolean
+  ): Promise<void> {
+    try {
+      const conn = await DB.connect();
+      const sql = "UPDATE users SET is_paid = $1 WHERE id = $2";
+      await conn.query(sql, [isPaid, userId]);
+      conn.release();
+    } catch (err) {
+      throw new Error(`Could not update user payment status: ${err}`);
     }
   }
   async userLogin(email: string, password: string) {
@@ -197,6 +228,34 @@ export class UserStore {
       return result.rows;
     } catch (err) {
       throw new Error(`Could not select ${err} `);
+    }
+  }
+  joinGym = async (userId: number, gymId: number, joinDate: Date) => {
+    try {
+      const conn = await DB.connect();
+      const sql =
+        "INSERT INTO user_gym_membership (user_id, gym_id, join_date) VALUES ($1, $2, $3)";
+      const result = await conn.query(sql, [userId, gymId, joinDate]);
+      conn.release();
+      return result.rowCount > 0;
+    } catch (error) {
+      console.error("Error joining gym:", error);
+      return false;
+    }
+  };
+  async updateUserJoinDate(
+    userId: number,
+    newJoinDate: Date
+  ): Promise<boolean> {
+    try {
+      const conn = await DB.connect();
+      const sql = "UPDATE users SET join_date = $1 WHERE id = $2";
+      const result = await conn.query(sql, [newJoinDate, userId]);
+      conn.release();
+      return result.rowCount > 0;
+    } catch (error) {
+      console.error("Error updating user join date:", error);
+      return false;
     }
   }
 }

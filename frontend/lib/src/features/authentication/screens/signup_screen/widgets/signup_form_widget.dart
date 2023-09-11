@@ -25,38 +25,38 @@ class SignUpFormWidget extends StatelessWidget {
         children: [
           TextFormField(
             controller: controllers.fullname,
-            decoration: const InputDecoration(
+            decoration: InputDecoration(
               label: Text(cFullName),
-              prefixIcon: Icon(Icons.person_outline_rounded),
+              prefixIcon: const Icon(Icons.person_outline_rounded),
             ),
             validator: (value) => validate(value, cFullName),
           ),
           const SizedBox(height: cFormHeigth - 20),
           TextFormField(
             controller: controllers.email,
-            decoration: const InputDecoration(
+            decoration: InputDecoration(
               label: Text(cEmail),
-              prefixIcon: Icon(Icons.email_outlined),
+              prefixIcon: const Icon(Icons.email_outlined),
             ),
             validator: (value) => validate(value, cEmail),
           ),
           const SizedBox(height: cFormHeigth - 20),
           TextFormField(
             controller: controllers.phoneNo,
-            decoration: const InputDecoration(
+            decoration: InputDecoration(
               label: Text(cPhoneNumber),
-              prefixIcon: Icon(Icons.phone_outlined),
+              prefixIcon: const Icon(Icons.phone_outlined),
             ),
             validator: (value) => validate(value, cPhoneNumber),
           ),
           const SizedBox(height: cFormHeigth - 10),
           DropdownButtonFormField<String>(
-            decoration: const InputDecoration(
+            decoration: InputDecoration(
               fillColor: Colors.black,
-              labelText: 'Gender',
-              prefixIcon: Icon(Icons.person_2_outlined),
+              labelText: cGender,
+              prefixIcon: const Icon(Icons.person_2_outlined),
             ),
-            validator: (value) => validate(value, 'Gender'),
+            validator: (value) => validate(value, cGender),
             onChanged: (value) {
               if (value != null) {
                 controllers.gender = value;
@@ -79,7 +79,7 @@ class SignUpFormWidget extends StatelessWidget {
             () => TextFormField(
               controller: controllers.password,
               decoration: InputDecoration(
-                label: const Text(cPassword),
+                label: Text(cPassword),
                 prefixIcon: const Icon(Icons.key_outlined),
                 suffixIcon: IconButton(
                   onPressed: () {
@@ -131,11 +131,11 @@ class SignUpFormWidget extends StatelessWidget {
                                     builder: (BuildContext context) {
                                       return AlertDialog(
                                         title: const Text(Config.appName),
-                                        content: const Text(
-                                            "Registration completed successfully"),
+                                        content: Text(
+                                            cRegistrationCompletedSuccessfully),
                                         actions: [
                                           TextButton(
-                                            child: const Text("Ok"),
+                                            child: Text(cOk),
                                             onPressed: () {
                                               Get.to(
                                                 () => WelcomeScreen(user: user),
@@ -156,7 +156,7 @@ class SignUpFormWidget extends StatelessWidget {
                                             "This email is already registered"),
                                         actions: [
                                           TextButton(
-                                            child: const Text("Ok"),
+                                            child: Text(cOk),
                                             onPressed: () {
                                               Navigator.of(context).pop();
                                             },
@@ -174,11 +174,11 @@ class SignUpFormWidget extends StatelessWidget {
                                 return AlertDialog(
                                   title: const Text(Config.appName),
                                   content: Text(
-                                    "An error occurred: ${e.toString()}",
+                                    "$cAnErrorOccurred: ${e.toString()}",
                                   ),
                                   actions: [
                                     TextButton(
-                                      child: const Text("Ok"),
+                                      child: Text(cOk),
                                       onPressed: () {
                                         Navigator.of(context).pop();
                                       },

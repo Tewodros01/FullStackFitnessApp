@@ -8,6 +8,7 @@ class Config {
   static const String updateUserById = "api/users/update";
   static const String workoutAPI = "api/workouts/registor";
   static const String bookAPI = "api/books";
+  static const String bookCategoriesAPI = "api/books/categories";
   static const int pageSize = 10;
   static const String currency = "BR";
 }

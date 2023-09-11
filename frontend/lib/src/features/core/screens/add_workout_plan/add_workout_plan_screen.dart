@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:frontend/src/constants/colors.dart';
+import 'package:frontend/src/constants/text_strings.dart';
 import 'package:frontend/src/database/hive_service.dart';
 import 'package:frontend/src/features/core/models/exercise_category_model.dart';
 import 'package:frontend/src/features/core/models/workout_model.dart';
@@ -52,7 +53,7 @@ class AddWorkoutPlanScreen extends ConsumerWidget {
         onPressed: () {
           _showCreateWorkoutDialog(context);
         },
-        label: const Text('Create Workout'),
+        label: Text(cCreateWorkout),
         icon: const Icon(Icons.add),
         backgroundColor: cSecondaryColor,
       ),
@@ -92,7 +93,7 @@ class AddWorkoutPlanScreen extends ConsumerWidget {
     hiveService.clearExerciseCategory();
 
     ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Workout with selected exercises created!')),
+      SnackBar(content: Text(cWorkoutCreated)),
     );
   }
 }

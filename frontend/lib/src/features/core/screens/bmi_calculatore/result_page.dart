@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:frontend/src/common_widgets/app_bar/app_bar.dart';
 import 'package:frontend/src/constants/styles.dart';
 import 'package:frontend/src/constants/text_strings.dart';
 import 'package:frontend/src/features/core/screens/bmi_calculatore/widgets/bmi_card.dart';
@@ -12,7 +11,20 @@ class ResultPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appBar(cBmiTitle, context),
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.white,
+        centerTitle: true,
+        foregroundColor: Colors.black,
+        title: Text(
+          cBmiTitle,
+          style: const TextStyle(
+            fontSize: 17.0,
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(

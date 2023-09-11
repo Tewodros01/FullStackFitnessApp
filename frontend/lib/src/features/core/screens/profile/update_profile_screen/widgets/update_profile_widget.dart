@@ -34,16 +34,16 @@ class _UpdateProfileWidgetState extends ConsumerState<UpdateProfileWidget> {
         children: [
           TextFormField(
             controller: controllers.fullname,
-            decoration: const InputDecoration(
+            decoration: InputDecoration(
                 label: Text(cFullName),
-                prefixIcon: Icon(Icons.person_outline_rounded)),
+                prefixIcon: const Icon(Icons.person_outline_rounded)),
             validator: (value) => validate(value, cFullName),
           ),
           const SizedBox(height: cFormHeigth - 20),
           DropdownButtonFormField<String>(
-            decoration: const InputDecoration(
+            decoration: InputDecoration(
               label: Text(cGender),
-              prefixIcon: Icon(Icons.people_alt_rounded),
+              prefixIcon: const Icon(Icons.people_alt_rounded),
             ),
             items: <String>['Male', 'Female']
                 .map<DropdownMenuItem<String>>((String value) {
@@ -63,7 +63,7 @@ class _UpdateProfileWidgetState extends ConsumerState<UpdateProfileWidget> {
             autofocus: false,
             controller: controllers.birthdayController,
             decoration: InputDecoration(
-              label: const Text("Birth Day"),
+              label: Text(cBirthDay),
               suffixIcon: IconButton(
                 icon: const Icon(
                   Icons.calendar_today_outlined,
@@ -81,51 +81,51 @@ class _UpdateProfileWidgetState extends ConsumerState<UpdateProfileWidget> {
                 },
               ),
             ),
-            validator: (value) => validate(value, "Birth Day"),
+            validator: (value) => validate(value, cBirthDay),
           ),
           const SizedBox(height: cFormHeigth - 20),
           TextFormField(
             controller: controllers.height,
-            decoration: const InputDecoration(
+            decoration: InputDecoration(
               label: Text(cHeight),
-              prefixIcon: Icon(Icons.height_rounded),
+              prefixIcon: const Icon(Icons.height_rounded),
             ),
             validator: (value) => validate(value, cHeight),
           ),
           const SizedBox(height: cFormHeigth - 20),
           TextFormField(
             controller: controllers.weight,
-            decoration: const InputDecoration(
+            decoration: InputDecoration(
               label: Text(cWeight),
-              prefixIcon: Icon(Icons.straighten_rounded),
+              prefixIcon: const Icon(Icons.straighten_rounded),
             ),
             validator: (value) => validate(value, cWeight),
           ),
           const SizedBox(height: cFormHeigth - 20),
           TextFormField(
             controller: controllers.email,
-            decoration: const InputDecoration(
+            decoration: InputDecoration(
               label: Text(cEmail),
-              prefixIcon: Icon(Icons.email_outlined),
+              prefixIcon: const Icon(Icons.email_outlined),
             ),
             validator: (value) => validateEmail(value),
           ),
           const SizedBox(height: cFormHeigth - 20),
           TextFormField(
             controller: controllers.phoneNo,
-            decoration: const InputDecoration(
+            decoration: InputDecoration(
               label: Text(cPhoneNumber),
-              prefixIcon: Icon(Icons.phone_outlined),
+              prefixIcon: const Icon(Icons.phone_outlined),
             ),
             validator: (value) => validate(value, cPhoneNumber),
           ),
           const SizedBox(height: cFormHeigth - 20),
           DropdownButtonFormField<String>(
-            decoration: const InputDecoration(
+            decoration: InputDecoration(
               label: Text(cAim),
-              prefixIcon: Icon(Icons.fitness_center_rounded),
+              prefixIcon: const Icon(Icons.fitness_center_rounded),
             ),
-            items: <String>['Loose', 'Maintain', 'Gain']
+            items: <String>[cLoose, cMaintain, cGain]
                 .map<DropdownMenuItem<String>>((String value) {
               return DropdownMenuItem<String>(
                 value: value,
@@ -135,19 +135,16 @@ class _UpdateProfileWidgetState extends ConsumerState<UpdateProfileWidget> {
             onChanged: (String? value) {
               controllers.aim = value!;
             },
-            validator: (value) => validate(value, "Aim"),
+            validator: (value) => validate(value, cAim),
           ),
           const SizedBox(height: cFormHeigth - 20),
           DropdownButtonFormField<String>(
-            decoration: const InputDecoration(
+            decoration: InputDecoration(
               label: Text(cActivityExtent),
-              prefixIcon: Icon(Icons.directions_run_rounded),
+              prefixIcon: const Icon(Icons.directions_run_rounded),
             ),
-            items: <String>[
-              'Little to no exercise',
-              'Moderately active',
-              'Very active'
-            ].map<DropdownMenuItem<String>>((String value) {
+            items: <String>[cLittleToNoExercise, cModeratelyActive, cVeryActive]
+                .map<DropdownMenuItem<String>>((String value) {
               return DropdownMenuItem<String>(
                 value: value,
                 child: Text(value),
@@ -156,7 +153,7 @@ class _UpdateProfileWidgetState extends ConsumerState<UpdateProfileWidget> {
             onChanged: (String? value) {
               controllers.activityExtent = value!;
             },
-            validator: (value) => validate(value, "Activity Extent"),
+            validator: (value) => validate(value, cActivityExtent),
           ),
           const SizedBox(height: cFormHeigth - 20),
           Obx(
@@ -207,11 +204,11 @@ class _UpdateProfileWidgetState extends ConsumerState<UpdateProfileWidget> {
                                     builder: (BuildContext context) {
                                       return AlertDialog(
                                         title: const Text(Config.appName),
-                                        content: const Text(
-                                            "Updat completed successfully"),
+                                        content:
+                                            Text(cUpdatCompletedSuccessfully),
                                         actions: [
                                           TextButton(
-                                            child: const Text("Ok"),
+                                            child: Text(cOk),
                                             onPressed: () {
                                               Get.to(
                                                 () => DashBoardScreen(),
@@ -228,11 +225,10 @@ class _UpdateProfileWidgetState extends ConsumerState<UpdateProfileWidget> {
                                     builder: (BuildContext context) {
                                       return AlertDialog(
                                         title: const Text(Config.appName),
-                                        content:
-                                            const Text("Internal server error"),
+                                        content: Text(cInternalServerError),
                                         actions: [
                                           TextButton(
-                                            child: const Text("Ok"),
+                                            child: Text(cOk),
                                             onPressed: () {
                                               Navigator.of(context).pop();
                                             },
@@ -251,11 +247,11 @@ class _UpdateProfileWidgetState extends ConsumerState<UpdateProfileWidget> {
                                 return AlertDialog(
                                   title: const Text(Config.appName),
                                   content: Text(
-                                    "An error occurred: ${e.toString()}",
+                                    "$cAnErrorOccurred: ${e.toString()}",
                                   ),
                                   actions: [
                                     TextButton(
-                                      child: const Text("Ok"),
+                                      child: Text(cOk),
                                       onPressed: () {
                                         Navigator.of(context).pop();
                                       },
@@ -267,7 +263,7 @@ class _UpdateProfileWidgetState extends ConsumerState<UpdateProfileWidget> {
                           }
                         }
                       },
-                      child: Text(cSignup.toUpperCase()),
+                      child: Text(cUpdateText.toUpperCase()),
                     ),
                   ),
           ),

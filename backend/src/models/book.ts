@@ -21,6 +21,7 @@ export class BookStore {
       const sql =
         "INSERT INTO book_category (category_name) VALUES($1) RETURNING *";
       const result = await conn.query(sql, [bookCategory.category_name]);
+      conn.release();
       return result.rows[0];
     } catch (err) {
       throw new Error(`Could not create book category ${err}`);

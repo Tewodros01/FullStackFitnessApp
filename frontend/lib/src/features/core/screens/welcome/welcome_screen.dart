@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/src/constants/text_strings.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:frontend/config.dart';
@@ -32,9 +33,9 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
         elevation: 0,
         backgroundColor: Colors.white,
         centerTitle: true,
-        title: const Text(
-          "More Info",
-          style: TextStyle(
+        title: Text(
+          cMoreInfo,
+          style: const TextStyle(
             fontSize: 17,
             color: cSecondaryColor,
             fontWeight: FontWeight.bold,
@@ -61,7 +62,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   autofocus: false,
                   controller: controllers.birthdayController,
                   decoration: InputDecoration(
-                    label: const Text("Birth Day"),
+                    label: Text(cBirthDay),
                     suffixIcon: IconButton(
                       icon: const Icon(
                         Icons.calendar_today_outlined,
@@ -79,17 +80,17 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                       },
                     ),
                   ),
-                  validator: (value) => validate(value, "Birth Day"),
+                  validator: (value) => validate(value, cBirthDay),
                 ),
                 const SizedBox(height: 20),
                 DropdownButtonFormField<String>(
-                  decoration: const InputDecoration(
-                    labelText: 'Aim',
+                  decoration: InputDecoration(
+                    labelText: cAim,
                     labelStyle: cLargeTextStyle,
                   ),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return 'Please select your aim';
+                      return cPleaseSelectYourAim;
                     }
                     return null;
                   },
@@ -97,7 +98,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                     controllers.aim = value;
                   },
                   value: controllers.aim,
-                  items: ['Loose', 'Maintain', 'Gain'].map((String value) {
+                  items: [cLoose, cMaintain, cGain].map((String value) {
                     return DropdownMenuItem<String>(
                       value: value,
                       child: Text(value),
@@ -106,13 +107,13 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 ),
                 const SizedBox(height: 20),
                 DropdownButtonFormField<String>(
-                  decoration: const InputDecoration(
-                    labelText: 'Exercise',
+                  decoration: InputDecoration(
+                    labelText: cExercise,
                     labelStyle: cLargeTextStyle,
                   ),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return 'Please select your exercise level';
+                      return cPleaseSelectYourExerciseLevel;
                     }
                     return null;
                   },
@@ -121,9 +122,9 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   },
                   value: controllers.exercise,
                   items: [
-                    'Little to no exercise',
-                    'Moderately active',
-                    'Very active',
+                    cLittleToNoExercise,
+                    cModeratelyActive,
+                    cVeryActive,
                   ].map((String value) {
                     return DropdownMenuItem<String>(
                       value: value,
@@ -142,7 +143,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                     heights: 60.0,
                     widths: MediaQuery.of(context).size.width,
                     child: BMIContentControl(
-                      label: 'Weight',
+                      label: cWeight,
                       value: controllers.weight.value,
                       unit: 'kg',
                       onDecrease: () => controllers.weight.value--,
@@ -165,8 +166,8 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                             crossAxisAlignment: CrossAxisAlignment.baseline,
                             textBaseline: TextBaseline.alphabetic,
                             children: [
-                              const Text(
-                                'Height',
+                              Text(
+                                cHeight,
                                 style: cLargeTextStyle,
                               ),
                               const SizedBox(width: 15),
@@ -235,12 +236,12 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                               context: context,
                               builder: (BuildContext context) {
                                 return AlertDialog(
-                                  title: const Text(Config.appName),
-                                  content: const Text(
-                                      "Registration completed successfully"),
+                                  title: Text(cAppName),
+                                  content:
+                                      Text(cRegistrationCompletedSuccessfully),
                                   actions: [
                                     TextButton(
-                                      child: const Text("Ok"),
+                                      child: Text(cOk),
                                       onPressed: () {
                                         Get.offAll(() => DashBoardScreen());
                                       },
@@ -255,11 +256,11 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                               context: context,
                               builder: (BuildContext context) {
                                 return AlertDialog(
-                                  title: const Text(Config.appName),
-                                  content: const Text("Internal Server Error"),
+                                  title: Text(cAppName),
+                                  content: Text(cInternalServerError),
                                   actions: [
                                     TextButton(
-                                      child: const Text("Ok"),
+                                      child: Text(cOk),
                                       onPressed: () {
                                         Navigator.of(context).pop();
                                       },
@@ -278,10 +279,10 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                               return AlertDialog(
                                 title: const Text(Config.appName),
                                 content:
-                                    Text("An error occurred: ${e.toString()}"),
+                                    Text("$cAnErrorOccurred: ${e.toString()}"),
                                 actions: [
                                   TextButton(
-                                    child: const Text("Ok"),
+                                    child: Text(cOk),
                                     onPressed: () {
                                       Navigator.of(context).pop();
                                     },
@@ -293,10 +294,10 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                         }
                       }
                     },
-                    child: const Center(
+                    child: Center(
                       child: Text(
-                        "Register",
-                        style: TextStyle(
+                        cRegister,
+                        style: const TextStyle(
                           fontSize: 16,
                           color: Colors.white,
                           fontWeight: FontWeight.w400,

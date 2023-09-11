@@ -16,7 +16,7 @@ class SigninScreen extends StatelessWidget {
         body: SingleChildScrollView(
           child: Container(
             padding: const EdgeInsets.all(cDefaultSize),
-            child: const Column(
+            child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 FormHeaderWidget(
@@ -24,9 +24,9 @@ class SigninScreen extends StatelessWidget {
                   title: cLoginTitle,
                   subTitle: cLoginSubTitle,
                 ),
-                SizedBox(height: 10),
-                SignInForm(),
-                SignInFooterWidget()
+                const SizedBox(height: 10),
+                const SignInForm(),
+                const SignInFooterWidget()
               ],
             ),
           ),

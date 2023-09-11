@@ -57,11 +57,11 @@ class NotifiyHelper {
     );
   }
 
-  scheduledNotification(int hour, int minute, Workout workoutPlan) async {
+  scheduledNotification(int hour, int minute, Workout workout) async {
     await flutterLocalNotificationsPlugin.zonedSchedule(
-      workoutPlan.workoutId!.toInt(),
-      workoutPlan.workoutName,
-      workoutPlan.workoutNote,
+      workout.workoutId!.toInt(),
+      workout.workoutName,
+      workout.workoutNote,
       _convertTime(hour, minute),
       const NotificationDetails(
         android: AndroidNotificationDetails(
@@ -73,13 +73,13 @@ class NotifiyHelper {
       uiLocalNotificationDateInterpretation:
           UILocalNotificationDateInterpretation.absoluteTime,
       matchDateTimeComponents: DateTimeComponents.time,
-      payload: "${workoutPlan.workoutName}|${workoutPlan.workoutNote}|",
+      payload: "${workout.workoutName}|${workout.workoutNote}|",
     );
   }
 
   void onDidReceiveLocalNotification(
       int id, String? title, String? body, String? payload) async {
-    Get.dialog(const Text("Wellcome"));
+    Get.dialog(const Text("Welcome"));
   }
 
   void onDidReceiveNotificationResponse(

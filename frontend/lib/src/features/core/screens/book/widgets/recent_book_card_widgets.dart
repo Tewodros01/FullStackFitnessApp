@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/src/constants/text_strings.dart';
 import 'package:frontend/src/features/core/models/book_model.dart';
 import 'package:frontend/src/features/core/screens/book/detail_book/detail_book_screen.dart';
 
@@ -91,7 +92,7 @@ class RecentBookCardWidget extends StatelessWidget {
                     ),
                     const Divider(color: Colors.black),
                     Text(
-                      'Category: ${book.bookId}',
+                      '$cCategories: ${book.bookId}',
                       style: const TextStyle(
                         fontSize: 14,
                         fontFamily: "Avenir",

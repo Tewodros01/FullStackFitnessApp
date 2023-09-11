@@ -93,6 +93,7 @@ flutter:
     - assets/svgs/
     - assets/images/
     - assets/videos/
+    - assets/images/food/
     - assets/static_files/
     - assets/static_files/excercises/
     - assets/static_files/excercises/thumbnail/

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:frontend/src/constants/text_strings.dart';
 import 'package:frontend/src/features/authentication/models/user_model.dart';
+import 'package:frontend/src/features/core/services/user_service.dart';
 import 'package:frontend/src/utils/fitness_app_them.dart';
 
 class BodyMeasurementView extends StatelessWidget {
@@ -8,6 +10,8 @@ class BodyMeasurementView extends StatelessWidget {
   final UserModel user;
   @override
   Widget build(BuildContext context) {
+    final bmi = UserService.calculateBMI(user.height!, user.weight!);
+    final weightCategory = UserService.getCategory(bmi);
     return Padding(
       padding: const EdgeInsets.only(left: 15, right: 15, top: 16, bottom: 18),
       child: Container(
@@ -72,7 +76,7 @@ class BodyMeasurementView extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.only(top: 6),
                           child: Text(
-                            'Height',
+                            cHeight,
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontFamily: FitnessAppTheme.fontName,
@@ -95,9 +99,9 @@ class BodyMeasurementView extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Text(
-                              '27.3 BMI',
+                              '${bmi.toStringAsFixed(2)}BMI',
                               textAlign: TextAlign.center,
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontFamily: FitnessAppTheme.fontName,
                                 fontWeight: FontWeight.w500,
                                 fontSize: 16,
@@ -108,7 +112,7 @@ class BodyMeasurementView extends StatelessWidget {
                             Padding(
                               padding: const EdgeInsets.only(top: 6),
                               child: Text(
-                                'Overweight',
+                                weightCategory.toString(),
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                   fontFamily: FitnessAppTheme.fontName,
@@ -139,13 +143,13 @@ class BodyMeasurementView extends StatelessWidget {
                                 fontWeight: FontWeight.w500,
                                 fontSize: 16,
                                 letterSpacing: -0.2,
-                                color: FitnessAppTheme.darkText,
+                                color: const Color.fromRGBO(37, 56, 64, 1),
                               ),
                             ),
                             Padding(
                               padding: const EdgeInsets.only(top: 6),
                               child: Text(
-                                'Body fat',
+                                cBmiTitle,
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                   fontFamily: FitnessAppTheme.fontName,
@@ -190,7 +194,7 @@ class BodyMeasurementView extends StatelessWidget {
                   ),
                   child: Center(
                     child: Text(
-                      "Calculate BMI",
+                      cCalculateBMI,
                       maxLines: 2,
                       style: TextStyle(
                         fontSize: 14.sp,

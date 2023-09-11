@@ -22,29 +22,32 @@ AppBar appBar(String title, BuildContext context) {
       ),
     ),
     actions: [
-      GestureDetector(
-        onTap: () async {
-          await SharedService.logout(context);
+      PopupMenuButton<int>(
+        itemBuilder: (BuildContext context) {
+          return [
+            const PopupMenuItem<int>(
+              value: 1,
+              child: Text('Setting'),
+            ),
+            const PopupMenuItem<int>(
+              value: 2,
+              child: Text('Logout'),
+            ),
+          ];
         },
-        child: Stack(
-          clipBehavior: Clip.none,
-          alignment: Alignment.center,
-          children: [
-            SvgPicture.asset(
-              AssetsSvgs.settingSvg,
-              height: 20,
-              width: 20,
-              color: Colors.black,
-            ),
-            const Positioned(
-              bottom: 32,
-              right: -3,
-              child: CircleAvatar(
-                radius: 4,
-                backgroundColor: Colors.red,
-              ),
-            ),
-          ],
+        onSelected: (int value) async {
+          // Handle the selected option here
+          if (value == 1) {
+            Navigator.of(context).pushNamed('/language_selection');
+          } else if (value == 2) {
+            await SharedService.logout(context);
+          }
+        },
+        child: SvgPicture.asset(
+          AssetsSvgs.settingSvg,
+          height: 20,
+          width: 20,
+          color: Colors.black,
         ),
       ),
       const SizedBox(width: 15),

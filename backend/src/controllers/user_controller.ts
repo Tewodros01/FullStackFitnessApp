@@ -2,6 +2,55 @@ import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
 import { User, UserStore } from "../models/user.js";
 import { IRequest } from "../middleware/auth.js";
+import transporter from "../configs/emailConfig.js";
+import cron from "node-cron";
+
+// Define a function for sending monthly payment reminders
+export const sendMonthlyPaymentReminders = () => {
+  // Schedule the job to run every day (or at a suitable frequency)
+  cron.schedule("0 0 * * *", async () => {
+    try {
+      const currentDate = new Date();
+
+      // Get all users who have not paid and need a reminder
+      const userStore: UserStore = new UserStore();
+      const unpaidUsers = await userStore.getAllUsersNotPaid();
+
+      // Define the email content
+      const emailSubject = "Monthly Payment Reminder";
+      const emailText =
+        "Dear user, your monthly payment is due. Please make your payment as soon as possible.";
+
+      for (const user of unpaidUsers) {
+        const joinDate = new Date(user.join_date!); // Assuming you have a join_date field in your user object
+        const nextPaymentDueDate = new Date(joinDate);
+        nextPaymentDueDate.setMonth(nextPaymentDueDate.getMonth() + 1); // Add one month to the join date
+
+        if (currentDate >= nextPaymentDueDate) {
+          // Send an email to the user
+          const mailOptions = {
+            from: "tewodrosm01@email.com",
+            to: user.email,
+            subject: emailSubject,
+            text: emailText,
+          };
+          await transporter.sendMail(mailOptions);
+
+          // Update the user's payment status to notify that a reminder has been sent
+          await userStore.updateUserPaymentStatus(user.user_id!, true);
+
+          // Calculate the new next payment due date
+          nextPaymentDueDate.setMonth(nextPaymentDueDate.getMonth() + 1);
+
+          // Update the user's join date to the new next payment due date
+          await userStore.updateUserJoinDate(user.user_id!, nextPaymentDueDate);
+        }
+      }
+    } catch (error) {
+      console.error("Error sending monthly emails:", error);
+    }
+  });
+};
 
 class UserController {
   static createNewUser = async (req: Request, res: Response) => {
@@ -186,6 +235,18 @@ class UserController {
       const userStore: UserStore = new UserStore();
       const alluserLikeFood = await userStore.getAllUserLikeFood();
       res.json({ message: "Success", data: alluserLikeFood });
+    } catch (err) {
+      res.status(400).json(`${err}`);
+    }
+  };
+  static joinUserToGym = async (req: IRequest, res: Response) => {
+    try {
+      const userId = req.user!.user_id;
+      const gymId = req.body.user_id;
+      const join_date = new Date(); // Get the current date as the join date
+      const userStore: UserStore = new UserStore();
+      const userJoin = await userStore.joinGym(userId!, gymId, join_date);
+      res.json({ message: "Success", data: userJoin });
     } catch (err) {
       res.status(400).json(`${err}`);
     }

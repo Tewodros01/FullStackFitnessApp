@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/src/constants/text_strings.dart';
 import 'package:frontend/src/features/core/models/exercise_category_model.dart';
 import 'package:frontend/src/features/core/models/workout_model.dart';
 import 'package:frontend/src/features/core/screens/workout_plan/widgets/workout_exercise_expandable_list_item_widget.dart.dart';
@@ -47,10 +48,10 @@ class WorkoutPlanDetailScreen extends StatelessWidget {
                     color: Colors.white,
                   ),
                 ),
-                trailing: const Column(
+                trailing: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Row(
+                    const Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Icon(
@@ -68,18 +69,18 @@ class WorkoutPlanDetailScreen extends StatelessWidget {
                         )
                       ],
                     ),
-                    SizedBox(height: 4),
+                    const SizedBox(height: 4),
                     Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Icon(
+                        const Icon(
                           Icons.shutter_speed,
                           color: Colors.white30,
                         ),
-                        SizedBox(width: 5),
+                        const SizedBox(width: 5),
                         Text(
-                          "Easy",
-                          style: TextStyle(
+                          cEasy,
+                          style: const TextStyle(
                             color: Colors.white70,
                             fontWeight: FontWeight.w600,
                             fontSize: 16,

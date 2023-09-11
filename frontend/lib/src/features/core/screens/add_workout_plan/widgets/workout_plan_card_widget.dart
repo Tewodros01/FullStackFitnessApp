@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/src/constants/text_strings.dart';
 import 'package:frontend/src/features/core/models/exercise_category_model.dart';
 import 'package:frontend/src/features/core/models/workout_model.dart';
 import 'package:frontend/src/utils/themes/theme.dart';
@@ -24,9 +25,9 @@ class WorkoutPlanCardWidget extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  "YOUR NEXT WORKOUT",
-                  style: TextStyle(
+                Text(
+                  cYourNextWorkout,
+                  style: const TextStyle(
                     color: Colors.white70,
                     fontSize: 14,
                     fontWeight: FontWeight.w600,
@@ -107,7 +108,7 @@ class WorkoutPlanCardWidget extends StatelessWidget {
             RotatedBox(
               quarterTurns: 3,
               child: Text(
-                workoutPlan.workoutIsCompleted == 1 ? "COMPLETED" : "TODO",
+                workoutPlan.workoutIsCompleted == 1 ? cCompleted : cTodo,
                 style: const TextStyle(
                   fontSize: 10,
                   fontWeight: FontWeight.bold,

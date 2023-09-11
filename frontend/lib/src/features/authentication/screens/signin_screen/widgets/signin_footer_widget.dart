@@ -14,7 +14,7 @@ class SignInFooterWidget extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        const Center(child: Text("OR")),
+        Center(child: Text(cOr)),
         const SizedBox(height: cFormHeigth - 10),
         // SizedBox(
         //   width: double.infinity,
@@ -36,10 +36,10 @@ class SignInFooterWidget extends StatelessWidget {
             TextSpan(
               text: cDontHaveAnAccount,
               style: Theme.of(context).textTheme.bodyMedium,
-              children: const [
+              children: [
                 TextSpan(
                   text: cSignup,
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Colors.blue,
                   ),
                 ),

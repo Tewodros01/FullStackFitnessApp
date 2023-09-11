@@ -79,21 +79,21 @@
         "exercise_id": 1,
         "exercise_name": "Back Excercise 1",
         "exercise_thumbnail": "assets/static_files/excercises/thumbnail/bt_1.png",
-        "exercise_video_path": "assets/images/excercises/videos/back_1.mp4",
+        "exercise_video_path": "assets/static_files/excercises/videos/back_1.mp4",
         "exercise_category_id": 3
       },
       {
         "exercise_id": 2,
         "exercise_name": "Back Excercise 2",
         "exercise_thumbnail": "assets/static_files/excercises/thumbnail/bt_2.png",
-        "exercise_video_path": "assets/images/excercises/videos/back_2.mp4",
+        "exercise_video_path": "assets/static_files/excercises/videos/back_2.mp4",
         "exercise_category_id": 3
       },
       {
         "exercise_id": 3,
         "exercise_name": "Back Excercise 3",
         "exercise_thumbnail": "assets/static_files/excercises/thumbnail/bt_3.png",
-        "exercise_video_path": "assets/images/excercises/videos/back_5.mp4",
+        "exercise_video_path": "assets/static_files/excercises/videos/back_5.mp4",
         "exercise_category_id": 3
       },
       {
@@ -107,7 +107,7 @@
         "exercise_id": 5,
         "exercise_name": "Back Excercise 5",
         "exercise_thumbnail": "assets/static_files/excercises/thumbnail/bt_5.png",
-        "exercise_video_path": "assets/images/excercises/videos/back_5.mp4",
+        "exercise_video_path": "assets/static_files/excercises/videos/back_5.mp4",
         "exercise_category_id": 3
       }
     ]

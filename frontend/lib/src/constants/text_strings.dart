@@ -1,88 +1,139 @@
 /* -- App Text String -- */
 
-const String cAppName = "Brew Crew";
-const String cAppTagLine = "Learn to code";
+import 'package:get/get.dart';
+
+String cAppName = "fitnessApp".tr;
+String cAppTagLine = "Learn to code";
 
 //-- Welcome Screen Text
-const String cWelcomeTitle = "Build Awesome App";
-const String cWelcomeSubtitle =
-    "Let's put your creative on the developing effort";
-const String cSignup = "Sign Up";
-const String cSignin = "Sign in";
+String cWelcomeTitle = "welcomeTitle".tr;
+String cWelcomeSubtitle = "welcomeSubtitle".tr;
+String cSignup = "signUp".tr;
+String cSignin = "signIn".tr;
 
 // --Login screen text
-const String cLoginTitle = "Welcome back,";
-const String cLoginSubTitle =
-    "Step into a world of health and vitality with a simple login";
-const String cRememberMe = "Remember Me?";
-const String cDontHaveAnAccount = "Don't have an Account? ";
-const String cEmail = "Email";
-const String cPassword = "Password";
-const String cForgetPassword = "Forgete Password";
-const String cSignInWithGoogle = "Sign In With Google";
+String cLoginTitle = "loginTitle".tr;
+String cLoginSubTitle = "loginSubTitle".tr;
+String cLoginSuccessfulyTitle = "loginSubTitle".tr;
+String cLoginSuccessfulySubTitle = "loginSuccessfulySubTitle".tr;
+String cOk = "ok".tr;
+String cOr = "or".tr;
+String cAnErrorOccurred = "anErrorOccurred".tr;
+String cInvalidEmailOrPassword = "invalidEmailOrPassword".tr;
+String cRememberMe = "Remember Me?";
+String cDontHaveAnAccount = "dontHaveAccount".tr;
+String cEmail = "email".tr;
+String cPassword = "password".tr;
+String cForgetPassword = "forgetPassword".tr;
 
 // --Sign Up Screen Text
-const String cSignUpTitle = "Get On ";
-const String cSignUpSubTitle =
-    "Join our fitness community and start your transformation...";
-const String cAlreadyHaveAnAccount = "Already have an Account? ";
-const String cFullName = "Full Name";
-const String cPhoneNumber = "Phone Number";
+String cSignUpTitle = "signUpTitle".tr;
+String cSignUpSubTitle = "signUpSubTitle".tr;
+String cAlreadyHaveAnAccount = "alreadyHaveAnAccount".tr;
+String cFullName = "fullName".tr;
+String cPhoneNumber = "phoneNumber".tr;
+String cRegistrationCompletedSuccessfully =
+    "registrationCompletedSuccessfully".tr;
+String cInternalServerError = "internalServerError".tr;
+String cRegister = "register".tr;
 
 // --Forget Password Text
-const String cForgetPasswordTitle = "Make Selection!";
-const String cForgetPasswordSubTitle =
+String cForgetPasswordTitle = "Make Selection!";
+String cForgetPasswordSubTitle =
     "Select one of the options given below to reset your password.!";
-const String cResetViaEmail = "Reset via E-Mail Verification.";
-const String cResetViaPhone = "Reset via Phone Verification.";
-const String cNext = "Next";
+String cResetViaEmail = "Reset via E-Mail Verification.";
+String cResetViaPhone = "Reset via Phone Verification.";
+String cNext = "Next";
 
 // --Forget Password Via E-Mail - Text
-const String cForgetEMailSubTitle =
-    "Enter your registerd E-Mail to receive OTP";
+String cForgetEMailSubTitle = "Enter your registerd E-Mail to receive OTP";
 
 // --Forget Password Via Phone - Text
-const String cForgetPhoneSubTitle =
-    "Enter your registerd Phone No to receive OTP";
+String cForgetPhoneSubTitle = "Enter your registerd Phone No to receive OTP";
 
 // --OTP Screen Text
-const String cOtpTitle = "CODE";
-const String cOtpSubTitle = "Verification";
-const String cOtpMessage = "Enter the verification code sent at ";
+String cOtpTitle = "CODE";
+String cOtpSubTitle = "Verification";
+String cOtpMessage = "Enter the verification code sent at ";
 
+//welcome
+String cMoreInfo = "moreInfo".tr;
+String cBirthDay = "birthDay".tr;
+String cPleaseSelectYourAim = "pleaseSelectYourAim".tr;
+String cLoose = "loose".tr;
+String cMaintain = "maintain".tr;
+String cGain = "gain".tr;
+String cPleaseSelectYourExerciseLevel = "pleaseSelectYourExerciseLevel".tr;
+String cLittleToNoExercise = "littleToNoExercise".tr;
+String cModeratelyActive = "moderatelyActive".tr;
+String cVeryActive = "veryActive".tr;
+//menu
+String cHome = "home".tr;
+String cProfile = "profile".tr;
+String cExercise = "exercise".tr;
+String cBook = "book".tr;
 // --Dashboard Screenn - Text
-const String cDashBoardTitle = "Hey, Coding with  ";
-const String cDashboardHeading = "Explore Cource";
-const String cDashboardSearch = "Search...";
-const String cDashBoardBannerTitle1 = "Android for Beginners";
-const String cDashBoardBannerTitle2 = "Java";
-const String cDashBoardBannerSubTitle = "10 Lessons";
-const String cDashboardButton = "View All";
-const String cDashboardTopCourses = "Top courses";
-
+String cDashBoardTitle = "Hey, Coding with  ";
+String cDashboardHeading = "Explore Cource";
+String cDashboardSearch = "Search...";
+String cDashBoardBannerTitle1 = "Android for Beginners";
+String cDashBoardBannerTitle2 = "Java";
+String cDashBoardBannerSubTitle = "10 Lessons";
+String cDashboardButton = "View All";
+String cDashboardTopCourses = "Top courses";
+//Home
+String cCategories = "categories".tr;
 // --Profile Screen Text
-const String cProfile = "Profile";
-const String cEditProfile = "Edit Profile";
-const String cLogoutDialogHeading = "Logout";
-const String cProfileHeading = "Coding with T";
-const String cProfileSubHeading = "tewodrosm01@gmail.com";
+//Book
+String cRecentlyAdded = "recentlyAdded".tr;
+String cSearch = "search".tr;
 
-const String cMenu1 = "Setting";
-const String cMenu2 = "Billing Details";
-const String cMenu3 = "User Management";
-const String cMenu4 = "Information";
-const String cMenu5 = "Logout";
+String cProfileTitle = "hello".tr;
+String cProfileMealsForToday = "mealForToday".tr;
+String cProfileFoodList = "foodList".tr;
+String cHello = "hello".tr;
+
+String cMenu1 = "setting".tr;
+String cMenu2 = "logout".tr;
 
 //-- Update Profile Screen -Text
-const String cGender = "Gender";
-const String cAge = "Age";
-const String cHeight = "Height";
-const String cWeight = "Weight";
-const String cActivityExtent = "ActivityExtent";
-const String cDelete = "Delete";
-const String cJoined = "Joined";
-const String cJoinedAt = "31 Octeber 2022";
+String cGender = "gender".tr;
+String cAge = "age".tr;
+String cHeight = "heigth".tr;
+String cWeight = "weigth".tr;
+String cActivityExtent = "actvityExtent".tr;
+String cAim = "aim".tr;
+String cDelete = "Delete";
+String cJoined = "Joined";
+String cJoinedAt = "31 Octeber 2022";
 
-//App title
-const String cBmiTitle = 'BMI CALCULATOR';
-const String cAim = "Aim";
+//Update
+String cUpdatCompletedSuccessfully = "updatCompletedSuccessfully".tr;
+String cUpdateText = "updateText".tr;
+String cUpdatProfile = "Update Profile";
+//Bmi
+String cBmiTitle = 'bmiTitle'.tr;
+String cCalculateBMI = "calculateBMI".tr;
+String cBodyFat = "bodyFat".tr;
+//Add Workout
+String cCreateWorkout = "createWorkout".tr;
+String cWorkoutCreated = "cWorkoutCreated".tr;
+String cWorkoutList = "workoutList".tr;
+String cNoWorkoutsFound = "noWorkoutsFound".tr;
+String cAddWorkoutPlan = "addWorkoutPlan".tr;
+String cWorkoutType = "workoutType".tr;
+String cStartDate = "startDate".tr;
+String cEndDate = "endDate".tr;
+String cCancel = "cancel".tr;
+String cColors = "colors".tr;
+String cworkoutNote = "workoutNote".tr;
+String cYourNextWorkout = "yourNextWorkout".tr;
+String cCompleted = "completed".tr;
+String cTodo = "todo".tr;
+String cWorkoutPlan = "workoutPlan".tr;
+String cToday = "today".tr;
+String cClose = "close".tr;
+String cEasy = "easy".tr;
+
+//Food
+String cFoodList = "foodList".tr;

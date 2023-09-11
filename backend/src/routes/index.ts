@@ -4,6 +4,7 @@ import bookRouter from "./api/book_route.js";
 import exerciseRouter from "./api/exercise_route.js";
 import workoutRouter from "./api/workout_route.js";
 import foodRouter from "./api/food_route.js";
+import gymRouter from "./api/gym_routes.js";
 
 const router: express.Router = express();
 
@@ -12,5 +13,6 @@ router.use("/books", bookRouter);
 router.use("/exercises", exerciseRouter);
 router.use("/workouts", workoutRouter);
 router.use("/foods", foodRouter);
+router.use("/gym", gymRouter);
 
 export default router;

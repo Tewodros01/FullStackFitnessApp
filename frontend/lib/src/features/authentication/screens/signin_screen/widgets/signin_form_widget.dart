@@ -26,11 +26,11 @@ class SignInForm extends StatelessWidget {
           children: [
             TextFormField(
               controller: controllers.email,
-              decoration: const InputDecoration(
-                prefixIcon: Icon(Icons.email_outlined),
+              decoration: InputDecoration(
+                prefixIcon: const Icon(Icons.email_outlined),
                 labelText: cEmail,
                 hintText: cEmail,
-                border: OutlineInputBorder(),
+                border: const OutlineInputBorder(),
               ),
               validator: (value) => validateEmail(value),
             ),
@@ -39,7 +39,7 @@ class SignInForm extends StatelessWidget {
               () => TextFormField(
                 controller: controllers.password,
                 decoration: InputDecoration(
-                  label: const Text(cPassword),
+                  label: Text(cPassword),
                   prefixIcon: const Icon(Icons.key_outlined),
                   suffixIcon: IconButton(
                     onPressed: () {
@@ -65,7 +65,7 @@ class SignInForm extends StatelessWidget {
                 onPressed: () {
                   //  ForgetPasswordScreen.buildShowModalBottomSheet(context);
                 },
-                child: const Text(cForgetPassword),
+                child: Text(cForgetPassword),
               ),
             ),
             Obx(
@@ -93,12 +93,12 @@ class SignInForm extends StatelessWidget {
                                       context: context,
                                       builder: (BuildContext context) {
                                         return AlertDialog(
-                                          title: const Text(Config.appName),
-                                          content: const Text(
-                                              "User Logged-In Successfuly"),
+                                          title: Text(cAppName),
+                                          content:
+                                              Text(cLoginSuccessfulySubTitle),
                                           actions: [
                                             TextButton(
-                                              child: const Text("Ok"),
+                                              child: Text(cOk),
                                               onPressed: () {
                                                 // Navigator.of(context).pop();
                                                 // Navigator.of(context)
@@ -119,13 +119,13 @@ class SignInForm extends StatelessWidget {
                                       context: context,
                                       builder: (BuildContext context) {
                                         return AlertDialog(
-                                          title: const Text(Config.appName),
-                                          content: const Text(
-                                            "Invalid Email or Password",
+                                          title: Text(cAppName),
+                                          content: Text(
+                                            cInvalidEmailOrPassword,
                                           ),
                                           actions: [
                                             TextButton(
-                                              child: const Text("Ok"),
+                                              child: Text(cOk),
                                               onPressed: () {
                                                 Navigator.of(context).pop();
                                               },
@@ -143,10 +143,10 @@ class SignInForm extends StatelessWidget {
                                   return AlertDialog(
                                     title: const Text(Config.appName),
                                     content: Text(
-                                        "An error occurred: ${e.toString()}"),
-                                    actions: <Widget>[
+                                        "$cAnErrorOccurred: ${e.toString()}"),
+                                    actions: [
                                       TextButton(
-                                        child: const Text("Ok"),
+                                        child: Text(cOk),
                                         onPressed: () {
                                           Navigator.of(context).pop();
                                         },
@@ -158,7 +158,7 @@ class SignInForm extends StatelessWidget {
                             }
                           }
                         },
-                        child: const Text(cSignin),
+                        child: Text(cSignin),
                       ),
                     ),
             ),

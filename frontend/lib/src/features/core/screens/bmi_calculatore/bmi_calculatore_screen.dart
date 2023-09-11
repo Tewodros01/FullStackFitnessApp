@@ -1,4 +1,3 @@
-import 'package:frontend/src/common_widgets/app_bar/app_bar.dart';
 import 'package:frontend/src/constants/sizes.dart';
 import 'package:frontend/src/constants/styles.dart';
 import 'package:frontend/src/constants/text_strings.dart';
@@ -28,7 +27,20 @@ class _BmiCalculatoreScreenState extends State<BmiCalculatoreScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appBar(cBmiTitle, context),
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.white,
+        centerTitle: true,
+        foregroundColor: Colors.black,
+        title: Text(
+          cBmiTitle,
+          style: const TextStyle(
+            fontSize: 17.0,
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
       body: Padding(
         padding: const EdgeInsets.symmetric(
           vertical: 20,
@@ -188,35 +200,27 @@ class _BmiCalculatoreScreenState extends State<BmiCalculatoreScreen> {
                 ),
               ),
               const SizedBox(height: 20),
-              Row(
-                children: [
-                  Expanded(
-                    child: BMICard(
-                      heights: 120.0,
-                      widths: 40.0,
-                      child: BMIContentControl(
-                        label: 'WEIGHT',
-                        value: weight,
-                        unit: 'kg',
-                        onDecrease: () => setState(() => weight--),
-                        onIncrease: () => setState(() => weight++),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(width: 17),
-                  Expanded(
-                    child: BMICard(
-                      heights: 120.0,
-                      widths: 40.0,
-                      child: BMIContentControl(
-                        label: 'AGE',
-                        value: age,
-                        onDecrease: () => setState(() => age--),
-                        onIncrease: () => setState(() => age++),
-                      ),
-                    ),
-                  ),
-                ],
+              BMICard(
+                heights: 60.0,
+                widths: MediaQuery.of(context).size.width,
+                child: BMIContentControl(
+                  label: 'Weight',
+                  value: weight,
+                  unit: 'kg',
+                  onDecrease: () => weight--,
+                  onIncrease: () => weight++,
+                ),
+              ),
+              const SizedBox(height: 20),
+              BMICard(
+                heights: 60.0,
+                widths: MediaQuery.of(context).size.width,
+                child: BMIContentControl(
+                  label: 'AGE',
+                  value: age,
+                  onDecrease: () => setState(() => age--),
+                  onIncrease: () => setState(() => age++),
+                ),
               ),
               const SizedBox(height: 20),
               BMILargeButton(
