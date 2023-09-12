@@ -3,6 +3,7 @@ import jwt, { JwtPayload, Secret } from "jsonwebtoken";
 import { User } from "../models/user.js";
 import dotenv from "dotenv";
 import { IUser } from "../adminjs/entity/user.entity.js";
+import { Gym } from "../models/gym.js";
 
 dotenv.config();
 const secret: Secret = process.env.TOKEN_SECRET as Secret;
@@ -22,9 +23,9 @@ const verifyToken = (req: IRequest, res: Response, next: NextFunction) => {
   if (!token) return res.status(403).send({ message: "No Token Provided" });
 
   try {
-    const decodedToken = jwt.verify(token, secret) as User;
+    const decodedToken = jwt.verify(token, secret) as DecodedTokenPayload;
     console.log("Print Message", decodedToken);
-    req.user = decodedToken;
+    req.user = decodedToken.user;
     console.log("Req User Message", req.user);
     next();
   } catch (error) {
@@ -37,5 +38,10 @@ const assignAccessToken = (user: User): string => {
   const userObject = JSON.parse(JSON.stringify(user));
   return jwt.sign(userObject, secret, { expiresIn });
 };
+const assignAccessTokenToGym = (gym: Gym): string => {
+  const expiresIn = "1h";
+  const gymObject = JSON.parse(JSON.stringify(gym));
+  return jwt.sign(gymObject, secret, { expiresIn });
+};
 
-export { verifyToken, assignAccessToken };
+export { verifyToken, assignAccessToken, assignAccessTokenToGym };

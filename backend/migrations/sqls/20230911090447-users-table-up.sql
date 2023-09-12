@@ -11,7 +11,5 @@ CREATE TABLE users(
   profile_picture VARCHAR,
   aim VARCHAR(255),
   activity_extent VARCHAR(255),
-  is_paid BOOLEAN DEFAULT false,
-  gym_id INTEGER REFERENCES gym(gym_id),
   user_password VARCHAR(255) NOT NULL
  );

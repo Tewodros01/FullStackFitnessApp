@@ -36,9 +36,6 @@ export const sendMonthlyPaymentReminders = () => {
           };
           await transporter.sendMail(mailOptions);
 
-          // Update the user's payment status to notify that a reminder has been sent
-          await userStore.updateUserPaymentStatus(user.user_id!, true);
-
           // Calculate the new next payment due date
           nextPaymentDueDate.setMonth(nextPaymentDueDate.getMonth() + 1);
 
@@ -241,14 +238,56 @@ class UserController {
   };
   static joinUserToGym = async (req: IRequest, res: Response) => {
     try {
+      console.log(req.user?.user_id);
       const userId = req.user!.user_id;
-      const gymId = req.body.user_id;
+      const gymId = req.params.gymId;
       const join_date = new Date(); // Get the current date as the join date
       const userStore: UserStore = new UserStore();
-      const userJoin = await userStore.joinGym(userId!, gymId, join_date);
+      const userJoin = await userStore.joinGym(
+        userId!,
+        parseInt(gymId),
+        join_date
+      );
       res.json({ message: "Success", data: userJoin });
     } catch (err) {
       res.status(400).json(`${err}`);
+    }
+  };
+  static updateUserPaymentStatus = async (
+    req: Request,
+    res: Response
+  ): Promise<void> => {
+    const userStore: UserStore = new UserStore();
+    const userId = parseInt(req.params.userId, 10); // Assuming userId is in the URL parameters
+    const gymId = parseInt(req.params.gymId, 10); // Assuming gymId is in the URL parameters
+    const isPaid = req.body.is_paid;
+
+    if (isNaN(userId) || isNaN(gymId)) {
+      res.status(400).json({ error: "Invalid user or gym ID." });
+      return;
+    }
+
+    if (typeof isPaid !== "boolean") {
+      res.status(400).json({ error: "is_paid must be a boolean value." });
+      return;
+    }
+
+    try {
+      const updatedUser = await userStore.updateUserPaymentStatus(
+        userId,
+        gymId,
+        isPaid
+      );
+      if (updatedUser !== null) {
+        res.status(200).json(updatedUser);
+      } else {
+        res
+          .status(404)
+          .json({ error: "User or gym not found, or no update occurred." });
+      }
+    } catch (error) {
+      console.error("Error updating user payment status:", error);
+      res.status(500).json({ error: "Internal Server Error" });
     }
   };
 }

@@ -1,39 +1,70 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:frontend/src/constants/text_strings.dart';
 import 'package:frontend/src/features/core/models/gym_model.dart';
+import 'package:frontend/src/providers/providers.dart';
 
 class GymDetailsScreen extends StatelessWidget {
   const GymDetailsScreen({super.key, required this.gym});
   final Gym gym;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Gym Details'),
+        elevation: 0,
+        backgroundColor: Colors.white,
+        centerTitle: true,
+        foregroundColor: Colors.black,
+        title: Text(
+          cFoodList,
+          style: const TextStyle(
+            fontSize: 17.0,
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Image.asset(gym.gymImageAsset), // Display the gym image
+            //  Image.asset(gym.gymImage!), // Display the gym image
             SizedBox(height: 16.0),
             Text('Gym Name: ${gym.gymName}'),
-            Text(
-                'Monthly Payment: \$${gym.gymMonthlyPayment.toStringAsFixed(2)}'),
+            Text('Monthly Payment: \$${gym.gymMonthlyPayment}'),
             Text('Location: ${gym.gymLocation}'),
             SizedBox(height: 16.0),
-            ElevatedButton(
-              onPressed: () {
-                // Implement the logic to join the gym here
-                // You can navigate to a success page or perform the desired action
-                // For this example, we'll just show a snackbar
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text('You have joined ${gym.gymName}!'),
-                  ),
-                );
+            Consumer(
+              builder: (_, WidgetRef ref, __) {
+                final gymNotifier = ref.read(gymsProvider.notifier);
+                final isJoiningGym = ref.watch(gymsProvider).isLoading;
+
+                return isJoiningGym
+                    ? CircularProgressIndicator() // Show circular progress indicator
+                    : ElevatedButton(
+                        onPressed: () async {
+                          final success = await gymNotifier.joinGym(gym.gymId);
+                          if (success) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content:
+                                    Text('You have joined ${gym.gymName}!'),
+                              ),
+                            );
+                          } else {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text(
+                                    'Failed to join ${gym.gymName}. Please try again.'),
+                              ),
+                            );
+                          }
+                        },
+                        child: Text('Join Gym'),
+                      );
               },
-              child: Text('Join Gym'),
             ),
           ],
         ),

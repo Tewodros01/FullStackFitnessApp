@@ -21,6 +21,6 @@ userRouter.get("/likeBook", UserController.getAllUserLikeBook);
 userRouter.post("/likeBook", UserController.userLikeBook);
 userRouter.get("/likeFood", UserController.getAllUserLikeFood);
 userRouter.post("/likeFood", UserController.userLikeFood);
-userRouter.post("/join", verifyToken, UserController.joinUserToGym);
+userRouter.post("/join/:gymId", verifyToken, UserController.joinUserToGym);
 
 export default userRouter;

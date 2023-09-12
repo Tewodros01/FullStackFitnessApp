@@ -20,23 +20,6 @@ class HomeScreen extends ConsumerWidget {
       return const Center(child: CircularProgressIndicator());
     }
 
-    // List of gyms
-    final List<Gym> gyms = [
-      Gym(
-        gymName: 'Gym A',
-        gymMonthlyPayment: 50.0,
-        gymLocation: 'Location A',
-        gymImageAsset: AssetsImages.userJpg,
-      ),
-      Gym(
-        gymName: 'Gym B',
-        gymMonthlyPayment: 60.0,
-        gymLocation: 'Location B',
-        gymImageAsset: AssetsImages.userJpg,
-      ),
-      // Add more gyms as needed
-    ];
-
     return Scaffold(
       appBar: appBar(cHome, context),
       body: SizedBox(
@@ -47,9 +30,7 @@ class HomeScreen extends ConsumerWidget {
             SizedBox(height: 10.h),
             ExerciseCategoryWidget(exerciseCategories: exerciseCategories),
             SizedBox(height: 10.h),
-
-            // Display the list of gyms
-            DisplayListOfGym(gyms: gyms),
+            const DisplayListOfGym(),
             SizedBox(height: 52.h),
           ],
         ),
@@ -58,29 +39,31 @@ class HomeScreen extends ConsumerWidget {
   }
 }
 
-class DisplayListOfGym extends StatelessWidget {
-  const DisplayListOfGym({
-    super.key,
-    required this.gyms,
-  });
-
-  final List<Gym> gyms;
+class DisplayListOfGym extends ConsumerWidget {
+  const DisplayListOfGym({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final gyms = ref.watch(gymsProvider);
+    if (gyms.gyms.isEmpty) {
+      ref.watch(gymsProvider.notifier).getGyms();
+      return const Center(child: CircularProgressIndicator());
+    }
     return Expanded(
       child: ListView.builder(
-        itemCount: gyms.length,
+        itemCount: gyms.gyms.length,
         itemBuilder: (context, index) {
-          final gym = gyms[index];
+          final gym = gyms.gyms[index];
           return ListTile(
-            leading: Image.asset(gym.gymImageAsset),
+            leading: gym.gymImage != null
+                ? Image.asset(gym.gymImage!)
+                : const SizedBox(), // Use a SizedBox if gymImage is null
             title: Text(gym.gymName),
             subtitle: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Monthly Payment: \$${gym.gymMonthlyPayment.toStringAsFixed(2)}',
+                  'Monthly Payment: \$${gym.gymMonthlyPayment}',
                 ),
                 Text('Location: ${gym.gymLocation}'),
               ],

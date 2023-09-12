@@ -79,19 +79,6 @@ export class UserStore {
     }
   }
 
-  async updateUserPaymentStatus(
-    userId: number,
-    isPaid: boolean
-  ): Promise<void> {
-    try {
-      const conn = await DB.connect();
-      const sql = "UPDATE users SET is_paid = $1 WHERE id = $2";
-      await conn.query(sql, [isPaid, userId]);
-      conn.release();
-    } catch (err) {
-      throw new Error(`Could not update user payment status: ${err}`);
-    }
-  }
   async userLogin(email: string, password: string) {
     try {
       const conn = await DB.connect();
@@ -256,6 +243,39 @@ export class UserStore {
     } catch (error) {
       console.error("Error updating user join date:", error);
       return false;
+    }
+  }
+  async updateUserPaymentStatus(
+    userId: number,
+    gymId: number,
+    isPaid: boolean
+  ): Promise<User | null | undefined> {
+    try {
+      const conn = await DB.connect(); // Assuming DB.connect() returns a connection from the pool
+      // Prepare the SQL query to update the user's payment status in the user_gym_membership table
+      const sql =
+        "UPDATE user_gym_membership SET is_paid = $1 WHERE user_id = $2 AND gym_id = $3";
+      // Execute the update query and await the result
+      const result = await conn.query(sql, [isPaid, userId, gymId]);
+
+      // If a row was affected, return the updated user
+      if (result.rowCount > 0) {
+        // You may want to fetch the user information here if needed
+        // For example, retrieve the user's details from the "users" table
+        const userSql = "SELECT * FROM users WHERE id = $1";
+        const userResult = await conn.query(userSql, [userId]);
+
+        if (userResult.rowCount > 0) {
+          return userResult.rows[0];
+        } else {
+          console.error("Error retrieving user:");
+        }
+      }
+
+      return null;
+    } catch (error) {
+      console.error("Error updating user payment status:", error);
+      return null;
     }
   }
 }
