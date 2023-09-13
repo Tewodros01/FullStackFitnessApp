@@ -5,9 +5,9 @@ import 'package:frontend/src/features/core/models/book_model.dart';
 import 'package:frontend/src/features/core/screens/book/widgets/text_widget.dart';
 import 'package:frontend/src/utils/themes/theme.dart';
 import 'package:get/get.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:path_provider/path_provider.dart';
 
 class DetailBookPage extends StatefulWidget {
   const DetailBookPage({super.key, this.bookInfo, this.index});
@@ -140,7 +140,7 @@ class _DetailBookPageState extends State<DetailBookPage> {
                           ),
                         ),
                         Text(
-                          "Author: ${widget.bookInfo!.bookAuthor}",
+                          "${"author".tr}: ${widget.bookInfo!.bookAuthor}",
                           style: TextStyle(
                             fontSize: 20,
                             fontFamily: "Avenir",
@@ -238,30 +238,6 @@ class _DetailBookPageState extends State<DetailBookPage> {
                   fontFamily: "Avenir",
                   fontWeight: FontWeight.w900,
                   color: Get.isDarkMode ? Colors.white24 : Colors.black54,
-                ),
-              ),
-            ),
-            Container(
-              margin: const EdgeInsets.only(top: 50),
-              child: GestureDetector(
-                onTap: () {
-                  //     Get.to(() => const AllBooks());
-                },
-                child: Container(
-                  padding: const EdgeInsets.only(right: 20),
-                  child: Row(
-                    children: [
-                      TextWidget(
-                        text: "check_directory".tr,
-                        fontSize: 20,
-                      ),
-                      Expanded(child: Container()),
-                      const IconButton(
-                        icon: Icon(Icons.arrow_forward_ios),
-                        onPressed: null,
-                      )
-                    ],
-                  ),
                 ),
               ),
             ),

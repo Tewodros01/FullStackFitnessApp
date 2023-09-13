@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:frontend/src/common_widgets/app_bar/app_bar.dart';
-import 'package:frontend/src/constants/text_strings.dart';
 import 'package:frontend/src/features/core/models/book_category_model.dart';
 import 'package:frontend/src/features/core/models/book_model.dart';
 import 'package:frontend/src/features/core/screens/book/widgets/book_categoriy_list.dart';
@@ -9,6 +8,7 @@ import 'package:frontend/src/features/core/screens/book/widgets/book_category.da
 import 'package:frontend/src/features/core/screens/book/widgets/custom_serach_bar.dart';
 import 'package:frontend/src/features/core/screens/book/widgets/recent_book_card_widgets.dart';
 import 'package:frontend/src/providers/providers.dart';
+import 'package:get/get.dart';
 
 class BookScreen extends ConsumerWidget {
   const BookScreen({Key? key}) : super(key: key);
@@ -33,7 +33,7 @@ class BookScreen extends ConsumerWidget {
     }
 
     return Scaffold(
-      appBar: appBar(cBook, context),
+      appBar: appBar("book".tr, context),
       body: _buildBody(booksState.books, categoryState.categories),
     );
   }
@@ -51,11 +51,11 @@ class BookScreen extends ConsumerWidget {
             const CustomeSearchBar(),
             BookCategories(bookCategories: books),
             const SizedBox(height: 20.0),
-            _buildSectionTitle(cCategories),
+            _buildSectionTitle("categories".tr),
             const SizedBox(height: 10.0),
             _buildBookCategories(categories),
             const SizedBox(height: 20.0),
-            _buildSectionTitle(cRecentlyAdded),
+            _buildSectionTitle("recentlyAdded".tr),
             const SizedBox(height: 20.0),
             _buildRecentBooks(books),
           ],

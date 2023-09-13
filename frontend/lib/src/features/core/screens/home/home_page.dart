@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:frontend/src/common_widgets/app_bar/app_bar.dart';
-import 'package:frontend/src/constants/text_strings.dart';
-import 'package:frontend/src/features/core/models/gym_model.dart';
 import 'package:frontend/src/features/core/screens/home/gym_detail/gym_detailsa_screen.dart';
 import 'package:frontend/src/features/core/screens/home/widgets/exercise_category.dart';
 import 'package:frontend/src/providers/providers.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:frontend/src/utils/assets.dart';
+import 'package:get/get.dart';
 
 class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
@@ -21,7 +19,7 @@ class HomeScreen extends ConsumerWidget {
     }
 
     return Scaffold(
-      appBar: appBar(cHome, context),
+      appBar: appBar("home".tr, context),
       body: SizedBox(
         height: MediaQuery.of(context).size.height,
         child: Column(

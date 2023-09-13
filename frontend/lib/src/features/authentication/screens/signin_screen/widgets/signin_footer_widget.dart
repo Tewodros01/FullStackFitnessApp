@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:frontend/src/constants/sizes.dart';
-import 'package:frontend/src/constants/text_strings.dart';
 import 'package:frontend/src/features/authentication/screens/signup_screen/signup_screen.dart';
 import 'package:get/get.dart';
 
@@ -14,7 +13,7 @@ class SignInFooterWidget extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Center(child: Text(cOr)),
+        Center(child: Text("or".tr)),
         const SizedBox(height: cFormHeigth - 10),
         // SizedBox(
         //   width: double.infinity,
@@ -34,11 +33,11 @@ class SignInFooterWidget extends StatelessWidget {
           },
           child: Text.rich(
             TextSpan(
-              text: cDontHaveAnAccount,
+              text: "dontHaveAccount".tr,
               style: Theme.of(context).textTheme.bodyMedium,
               children: [
                 TextSpan(
-                  text: cSignup,
+                  text: "signUp".tr,
                   style: const TextStyle(
                     color: Colors.blue,
                   ),

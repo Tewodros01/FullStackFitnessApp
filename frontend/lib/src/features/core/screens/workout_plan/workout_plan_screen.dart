@@ -5,7 +5,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:frontend/src/common_widgets/app_bar/app_bar.dart';
 import 'package:frontend/src/constants/colors.dart';
-import 'package:frontend/src/constants/text_strings.dart';
 import 'package:frontend/src/features/core/controllers/workout_plan_controller.dart';
 import 'package:frontend/src/features/core/models/workout_model.dart';
 import 'package:frontend/src/features/core/screens/add_workout_plan/add_workout_plan_screen.dart';
@@ -41,7 +40,7 @@ class _WorkoutPlanScreenState extends State<WorkoutPlanScreen> {
   Widget build(BuildContext context) {
     workoutPlanController.getWorkoutPlan();
     return Scaffold(
-      appBar: appBar(cWorkoutPlan, context),
+      appBar: appBar("workoutPlan".tr, context),
       body: SizedBox(
         width: double.infinity,
         height: double.infinity,
@@ -197,7 +196,7 @@ class _WorkoutPlanScreenState extends State<WorkoutPlanScreen> {
                   style: subHeadingStyle,
                 ),
                 Text(
-                  cToday,
+                  "today".tr,
                   style: headingStyle,
                 ),
               ],
@@ -219,7 +218,7 @@ class _WorkoutPlanScreenState extends State<WorkoutPlanScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    cAddWorkoutPlan,
+                    "addWorkoutPlan".tr,
                     style: const TextStyle(
                       color: Colors.white,
                     ),
@@ -255,7 +254,7 @@ class _WorkoutPlanScreenState extends State<WorkoutPlanScreen> {
             workoutPlan.workoutIsCompleted == 1
                 ? Container()
                 : _bottomSheetButton(
-                    label: "task_complet".tr,
+                    label: "taskComplet".tr,
                     onTap: () {
                       workoutPlanController
                           .markTaskCompleted(workoutPlan.workoutId!);
@@ -266,7 +265,7 @@ class _WorkoutPlanScreenState extends State<WorkoutPlanScreen> {
                   ),
             const SizedBox(height: 20),
             _bottomSheetButton(
-              label: "deleteworkoutPlan".tr,
+              label: "deleteWorkoutPlan".tr,
               onTap: () {
                 // workoutPlanController.delete(workoutPlan);
                 Get.back();
@@ -276,7 +275,7 @@ class _WorkoutPlanScreenState extends State<WorkoutPlanScreen> {
             ),
             const SizedBox(height: 20),
             _bottomSheetButton(
-              label: cClose,
+              label: "close".tr,
               onTap: () {
                 Get.back();
               },

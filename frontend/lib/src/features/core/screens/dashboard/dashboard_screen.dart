@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:frontend/src/constants/colors.dart';
-import 'package:frontend/src/constants/text_strings.dart';
 import 'package:frontend/src/features/core/screens/book/book_screen.dart';
 import 'package:frontend/src/features/core/screens/home/home_page.dart';
 import 'package:frontend/src/features/core/screens/profile/profile_screen.dart';
 import 'package:frontend/src/features/core/screens/workout_plan/workout_plan_screen.dart';
+import 'package:get/get.dart';
 
 class DashBoardScreen extends StatefulWidget {
   const DashBoardScreen({super.key});
@@ -52,28 +52,28 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                 padding: EdgeInsets.only(top: 8.0),
                 child: Icon(Icons.home),
               ),
-              label: cHome,
+              label: "home".tr,
             ),
             BottomNavigationBarItem(
               icon: const Padding(
                 padding: EdgeInsets.only(top: 8.0),
                 child: Icon(Icons.book),
               ),
-              label: cBook,
+              label: "book".tr,
             ),
             BottomNavigationBarItem(
               icon: const Padding(
                 padding: EdgeInsets.only(top: 8.0),
                 child: Icon(Icons.fitness_center),
               ),
-              label: cExercise,
+              label: "workoutPlan".tr,
             ),
             BottomNavigationBarItem(
               icon: const Padding(
                 padding: EdgeInsets.only(top: 8.0),
                 child: Icon(Icons.person),
               ),
-              label: cProfile,
+              label: "profile".tr,
             ),
           ],
         ),

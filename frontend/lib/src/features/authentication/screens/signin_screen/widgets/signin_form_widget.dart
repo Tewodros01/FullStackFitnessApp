@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:frontend/config.dart';
 import 'package:frontend/src/common_widgets/circularProgressBar/circular_progress_widget.dart';
 import 'package:frontend/src/constants/colors.dart';
 import 'package:frontend/src/constants/sizes.dart';
-import 'package:frontend/src/constants/text_strings.dart';
 import 'package:frontend/src/features/authentication/controllers/signin_controllers.dart';
 import 'package:frontend/src/features/core/screens/dashboard/dashboard_screen.dart';
 import 'package:get/get.dart';
@@ -28,8 +26,8 @@ class SignInForm extends StatelessWidget {
               controller: controllers.email,
               decoration: InputDecoration(
                 prefixIcon: const Icon(Icons.email_outlined),
-                labelText: cEmail,
-                hintText: cEmail,
+                labelText: "email".tr,
+                hintText: "email".tr,
                 border: const OutlineInputBorder(),
               ),
               validator: (value) => validateEmail(value),
@@ -39,7 +37,7 @@ class SignInForm extends StatelessWidget {
               () => TextFormField(
                 controller: controllers.password,
                 decoration: InputDecoration(
-                  label: Text(cPassword),
+                  label: Text("password".tr),
                   prefixIcon: const Icon(Icons.key_outlined),
                   suffixIcon: IconButton(
                     onPressed: () {
@@ -54,20 +52,20 @@ class SignInForm extends StatelessWidget {
                     ),
                   ),
                 ),
-                validator: (value) => validate(value, cPassword),
+                validator: (value) => validatePassword(value, "password".tr),
                 obscureText: controllers.hidePassword.value,
               ),
             ),
             const SizedBox(height: cFormHeigth),
-            Align(
-              alignment: Alignment.centerRight,
-              child: TextButton(
-                onPressed: () {
-                  //  ForgetPasswordScreen.buildShowModalBottomSheet(context);
-                },
-                child: Text(cForgetPassword),
-              ),
-            ),
+            // Align(
+            //   alignment: Alignment.centerRight,
+            //   child: TextButton(
+            //     onPressed: () {
+            //       //  ForgetPasswordScreen.buildShowModalBottomSheet(context);
+            //     },
+            //     child: Text(cForgetPassword),
+            //   ),
+            // ),
             Obx(
               () => controllers.isAsyncCallProcess.value
                   ? const Center(
@@ -93,12 +91,12 @@ class SignInForm extends StatelessWidget {
                                       context: context,
                                       builder: (BuildContext context) {
                                         return AlertDialog(
-                                          title: Text(cAppName),
-                                          content:
-                                              Text(cLoginSuccessfulySubTitle),
+                                          title: Text("fitnessApp".tr),
+                                          content: Text(
+                                              "loginSuccessfulySubTitle".tr),
                                           actions: [
                                             TextButton(
-                                              child: Text(cOk),
+                                              child: Text("ok".tr),
                                               onPressed: () {
                                                 // Navigator.of(context).pop();
                                                 // Navigator.of(context)
@@ -119,13 +117,13 @@ class SignInForm extends StatelessWidget {
                                       context: context,
                                       builder: (BuildContext context) {
                                         return AlertDialog(
-                                          title: Text(cAppName),
+                                          title: Text("fitnessApp".tr),
                                           content: Text(
-                                            cInvalidEmailOrPassword,
+                                            "invalidEmailOrPassword".tr,
                                           ),
                                           actions: [
                                             TextButton(
-                                              child: Text(cOk),
+                                              child: Text("ok".tr),
                                               onPressed: () {
                                                 Navigator.of(context).pop();
                                               },
@@ -141,12 +139,12 @@ class SignInForm extends StatelessWidget {
                                 context: context,
                                 builder: (BuildContext context) {
                                   return AlertDialog(
-                                    title: const Text(Config.appName),
+                                    title: Text("fitnessApp".tr),
                                     content: Text(
-                                        "$cAnErrorOccurred: ${e.toString()}"),
+                                        "${"anErrorOccurred".tr}: ${e.toString()}"),
                                     actions: [
                                       TextButton(
-                                        child: Text(cOk),
+                                        child: Text("ok".tr),
                                         onPressed: () {
                                           Navigator.of(context).pop();
                                         },
@@ -158,7 +156,7 @@ class SignInForm extends StatelessWidget {
                             }
                           }
                         },
-                        child: Text(cSignin),
+                        child: Text("signIn".tr),
                       ),
                     ),
             ),
@@ -173,6 +171,14 @@ class SignInForm extends StatelessWidget {
       return "$inputName is required";
     }
     return null;
+  }
+
+  String? validatePassword(String? value, String? password) {
+    if (password == null || value!.length < 6) {
+      return 'Password must be 6 charachter and above';
+    } else {
+      return null;
+    }
   }
 
   String? validateEmail(String? email) {

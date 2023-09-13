@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:frontend/src/constants/sizes.dart';
-import 'package:frontend/src/constants/text_strings.dart';
 import 'package:frontend/src/features/authentication/models/user_model.dart';
 import 'package:frontend/src/features/core/screens/profile/update_profile_screen/widgets/profile_picture_widget.dart';
 import 'package:frontend/src/features/core/screens/profile/update_profile_screen/widgets/update_profile_widget.dart';
+import 'package:get/get.dart';
 
 class UpdateProfileScreen extends StatelessWidget {
   const UpdateProfileScreen({super.key, required this.user});
@@ -19,7 +19,7 @@ class UpdateProfileScreen extends StatelessWidget {
         centerTitle: true,
         foregroundColor: Colors.black,
         title: Text(
-          cUpdatProfile,
+          "updateProfile".tr,
           style: TextStyle(
             fontSize: 17.sp,
             color: Colors.black,

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:frontend/src/constants/text_strings.dart';
 import 'package:frontend/src/features/core/models/exercise_category_model.dart';
 import 'package:frontend/src/features/core/screens/home/widgets/video_play_widgets.dart';
+import 'package:get/get.dart';
 
 class ExerciseCategoryWidget extends ConsumerWidget {
   const ExerciseCategoryWidget({
@@ -27,7 +27,7 @@ class ExerciseCategoryWidget extends ConsumerWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    cCategories,
+                    "categories".tr,
                     style: TextStyle(
                       fontSize: 16.sp,
                       color: Colors.black,
@@ -90,7 +90,7 @@ class ExerciseCategoryWidget extends ConsumerWidget {
                                     maxLines: 2,
                                     style: TextStyle(
                                       fontSize: 14.sp,
-                                      color: Colors.white,
+                                      color: const Color.fromARGB(255, 5, 3, 3),
                                       fontStyle: FontStyle.normal,
                                       fontWeight: FontWeight.w400,
                                     ),

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:frontend/src/constants/styles.dart';
-import 'package:frontend/src/constants/text_strings.dart';
 import 'package:frontend/src/features/core/screens/bmi_calculatore/widgets/bmi_card.dart';
 import 'package:frontend/src/features/core/screens/bmi_calculatore/widgets/bmi_large_button.dart';
 import 'package:frontend/src/features/core/services/user_service.dart';
+import 'package:get/get.dart';
 
 class ResultPage extends StatelessWidget {
   const ResultPage({super.key, required this.bmi});
@@ -17,7 +17,7 @@ class ResultPage extends StatelessWidget {
         centerTitle: true,
         foregroundColor: Colors.black,
         title: Text(
-          cBmiTitle,
+          "bmiTitle".tr,
           style: const TextStyle(
             fontSize: 17.0,
             color: Colors.black,
@@ -34,8 +34,8 @@ class ResultPage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              const Text(
-                'Your results',
+              Text(
+                'yourResults'.tr,
                 textAlign: TextAlign.center,
                 style: cLargeTextStyle,
               ),
@@ -71,7 +71,7 @@ class ResultPage extends StatelessWidget {
               ),
               const SizedBox(height: 17),
               BMILargeButton(
-                text: 'TRY AGAIN',
+                text: 'tryAgain'.tr,
                 onTap: () {
                   Navigator.pop(context);
                 },

@@ -2,9 +2,9 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:frontend/src/constants/colors.dart';
-import 'package:frontend/src/constants/text_strings.dart';
 import 'package:frontend/src/features/core/models/food_model.dart';
 import 'package:frontend/src/features/core/models/macronutrient_model.dart';
+import 'package:get/get.dart';
 
 class FoodListViewScreen extends StatefulWidget {
   const FoodListViewScreen({Key? key, required this.macronutrientsData})
@@ -57,7 +57,7 @@ class _FoodListViewScreenState extends State<FoodListViewScreen> {
         centerTitle: true,
         foregroundColor: Colors.black,
         title: Text(
-          cFoodList,
+          "foodList".tr,
           style: const TextStyle(
             fontSize: 17.0,
             color: Colors.black,
@@ -80,7 +80,7 @@ class _FoodListViewScreenState extends State<FoodListViewScreen> {
                   ),
                   filled: true,
                   contentPadding: const EdgeInsets.all(10),
-                  hintText: cSearch,
+                  hintText: "search".tr,
                   suffixIcon: Padding(
                     padding: const EdgeInsets.all(12.0),
                     child: IconButton(
@@ -151,10 +151,10 @@ class _FoodListViewScreenState extends State<FoodListViewScreen> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  'Carbohydrates: ${foodItem.carbohydrates}g, ',
+                                  '${"carbs".tr}: ${foodItem.carbohydrates}g, ',
                                 ),
-                                Text('Protein: ${foodItem.protein}g, '),
-                                Text('Fat: ${foodItem.fat}g'),
+                                Text('${"protein".tr}: ${foodItem.protein}g, '),
+                                Text('${"fat".tr}: ${foodItem.fat}g'),
                               ],
                             ),
                           ),
@@ -223,7 +223,8 @@ class _FoodListViewScreenState extends State<FoodListViewScreen> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('Grams Needed: ${sizes[i].toStringAsFixed(2)} kg'),
+                        Text(
+                            '${"gramsNeeded".tr}: ${sizes[i].toStringAsFixed(2)} kg'),
                       ],
                     ),
                   ),
@@ -235,7 +236,7 @@ class _FoodListViewScreenState extends State<FoodListViewScreen> {
               onPressed: () {
                 Navigator.pop(context);
               },
-              child: const Text('Close'),
+              child: Text('close'.tr),
             ),
           ],
         );

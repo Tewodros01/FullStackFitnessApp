@@ -21,6 +21,7 @@
   "dependencies": {
     "@adminjs/express": "^6.0.0",
     "@adminjs/mikroorm": "^3.0.0",
+    "@adminjs/upload": "^4.0.1",
     "@mikro-orm/core": "^5.7.14",
     "@mikro-orm/postgresql": "^5.7.14",
     "adminjs": "^7.2.1",

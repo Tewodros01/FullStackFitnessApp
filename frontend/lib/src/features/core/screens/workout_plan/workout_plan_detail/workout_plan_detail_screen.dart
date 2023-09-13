@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:frontend/src/constants/text_strings.dart';
 import 'package:frontend/src/features/core/models/exercise_category_model.dart';
 import 'package:frontend/src/features/core/models/workout_model.dart';
 import 'package:frontend/src/features/core/screens/workout_plan/widgets/workout_exercise_expandable_list_item_widget.dart.dart';
 import 'package:frontend/src/utils/themes/theme.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 class WorkoutPlanDetailScreen extends StatelessWidget {
@@ -79,7 +79,7 @@ class WorkoutPlanDetailScreen extends StatelessWidget {
                         ),
                         const SizedBox(width: 5),
                         Text(
-                          cEasy,
+                          "easy".tr,
                           style: const TextStyle(
                             color: Colors.white70,
                             fontWeight: FontWeight.w600,

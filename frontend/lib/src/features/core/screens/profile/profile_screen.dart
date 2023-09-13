@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:frontend/src/constants/text_strings.dart';
 import 'package:frontend/src/features/authentication/models/user_model.dart';
 import 'package:frontend/src/features/core/models/meal_model.dart';
 import 'package:frontend/src/features/core/screens/food_display/food_display_screen.dart';
@@ -91,7 +90,7 @@ class ProfileWidget extends StatelessWidget {
                       ),
                     ),
                     subtitle: Text(
-                      "$cHello, ${user.fullName}",
+                      "${"hello".tr}, ${user.fullName}",
                       style: const TextStyle(
                         fontWeight: FontWeight.w800,
                         fontSize: 26,
@@ -135,7 +134,7 @@ class ProfileWidget extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           IngredientProgress(
-                            ingredient: "Protein",
+                            ingredient: "protein".tr,
                             progress: 0.3,
                             progressColor: Colors.green,
                             leftAmount:
@@ -144,7 +143,7 @@ class ProfileWidget extends StatelessWidget {
                           ),
                           const SizedBox(height: 10),
                           IngredientProgress(
-                            ingredient: "Carbs",
+                            ingredient: "carbs".tr,
                             progress: 0.2,
                             progressColor: Colors.red,
                             leftAmount: macronutrientsData
@@ -154,7 +153,7 @@ class ProfileWidget extends StatelessWidget {
                           ),
                           const SizedBox(height: 10),
                           IngredientProgress(
-                            ingredient: "Fat",
+                            ingredient: "fat".tr,
                             progress: 0.1,
                             progressColor: Colors.yellow,
                             leftAmount:
@@ -185,7 +184,7 @@ class ProfileWidget extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(left: 10.0, bottom: 10.0),
                       child: Text(
-                        cProfileMealsForToday,
+                        "mealForToday".tr,
                         style: const TextStyle(
                           color: Colors.blueGrey,
                           fontSize: 16,
@@ -206,7 +205,7 @@ class ProfileWidget extends StatelessWidget {
                           );
                         },
                         child: Text(
-                          cProfileFoodList,
+                          "foodList".tr,
                           style: const TextStyle(
                             color: Colors.blueGrey,
                             fontSize: 16,

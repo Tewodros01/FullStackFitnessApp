@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:frontend/src/constants/colors.dart';
-import 'package:frontend/src/constants/text_strings.dart';
 import 'package:frontend/src/database/hive_service.dart';
 import 'package:frontend/src/features/core/models/exercise_category_model.dart';
 import 'package:frontend/src/features/core/models/workout_model.dart';
 import 'package:frontend/src/features/core/screens/add_workout_plan/widgets/add_workout_widgets.dart';
 import 'package:frontend/src/features/core/screens/add_workout_plan/widgets/exercise_expandable_list_item.dart';
 import 'package:frontend/src/providers/providers.dart';
+import 'package:get/get.dart';
 
 class AddWorkoutPlanScreen extends ConsumerWidget {
   const AddWorkoutPlanScreen({Key? key}) : super(key: key);
@@ -28,7 +28,7 @@ class AddWorkoutPlanScreen extends ConsumerWidget {
         centerTitle: true,
         foregroundColor: Colors.black,
         title: Text(
-          cExercise,
+          "chooseExercise".tr,
           style: const TextStyle(
             fontSize: 17.0,
             color: Colors.black,
@@ -60,7 +60,7 @@ class AddWorkoutPlanScreen extends ConsumerWidget {
         onPressed: () {
           _showCreateWorkoutDialog(context);
         },
-        label: Text(cCreateWorkout),
+        label: Text("createWorkout".tr),
         icon: const Icon(Icons.add),
         backgroundColor: cSecondaryColor,
       ),
@@ -100,7 +100,7 @@ class AddWorkoutPlanScreen extends ConsumerWidget {
     hiveService.clearExerciseCategory();
 
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text(cWorkoutCreated)),
+      SnackBar(content: Text("workoutCreated".tr)),
     );
   }
 }

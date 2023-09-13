@@ -5,6 +5,7 @@ import { Book } from "../entity/book.entity.js";
 import { Exercise } from "../entity/exercise.entity.js";
 import { Workout } from "../entity/workout.entity.js";
 import { ExerciseCategory } from "../entity/exercis_ceategory.entity.js";
+import CustomFileUpload from "./CustomFileUpload.jsx";
 
 const config: Options = {
   entities: [User, Book, Exercise, Workout, ExerciseCategory],
@@ -30,12 +31,24 @@ const adminOptions = {
         orm,
         options: {
           properties: {
-            properties: {
-              bookTitle: { type: "string" },
-              bookDescription: { type: "text" },
-              bookAuthorName: { type: "string" },
-              bookThumbnail: { type: "file" }, // Use 'file' for file uploads
-              bookFilePath: { type: "file" },
+            bookTitle: { type: "string" },
+            bookDescription: { type: "text" },
+            bookAuthorName: { type: "string" },
+            bookThumbnail: {
+              type: "file",
+              columnType: "file", // Ensure you set the columnType to "file"
+              isVisible: { list: true, show: true, edit: true },
+              components: {
+                edit: CustomFileUpload, // Use your custom file upload component
+              },
+            },
+            bookFilePath: {
+              type: "file",
+              columnType: "file", // Ensure you set the columnType to "file"
+              isVisible: { list: true, show: true, edit: true },
+              components: {
+                edit: CustomFileUpload, // Use your custom file upload component
+              },
             },
           },
         },

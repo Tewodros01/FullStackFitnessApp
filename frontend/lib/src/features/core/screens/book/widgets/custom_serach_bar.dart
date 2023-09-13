@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:frontend/src/constants/colors.dart';
-import 'package:frontend/src/constants/text_strings.dart';
+import 'package:get/get.dart';
 
 class CustomeSearchBar extends StatelessWidget {
   const CustomeSearchBar({Key? key}) : super(key: key);
@@ -20,7 +20,7 @@ class CustomeSearchBar extends StatelessWidget {
             fillColor: cDarkWhite,
             filled: true,
             contentPadding: const EdgeInsets.all(10),
-            hintText: cSearch,
+            hintText: "search".tr,
             prefixIcon: const Padding(
               padding: EdgeInsets.all(15.0),
               child: Icon(Icons.search),

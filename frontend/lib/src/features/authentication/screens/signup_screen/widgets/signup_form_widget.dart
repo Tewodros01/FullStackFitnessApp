@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:frontend/config.dart';
 import 'package:frontend/src/common_widgets/circularProgressBar/circular_progress_widget.dart';
 import 'package:frontend/src/constants/colors.dart';
 import 'package:frontend/src/constants/sizes.dart';
-import 'package:frontend/src/constants/text_strings.dart';
 import 'package:frontend/src/features/authentication/controllers/signup_controllers.dart';
 import 'package:frontend/src/features/authentication/models/user_model.dart';
 import 'package:frontend/src/features/core/screens/welcome/welcome_screen.dart';
@@ -26,37 +24,37 @@ class SignUpFormWidget extends StatelessWidget {
           TextFormField(
             controller: controllers.fullname,
             decoration: InputDecoration(
-              label: Text(cFullName),
+              label: Text("fullName".tr),
               prefixIcon: const Icon(Icons.person_outline_rounded),
             ),
-            validator: (value) => validate(value, cFullName),
+            validator: (value) => validate(value, "fullName".tr),
           ),
           const SizedBox(height: cFormHeigth - 20),
           TextFormField(
             controller: controllers.email,
             decoration: InputDecoration(
-              label: Text(cEmail),
+              label: Text("email".tr),
               prefixIcon: const Icon(Icons.email_outlined),
             ),
-            validator: (value) => validate(value, cEmail),
+            validator: (value) => validateEmail(value),
           ),
           const SizedBox(height: cFormHeigth - 20),
           TextFormField(
             controller: controllers.phoneNo,
             decoration: InputDecoration(
-              label: Text(cPhoneNumber),
+              label: Text("phoneNumber".tr),
               prefixIcon: const Icon(Icons.phone_outlined),
             ),
-            validator: (value) => validate(value, cPhoneNumber),
+            validator: (value) => validate(value, "phoneNumber".tr),
           ),
           const SizedBox(height: cFormHeigth - 10),
           DropdownButtonFormField<String>(
             decoration: InputDecoration(
               fillColor: Colors.black,
-              labelText: cGender,
+              labelText: "gender".tr,
               prefixIcon: const Icon(Icons.person_2_outlined),
             ),
-            validator: (value) => validate(value, cGender),
+            validator: (value) => validate(value, "gender".tr),
             onChanged: (value) {
               if (value != null) {
                 controllers.gender = value;
@@ -79,7 +77,7 @@ class SignUpFormWidget extends StatelessWidget {
             () => TextFormField(
               controller: controllers.password,
               decoration: InputDecoration(
-                label: Text(cPassword),
+                label: Text("password".tr),
                 prefixIcon: const Icon(Icons.key_outlined),
                 suffixIcon: IconButton(
                   onPressed: () {
@@ -94,7 +92,7 @@ class SignUpFormWidget extends StatelessWidget {
                   ),
                 ),
               ),
-              validator: (value) => validate(value, cPassword),
+              validator: (value) => validatePassword(value, "password".tr),
               obscureText: controllers.hidePassword.value,
             ),
           ),
@@ -130,12 +128,13 @@ class SignUpFormWidget extends StatelessWidget {
                                     context: context,
                                     builder: (BuildContext context) {
                                       return AlertDialog(
-                                        title: const Text(Config.appName),
+                                        title: Text("fitnessApp".tr),
                                         content: Text(
-                                            cRegistrationCompletedSuccessfully),
+                                            "registrationCompletedSuccessfully"
+                                                .tr),
                                         actions: [
                                           TextButton(
-                                            child: Text(cOk),
+                                            child: Text("ok".tr),
                                             onPressed: () {
                                               Get.to(
                                                 () => WelcomeScreen(user: user),
@@ -151,12 +150,12 @@ class SignUpFormWidget extends StatelessWidget {
                                     context: context,
                                     builder: (BuildContext context) {
                                       return AlertDialog(
-                                        title: const Text(Config.appName),
-                                        content: const Text(
-                                            "This email is already registered"),
+                                        title: Text("fitnessApp".tr),
+                                        content: Text(
+                                            "thisEmailIsAlreadyRegistered".tr),
                                         actions: [
                                           TextButton(
-                                            child: Text(cOk),
+                                            child: Text("ok".tr),
                                             onPressed: () {
                                               Navigator.of(context).pop();
                                             },
@@ -172,13 +171,13 @@ class SignUpFormWidget extends StatelessWidget {
                               context: context,
                               builder: (BuildContext context) {
                                 return AlertDialog(
-                                  title: const Text(Config.appName),
+                                  title: Text("fitnessApp".tr),
                                   content: Text(
-                                    "$cAnErrorOccurred: ${e.toString()}",
+                                    "${"anErrorOccurred"}.tr: ${e.toString()}",
                                   ),
                                   actions: [
                                     TextButton(
-                                      child: Text(cOk),
+                                      child: Text("ok".tr),
                                       onPressed: () {
                                         Navigator.of(context).pop();
                                       },
@@ -191,7 +190,7 @@ class SignUpFormWidget extends StatelessWidget {
                           //   Get.to(() => const OTPScrenn());
                         }
                       },
-                      child: Text(cSignup.toUpperCase()),
+                      child: Text("signUp".tr),
                     ),
                   ),
           ),
@@ -205,6 +204,14 @@ class SignUpFormWidget extends StatelessWidget {
       return "$inputName is required";
     }
     return null;
+  }
+
+  String? validatePassword(String? value, String? password) {
+    if (password == null || value!.length < 6) {
+      return 'Password must be 6 charachter and above';
+    } else {
+      return null;
+    }
   }
 
   String? validateEmail(String? email) {

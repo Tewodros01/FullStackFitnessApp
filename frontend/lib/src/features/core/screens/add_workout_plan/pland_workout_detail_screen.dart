@@ -23,7 +23,7 @@ class PlandWorkoutDetailScreen extends StatelessWidget {
                   backgroundImage: ExactAssetImage(exercise.exerciseThumbnail),
                 ),
                 title: Text(exercise.exerciseName),
-                subtitle: const Text('25 reps, 4 sets'),
+                subtitle: const Text('12 reps, 4 sets'),
                 trailing: Icon(
                   exercise.isSelected! ? Icons.check : Icons.add,
                   color: exercise.isSelected! ? Colors.green : Colors.grey,

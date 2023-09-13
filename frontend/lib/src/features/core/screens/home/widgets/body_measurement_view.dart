@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:frontend/src/constants/text_strings.dart';
 import 'package:frontend/src/features/authentication/models/user_model.dart';
 import 'package:frontend/src/features/core/services/user_service.dart';
 import 'package:frontend/src/utils/fitness_app_them.dart';
+import 'package:get/get.dart';
 
 class BodyMeasurementView extends StatelessWidget {
   const BodyMeasurementView({super.key, required this.user});
@@ -76,7 +76,7 @@ class BodyMeasurementView extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.only(top: 6),
                           child: Text(
-                            cHeight,
+                            "heigth".tr,
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontFamily: FitnessAppTheme.fontName,
@@ -149,7 +149,7 @@ class BodyMeasurementView extends StatelessWidget {
                             Padding(
                               padding: const EdgeInsets.only(top: 6),
                               child: Text(
-                                cBodyFat,
+                                "bodyFat".tr,
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                   fontFamily: FitnessAppTheme.fontName,
@@ -194,7 +194,7 @@ class BodyMeasurementView extends StatelessWidget {
                   ),
                   child: Center(
                     child: Text(
-                      cCalculateBMI,
+                      "calculateBMI".tr,
                       maxLines: 2,
                       style: TextStyle(
                         fontSize: 14.sp,

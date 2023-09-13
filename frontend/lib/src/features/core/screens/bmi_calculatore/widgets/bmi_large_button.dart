@@ -15,7 +15,7 @@ class BMILargeButton extends StatelessWidget {
         height: 40,
         width: double.infinity,
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: cSecondaryColor,
           borderRadius: BorderRadius.circular(8.0),
           boxShadow: const [
             BoxShadow(
@@ -29,7 +29,7 @@ class BMILargeButton extends StatelessWidget {
         child: Center(
           child: Text(
             text,
-            style: cLargeTextStyle,
+            style: const TextStyle(color: cPrimaryColor),
           ),
         ),
       ),

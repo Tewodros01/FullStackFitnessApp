@@ -1,12 +1,12 @@
 import 'package:frontend/src/constants/sizes.dart';
 import 'package:frontend/src/constants/styles.dart';
-import 'package:frontend/src/constants/text_strings.dart';
 import 'package:frontend/src/features/core/screens/bmi_calculatore/result_page.dart';
 import 'package:frontend/src/features/core/screens/bmi_calculatore/widgets/bmi_card.dart';
 import 'package:frontend/src/features/core/screens/bmi_calculatore/widgets/bmi_content_control.dart';
 import 'package:frontend/src/features/core/screens/bmi_calculatore/widgets/bmi_large_button.dart';
 import 'package:flutter/material.dart';
 import 'package:frontend/src/features/core/services/user_service.dart';
+import 'package:get/get.dart';
 
 class BmiCalculatoreScreen extends StatefulWidget {
   const BmiCalculatoreScreen({super.key});
@@ -33,7 +33,7 @@ class _BmiCalculatoreScreenState extends State<BmiCalculatoreScreen> {
         centerTitle: true,
         foregroundColor: Colors.black,
         title: Text(
-          cBmiTitle,
+          "bmiTitle".tr,
           style: const TextStyle(
             fontSize: 17.0,
             color: Colors.black,
@@ -52,12 +52,12 @@ class _BmiCalculatoreScreenState extends State<BmiCalculatoreScreen> {
             children: [
               const SizedBox(height: 20),
               DropdownButtonFormField<String>(
-                decoration: const InputDecoration(
-                  labelText: 'Aim',
+                decoration: InputDecoration(
+                  labelText: 'aim'.tr,
                 ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Please select your aim';
+                    return 'pleaseSelectYourAim'.tr;
                   }
                   return null;
                 },
@@ -82,12 +82,12 @@ class _BmiCalculatoreScreenState extends State<BmiCalculatoreScreen> {
               ),
               const SizedBox(height: 20),
               DropdownButtonFormField<String>(
-                decoration: const InputDecoration(
-                  labelText: 'Exercise',
+                decoration: InputDecoration(
+                  labelText: "exercise".tr,
                 ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Please select your exercise level';
+                    return 'pleaseSelectYourExerciseLevel'.tr;
                   }
                   return null;
                 },
@@ -121,12 +121,12 @@ class _BmiCalculatoreScreenState extends State<BmiCalculatoreScreen> {
               ),
               const SizedBox(height: 20),
               DropdownButtonFormField<String>(
-                decoration: const InputDecoration(
-                  labelText: 'Gender',
+                decoration: InputDecoration(
+                  labelText: 'gender'.tr,
                 ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Please select your gender';
+                    return 'pleaseSelectYourGender'.tr;
                   }
                   return null;
                 },
@@ -156,8 +156,8 @@ class _BmiCalculatoreScreenState extends State<BmiCalculatoreScreen> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text(
-                      'HEIGHT',
+                    Text(
+                      'heigth'.tr,
                       style: cLargeTextStyle,
                     ),
                     Row(
@@ -204,7 +204,7 @@ class _BmiCalculatoreScreenState extends State<BmiCalculatoreScreen> {
                 heights: 60.0,
                 widths: MediaQuery.of(context).size.width,
                 child: BMIContentControl(
-                  label: 'Weight',
+                  label: 'wigth'.tr,
                   value: weight,
                   unit: 'kg',
                   onDecrease: () => weight--,
@@ -216,7 +216,7 @@ class _BmiCalculatoreScreenState extends State<BmiCalculatoreScreen> {
                 heights: 60.0,
                 widths: MediaQuery.of(context).size.width,
                 child: BMIContentControl(
-                  label: 'AGE',
+                  label: 'age'.tr,
                   value: age,
                   onDecrease: () => setState(() => age--),
                   onIncrease: () => setState(() => age++),
@@ -224,7 +224,7 @@ class _BmiCalculatoreScreenState extends State<BmiCalculatoreScreen> {
               ),
               const SizedBox(height: 20),
               BMILargeButton(
-                text: 'CALCULATE',
+                text: "calculateBMI".tr,
                 onTap: () {
                   if (excercise == null) {
                     print("Pleaase select excercie");

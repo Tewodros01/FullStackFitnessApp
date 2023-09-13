@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:frontend/src/constants/text_strings.dart';
 import 'package:frontend/src/features/core/models/gym_model.dart';
 import 'package:frontend/src/providers/providers.dart';
+import 'package:get/get.dart';
 
 class GymDetailsScreen extends StatelessWidget {
   const GymDetailsScreen({super.key, required this.gym});
@@ -32,9 +32,9 @@ class GymDetailsScreen extends StatelessWidget {
           children: [
             //  Image.asset(gym.gymImage!), // Display the gym image
             SizedBox(height: 16.0),
-            Text('Gym Name: ${gym.gymName}'),
-            Text('Monthly Payment: \$${gym.gymMonthlyPayment}'),
-            Text('Location: ${gym.gymLocation}'),
+            Text('${"gymName".tr}: ${gym.gymName}'),
+            Text('${"monthlyPayment".tr}: \$${gym.gymMonthlyPayment}'),
+            Text('${"location".tr}: ${gym.gymLocation}'),
             SizedBox(height: 16.0),
             Consumer(
               builder: (_, WidgetRef ref, __) {
@@ -49,20 +49,20 @@ class GymDetailsScreen extends StatelessWidget {
                           if (success) {
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
-                                content:
-                                    Text('You have joined ${gym.gymName}!'),
+                                content: Text(
+                                    '${"youHaveJoined".tr} ${gym.gymName}!'),
                               ),
                             );
                           } else {
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
                                 content: Text(
-                                    'Failed to join ${gym.gymName}. Please try again.'),
+                                    '${"failedToJoin".tr} ${gym.gymName}. ${"pleaseTryAgain".tr}.'),
                               ),
                             );
                           }
                         },
-                        child: Text('Join Gym'),
+                        child: Text('joinGym'.tr),
                       );
               },
             ),

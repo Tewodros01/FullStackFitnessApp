@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:frontend/src/constants/text_strings.dart';
 import 'package:frontend/src/features/core/models/book_model.dart';
 import 'package:frontend/src/features/core/screens/book/detail_book/detail_book_screen.dart';
+import 'package:get/get.dart';
 
 class RecentBookCardWidget extends StatelessWidget {
   const RecentBookCardWidget({Key? key, required this.book}) : super(key: key);
@@ -92,7 +92,7 @@ class RecentBookCardWidget extends StatelessWidget {
                     ),
                     const Divider(color: Colors.black),
                     Text(
-                      '$cCategories: ${book.bookId}',
+                      '${"categories".tr}: ${book.bookId}',
                       style: const TextStyle(
                         fontSize: 14,
                         fontFamily: "Avenir",

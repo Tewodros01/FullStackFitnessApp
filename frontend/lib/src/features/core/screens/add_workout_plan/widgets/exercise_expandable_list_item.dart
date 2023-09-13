@@ -114,7 +114,7 @@ class _ExerciseExpandableListItemState
                       ),
                     ),
                     subtitle: const Text(
-                      '25 reps, 4 sets',
+                      '12 reps, 4 sets',
                       style: TextStyle(
                         fontSize: 15,
                         fontWeight: FontWeight.normal,

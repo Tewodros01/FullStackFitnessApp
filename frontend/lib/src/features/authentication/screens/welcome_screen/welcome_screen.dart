@@ -5,7 +5,6 @@ import 'package:frontend/src/common_widgets/fade_in_animation/fade_in_animation_
 import 'package:frontend/src/constants/colors.dart';
 import 'package:frontend/src/constants/image_strings.dart';
 import 'package:frontend/src/constants/sizes.dart';
-import 'package:frontend/src/constants/text_strings.dart';
 import 'package:frontend/src/features/authentication/screens/signin_screen/signin_screen.dart';
 import 'package:frontend/src/features/authentication/screens/signup_screen/signup_screen.dart';
 import 'package:get/get.dart';
@@ -50,11 +49,11 @@ class WelcomeScreen extends StatelessWidget {
                   Column(
                     children: [
                       Text(
-                        cWelcomeTitle,
+                        "welcomeTitle".tr,
                         style: Theme.of(context).textTheme.headlineMedium,
                       ),
                       Text(
-                        cWelcomeSubtitle,
+                        "welcomeSubtitle".tr,
                         style: Theme.of(context).textTheme.bodySmall,
                       ),
                     ],
@@ -67,7 +66,7 @@ class WelcomeScreen extends StatelessWidget {
                             Get.to(() => const SigninScreen());
                           },
                           child: Text(
-                            cSignin.toUpperCase(),
+                            "signIn".tr,
                           ),
                         ),
                       ),
@@ -78,7 +77,7 @@ class WelcomeScreen extends StatelessWidget {
                             Get.to(() => const SignUpScreen());
                           },
                           child: Text(
-                            cSignup.toUpperCase(),
+                            "signUp".tr,
                           ),
                         ),
                       ),
