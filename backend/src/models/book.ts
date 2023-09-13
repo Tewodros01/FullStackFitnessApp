@@ -42,14 +42,14 @@ export class BookStore {
     try {
       const conn = await DB.connect();
       const sql =
-        "INSERT INTO books (book_title ,book_description,book_thumbnail,book_file_path,book_category_id,book_author_name) VALUES($1,$2,$3,$4,$5,$6) RETURNING *";
+        "INSERT INTO books (book_title ,book_description,book_thumbnail,book_file_path,book_author_name,book_category_id) VALUES($1,$2,$3,$4,$5,$6) RETURNING *";
       const result = await conn.query(sql, [
         book.book_title,
         book.book_description,
         book.book_thumbnail,
         book.book_file_path,
-        book.book_category_id,
         book.book_author_name,
+        book.book_category_id,
       ]);
       conn.release();
       return result.rows[0];

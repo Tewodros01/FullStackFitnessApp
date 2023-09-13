@@ -6,8 +6,8 @@ class LocalString extends Translations {
   Map<String, Map<String, String>> get keys => {
         "en_US": {
           "fitnessApp": "Fitness App",
-          "welcomeTitle": "Awesome App",
-          "welcomeSubtitle": "Let's put your creative on the developing effort",
+          "welcomeTitle": "Welcome",
+          "welcomeSubtitle": "Join a happy and healthy world",
           "signIn": "SIGN IN",
           "signUp": "SIGN UP",
           "loginTitle": "Welcome back,",
@@ -64,7 +64,7 @@ class LocalString extends Translations {
           "addWorkoutPlan": "Add Workout",
           "chooseWorkout": "Choose Workout",
           "createWorkout": "Create Workout",
-          "cWorkoutCreated": "Workout with selected exercises created!",
+          "workoutCreated": "Workout with selected exercises created!",
           "workoutType": "Workout Type",
           "workoutList": "Workout List",
           "noWorkoutsFound": "No workouts found",
@@ -88,7 +88,7 @@ class LocalString extends Translations {
         "et_ET": {
           "fitnessApp": "የአካል ብቃት መተግበሪያ",
           "welcomeTitle": "እንኳን ደህና መጡ",
-          "welcomeSubtitle": "ወደ ደስተኛ እና ወደጤነኛ አለም ይቀላቀሉ",
+          "welcomeSubtitle": "ወደ ደስተኛ እና ጤነኛ አለም ይቀላቀሉ",
           "signIn": "መግቢያ",
           "signUp": "ይመዝገቡ",
           "loginTitle": "እንኳን ደህና መጡ,",

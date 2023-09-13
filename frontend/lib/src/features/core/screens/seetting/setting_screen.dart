@@ -49,44 +49,28 @@ class _SettingScreenState extends State<SettingScreen> {
                   _updateLanguage(newValue); // Call the _updateLanguage method
                 });
               },
-              items: [
+              items: const [
                 DropdownMenuItem<Locale>(
-                  value: const Locale('en', 'US'),
+                  value: Locale('en', 'US'),
                   child: Text('ENGLISH'),
                 ),
                 DropdownMenuItem<Locale>(
-                  value: const Locale('et', 'ET'),
+                  value: Locale('et', 'ET'),
                   child: Text('አማርኛ'),
                 ),
                 DropdownMenuItem<Locale>(
-                  value: const Locale('et', 'TG'),
+                  value: Locale('et', 'TG'),
                   child: Text('ትግሪኛ'),
                 ),
                 DropdownMenuItem<Locale>(
-                  value: const Locale('et', 'OR'),
+                  value: Locale('et', 'OR'),
                   child: Text('Afaan Oromoo'),
                 ),
                 // Add more locales as needed
               ],
             ),
           ),
-          Divider(),
-          ListTile(
-            title: Text('Other Setting 1', style: TextStyle(fontSize: 18.0)),
-            trailing: Icon(Icons.arrow_forward_ios),
-            onTap: () {
-              // Navigate to other setting 1 screen or perform action
-            },
-          ),
-          Divider(),
-          ListTile(
-            title: Text('Other Setting 2', style: TextStyle(fontSize: 18.0)),
-            trailing: Icon(Icons.arrow_forward_ios),
-            onTap: () {
-              // Navigate to other setting 2 screen or perform action
-            },
-          ),
-          Divider(),
+          const Divider(),
           ElevatedButton(
             onPressed: () {
               // Perform the language change action here, e.g., save to preferences
@@ -97,7 +81,7 @@ class _SettingScreenState extends State<SettingScreen> {
               Get.offNamed('/home'); // Replace with your screen's route name.
             },
             // Customize the button's appearance to match your app's theme
-            child: Text('Save Changes', style: TextStyle(fontSize: 18.0)),
+            child: const Text('Save Changes', style: TextStyle(fontSize: 18.0)),
           ),
         ],
       ),
