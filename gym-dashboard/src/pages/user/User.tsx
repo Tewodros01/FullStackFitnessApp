@@ -1,29 +1,17 @@
 import { useEffect, useState } from "react";
 import Single from "../../components/single/Single";
 import "./user.scss";
+import { User } from "../../types/user";
 
-// Define an interface for the structure of userData
-interface UserData {
-  id: number;
-  img?: string;
-  title: string;
-  info: object;
-  chart?: {
-    dataKeys: { name: string; color: string }[];
-    data: object[];
-  };
-  activities?: { time: string; text: string }[];
-}
-
-const User = () => {
-  const [userData, setUserData] = useState<UserData | null>(null);
+const UserProfile = () => {
+  const [userData, setUserData] = useState<User | null>(null);
 
   useEffect(() => {
     // Make an API request to fetch user data
     // Replace 'your-api-endpoint' with the actual API endpoint
-    fetch("your-api-endpoint")
+    fetch("your-api-endpoint") // Replace with the actual API endpoint
       .then((response) => response.json())
-      .then((data: UserData) => {
+      .then((data: User) => {
         setUserData(data);
       })
       .catch((error) => {
@@ -31,7 +19,12 @@ const User = () => {
       });
   }, []);
 
-  return <div className="user">{userData && <Single {...userData} />}</div>;
+  return (
+    <div className="user">
+      {userData && <Single user={userData} />}
+      {/* Pass 'user' prop explicitly */}
+    </div>
+  );
 };
 
-export default User;
+export default UserProfile;

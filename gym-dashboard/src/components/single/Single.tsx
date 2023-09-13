@@ -8,15 +8,13 @@ import {
   YAxis,
 } from "recharts";
 import "./single.scss";
+import { User } from "../../types/user"; // Import the User type
 
 type Props = {
-  id: number;
-  img?: string;
-  title: string;
-  info: object;
+  user: User; // Use the User type for 'user'
   chart?: {
     dataKeys: { name: string; color: string }[];
-    data: object[];
+    data: object[]; // You might want to replace 'object[]' with a specific type
   };
   activities?: { time: string; text: string }[];
 };
@@ -27,15 +25,17 @@ const Single = (props: Props) => {
       <div className="view">
         <div className="info">
           <div className="topInfo">
-            {props.img && <img src={props.img} alt="" />}
-            <h1>{props.title}</h1>
+            {props.user.profile_picture && (
+              <img src={props.user.profile_picture} alt="" />
+            )}
+            <h1>{props.user.full_name}</h1>
             <button>Update</button>
           </div>
           <div className="details">
-            {Object.entries(props.info).map((item) => (
-              <div className="item" key={item[0]}>
-                <span className="itemTitle">{item[0]}</span>
-                <span className="itemValue">{item[1]}</span>
+            {Object.entries(props.user).map(([key, value]) => (
+              <div className="item" key={key}>
+                <span className="itemTitle">{key}</span>
+                <span className="itemValue">{value}</span>
               </div>
             ))}
           </div>
@@ -47,7 +47,7 @@ const Single = (props: Props) => {
               <LineChart
                 width={500}
                 height={300}
-                data={props.chart.data}
+                data={props.chart.data as any}
                 margin={{
                   top: 5,
                   right: 30,
@@ -64,6 +64,7 @@ const Single = (props: Props) => {
                     type="monotone"
                     dataKey={dataKey.name}
                     stroke={dataKey.color}
+                    key={dataKey.name}
                   />
                 ))}
               </LineChart>

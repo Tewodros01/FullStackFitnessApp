@@ -12,12 +12,13 @@ class LangugeServices {
   }
 
   Locale get local => _loadLangugeFromBox()
-      ? const Locale('en', 'US')
-      : const Locale('et', 'ET');
+      ? const Locale('et', 'ET')
+      : const Locale('en', 'US');
+
   void switchLanguge() {
     Get.updateLocale(_loadLangugeFromBox()
-        ? const Locale('et', 'ET')
-        : const Locale('en', 'US'));
+        ? const Locale('en', 'US')
+        : const Locale('et', 'ET'));
     _saveLangugeToBox(!_loadLangugeFromBox());
   }
 }

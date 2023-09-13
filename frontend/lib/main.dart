@@ -6,7 +6,7 @@ import 'package:frontend/src/features/authentication/screens/signup_screen/signu
 import 'package:frontend/src/features/authentication/screens/splash_screen/splash_screen.dart';
 import 'package:frontend/src/features/core/models/workout_model.dart';
 import 'package:frontend/src/features/core/screens/bmi_calculatore/bmi_calculatore_screen.dart';
-import 'package:frontend/src/features/core/screens/change_languge/change_languge_screen.dart';
+import 'package:frontend/src/features/core/screens/seetting/setting_screen.dart';
 import 'package:frontend/src/features/core/screens/dashboard/dashboard_screen.dart';
 import 'package:frontend/src/features/core/screens/profile/profile_screen.dart';
 import 'package:frontend/src/localization/languge_services.dart';
@@ -64,7 +64,7 @@ class MyApp extends StatelessWidget {
           '/login': (context) => const SigninScreen(),
           '/profile': (context) => const ProfileScreen(),
           '/bmicalculatore': (context) => const BmiCalculatoreScreen(),
-          '/language_selection': (context) => LanguageSelectionScreen(),
+          '/language_selection': (context) => const SettingScreen(),
         },
       ),
     );

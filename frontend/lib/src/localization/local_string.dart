@@ -42,7 +42,7 @@ class LocalString extends Translations {
           "maintain": "Maintain",
           "pleaseSelectYourAim": "Please select your aim",
           "pleaseSelectYourExerciseLevel": "Please select your exerciseLevel",
-          "littleToNoExercise": "Little To NoExercise",
+          "littleToNoExercise": "Little To No Exercise",
           "moderatelyActive": "Moderately Active",
           "veryActive": "Very Active",
           "registrationCompletedSuccessfully":

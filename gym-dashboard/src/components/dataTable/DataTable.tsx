@@ -1,11 +1,12 @@
 import { DataGrid, GridColDef, GridToolbar } from "@mui/x-data-grid";
 import { Link } from "react-router-dom";
 import "./dataTable.scss";
+import { User } from "../../types/user";
 // import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 type Props = {
   columns: GridColDef[];
-  rows: object[];
+  rows: User[];
   slug: string;
 };
 
@@ -36,10 +37,13 @@ const DataTable = (props: Props) => {
     renderCell: (params) => {
       return (
         <div className="action">
-          <Link to={`/${props.slug}/${params.row.id}`}>
+          <Link to={`/${props.slug}/${params.row.user_id}`}>
             <img src="/view.svg" alt="" />
           </Link>
-          <div className="delete" onClick={() => handleDelete(params.row.id)}>
+          <div
+            className="delete"
+            onClick={() => handleDelete(params.row.user_id)}
+          >
             <img src="/delete.svg" alt="" />
           </div>
         </div>

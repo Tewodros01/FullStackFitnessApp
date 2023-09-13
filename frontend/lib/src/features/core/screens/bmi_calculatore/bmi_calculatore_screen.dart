@@ -104,9 +104,9 @@ class _BmiCalculatoreScreenState extends State<BmiCalculatoreScreen> {
                   }
                 },
                 items: [
-                  'Little to no exercise',
-                  'Moderately active',
-                  'Very active',
+                  'Little To No Exercise',
+                  'Moderately Active',
+                  'Very Active',
                 ].map((String value) {
                   return DropdownMenuItem<String>(
                     value: value,

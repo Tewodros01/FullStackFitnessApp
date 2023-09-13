@@ -68,7 +68,7 @@ export class UserStore {
       const sql = `
         SELECT u.*
         FROM users u
-        JOIN user_gym_membership ugm ON u.id = ugm.user_id
+        JOIN user_gym_membership ugm ON u.user_id = ugm.user_id
         WHERE ugm.is_paid = false
       `;
       const result = await conn.query(sql);

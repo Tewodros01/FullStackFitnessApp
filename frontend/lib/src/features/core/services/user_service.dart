@@ -21,11 +21,11 @@ class UserService {
       int weight, int height, int age, String gender, String exercise) {
     double bMR = calculateBMR(gender, weight, height, age);
     double tDEE = 0;
-    if (exercise == "Little to no exercise") {
+    if (exercise == "Little To No Exercise") {
       tDEE = bMR * 1.375;
-    } else if (exercise == "Moderately active") {
+    } else if (exercise == "Moderately Active") {
       tDEE = bMR * 1.55;
-    } else if (exercise == "Very active") {
+    } else if (exercise == "Very Active") {
       tDEE = bMR * 1.725;
     }
     return tDEE;

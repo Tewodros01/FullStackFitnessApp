@@ -17,7 +17,7 @@ class GymDetailsScreen extends StatelessWidget {
         centerTitle: true,
         foregroundColor: Colors.black,
         title: Text(
-          cFoodList,
+          gym.gymName,
           style: const TextStyle(
             fontSize: 17.0,
             color: Colors.black,

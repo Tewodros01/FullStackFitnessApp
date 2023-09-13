@@ -136,20 +136,20 @@ class BodyMeasurementView extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
-                            Text(
+                            const Text(
                               '20%',
                               style: TextStyle(
                                 fontFamily: FitnessAppTheme.fontName,
                                 fontWeight: FontWeight.w500,
                                 fontSize: 16,
                                 letterSpacing: -0.2,
-                                color: const Color.fromRGBO(37, 56, 64, 1),
+                                color: Color.fromRGBO(37, 56, 64, 1),
                               ),
                             ),
                             Padding(
                               padding: const EdgeInsets.only(top: 6),
                               child: Text(
-                                cBmiTitle,
+                                cBodyFat,
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                   fontFamily: FitnessAppTheme.fontName,

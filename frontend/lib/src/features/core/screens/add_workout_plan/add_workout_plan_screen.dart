@@ -22,12 +22,19 @@ class AddWorkoutPlanScreen extends ConsumerWidget {
     }
 
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
-        elevation: 0.0,
+        elevation: 0,
         backgroundColor: Colors.white,
+        centerTitle: true,
         foregroundColor: Colors.black,
-        actions: const [],
+        title: Text(
+          cExercise,
+          style: const TextStyle(
+            fontSize: 17.0,
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(14.0),

@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
-class LanguageSelectionScreen extends StatefulWidget {
+class SettingScreen extends StatefulWidget {
+  const SettingScreen({super.key});
+
   @override
-  _LanguageSelectionScreenState createState() =>
-      _LanguageSelectionScreenState();
+  State<SettingScreen> createState() => _SettingScreenState();
 }
 
-class _LanguageSelectionScreenState extends State<LanguageSelectionScreen> {
-  String selectedLanguage = 'English'; // Initial language selection
+class _SettingScreenState extends State<SettingScreen> {
+  Locale selectedLocale = const Locale('en', 'US');
+  // Initial language selection
+  // Method to update the app's language
+  _updateLanguage(Locale local) {
+    Get.back(); // Close the language selection screen
+    Get.updateLocale(local); // Update the app's locale
+  }
 
-  // List of available languages. You can customize this list.
-  List<String> languages = ['English', 'Spanish', 'French', 'German'];
-  List locales = [
-    {'name': 'ENGLISH', 'locale': const Locale('en', 'US')},
-    {'name': 'አማርኛ', 'locale': const Locale('et', 'ET')},
-    {'name': 'ትግሪኛ', 'locale': const Locale('et', 'TG')},
-    {'name': 'Afaan Oromoo', 'locale': const Locale('et', 'OR')},
-  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,19 +41,33 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen> {
           ListTile(
             title:
                 const Text('Change Language', style: TextStyle(fontSize: 18.0)),
-            trailing: DropdownButton<String>(
-              value: selectedLanguage,
-              onChanged: (String? newValue) {
+            trailing: DropdownButton<Locale>(
+              value: selectedLocale,
+              onChanged: (Locale? newValue) {
                 setState(() {
-                  selectedLanguage = newValue!;
+                  selectedLocale = newValue!;
+                  _updateLanguage(newValue); // Call the _updateLanguage method
                 });
               },
-              items: languages.map<DropdownMenuItem<String>>((String value) {
-                return DropdownMenuItem<String>(
-                  value: value,
-                  child: Text(value),
-                );
-              }).toList(),
+              items: [
+                DropdownMenuItem<Locale>(
+                  value: const Locale('en', 'US'),
+                  child: Text('ENGLISH'),
+                ),
+                DropdownMenuItem<Locale>(
+                  value: const Locale('et', 'ET'),
+                  child: Text('አማርኛ'),
+                ),
+                DropdownMenuItem<Locale>(
+                  value: const Locale('et', 'TG'),
+                  child: Text('ትግሪኛ'),
+                ),
+                DropdownMenuItem<Locale>(
+                  value: const Locale('et', 'OR'),
+                  child: Text('Afaan Oromoo'),
+                ),
+                // Add more locales as needed
+              ],
             ),
           ),
           Divider(),
@@ -77,11 +91,10 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen> {
             onPressed: () {
               // Perform the language change action here, e.g., save to preferences
               // You can use a package like shared_preferences for this purpose.
-              // Example: SharedPreferences.getInstance().then((prefs) => prefs.setString('language', selectedLanguage));
+              // Example: SharedPreferences.getInstance().then((prefs) => prefs.setString('language', selectedLocale.languageCode));
 
-              // After changing the language, you can navigate to another screen.
-              Navigator.of(context).pushReplacementNamed(
-                  '/home'); // Replace with your screen's route name.
+              // After changing the language, you can navigate to another screen using GetX.
+              Get.offNamed('/home'); // Replace with your screen's route name.
             },
             // Customize the button's appearance to match your app's theme
             child: Text('Save Changes', style: TextStyle(fontSize: 18.0)),
