@@ -52,15 +52,10 @@ class _FoodListViewScreenState extends State<FoodListViewScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.white,
-        centerTitle: true,
-        foregroundColor: Colors.black,
         title: Text(
           "foodList".tr,
           style: const TextStyle(
             fontSize: 17.0,
-            color: Colors.black,
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -76,26 +71,33 @@ class _FoodListViewScreenState extends State<FoodListViewScreen> {
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
                     borderSide: BorderSide.none,
-                    borderRadius: BorderRadius.circular(10),
+                    borderRadius: BorderRadius.circular(8),
                   ),
                   filled: true,
                   contentPadding: const EdgeInsets.all(10),
                   hintText: "search".tr,
-                  suffixIcon: Padding(
-                    padding: const EdgeInsets.all(12.0),
-                    child: IconButton(
-                      icon: const Icon(Icons.clear),
-                      onPressed: () {
-                        searchController.clear();
-                        setState(
-                          () {
-                            // Clear the search results
-                            nutritionItems = data
-                                .map((item) => FoodModel.fromJson(item))
-                                .toList();
-                          },
-                        );
-                      },
+                  suffixIcon: MaterialButton(
+                    onPressed: () {
+                      searchController.clear();
+                      setState(
+                        () {
+                          // Clear the search results
+                          nutritionItems = data
+                              .map((item) => FoodModel.fromJson(item))
+                              .toList();
+                        },
+                      );
+                    },
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                    height: double.infinity,
+                    minWidth: 70,
+                    elevation: 0,
+                    color: AppColors.cOrange,
+                    child: const Icon(
+                      Icons.clear,
+                      color: Colors.white,
                     ),
                   ),
                 ),
@@ -123,19 +125,7 @@ class _FoodListViewScreenState extends State<FoodListViewScreen> {
                   return Column(
                     children: [
                       const SizedBox(height: 15),
-                      Container(
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(15),
-                          boxShadow: const [
-                            BoxShadow(
-                              color: Colors.black12,
-                              blurRadius: 0.2,
-                              offset: Offset(0.3, 0.5),
-                              spreadRadius: 0.5,
-                            )
-                          ],
-                        ),
+                      Card(
                         child: ListTile(
                           leading: CircleAvatar(
                             backgroundImage: ExactAssetImage(
@@ -186,7 +176,6 @@ class _FoodListViewScreenState extends State<FoodListViewScreen> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: cSecondaryColor,
         onPressed: () {
           // Handle displaying selected items and grams needed
           displayFoodSize();

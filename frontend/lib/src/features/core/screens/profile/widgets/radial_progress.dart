@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/src/constants/colors.dart';
 import 'package:vector_math/vector_math_64.dart' as math;
 
 class RadialProgress extends StatelessWidget {
@@ -27,18 +28,18 @@ class RadialProgress extends StatelessWidget {
                 TextSpan(
                   text: "${result.toInt()}",
                   style: const TextStyle(
+                    color: AppColors.cOrange,
                     fontSize: 32,
                     fontWeight: FontWeight.w700,
-                    color: Color(0xFF200087),
                   ),
                 ),
                 const TextSpan(text: "\n"),
                 const TextSpan(
-                  text: "kcal left",
+                  text: "kcal ",
                   style: TextStyle(
+                    color: AppColors.cOrange,
                     fontSize: 18,
                     fontWeight: FontWeight.w500,
-                    color: Color(0xFF200087),
                   ),
                 ),
               ],
@@ -58,7 +59,7 @@ class _RadialPainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     Paint paint = Paint()
       ..strokeWidth = 10
-      ..color = const Color(0xFF200087)
+      ..color = AppColors.cOrange
       ..style = PaintingStyle.stroke
       ..strokeCap = StrokeCap.round;
 

@@ -1,12 +1,14 @@
-import 'dart:convert';
 import 'dart:io';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:frontend/config.dart';
+import 'package:frontend/src/api/api_service.dart';
+import 'package:frontend/src/constants/colors.dart';
 import 'package:frontend/src/features/core/models/book_model.dart';
 import 'package:frontend/src/features/core/screens/book/widgets/text_widget.dart';
-import 'package:frontend/src/utils/themes/theme.dart';
 import 'package:get/get.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:path_provider/path_provider.dart';
 
 class DetailBookPage extends StatefulWidget {
@@ -22,50 +24,15 @@ class _DetailBookPageState extends State<DetailBookPage> {
   String? _localPath;
   bool? _permissionReady;
   TargetPlatform? platform;
-  int? userId;
-  int? isLike;
+  int isLike = 0;
   int downloadProgress = 0;
-
   bool isDownloadStarted = false;
-
   bool isDownloadFinish = false;
 
   @override
   @override
   void dispose() {
     super.dispose();
-  }
-
-  @override
-  void initState() {
-    _getUsers();
-    super.initState();
-  }
-
-  _getUsers() async {
-    SharedPreferences localStorage = await SharedPreferences.getInstance();
-    var user = localStorage.getString("user");
-
-    if (user != null) {
-      var userInfo = jsonDecode(user);
-      userId = userInfo['id'];
-    } else {
-      debugPrint("no info");
-    }
-    await _getLikeBook();
-  }
-
-  _getLikeBook() async {
-    // var data = {
-    //   'user_id': '$userId',
-    //   'book_id': '${widget.bookInfo?.bookId}',
-    // };
-    // var res = await CallApi().getPublicDataByRequest('alllikebook', data);
-    // var body = json.decode(res.body);
-    // print("Respons Body = ${body['is_liked']}");
-    // setState(() {
-    //   isLike = body['is_liked'];
-    // });
   }
 
   @override
@@ -176,6 +143,7 @@ class _DetailBookPageState extends State<DetailBookPage> {
                       GestureDetector(
                         onTap: () {
                           setState(() {
+                            print("Is Like buttn cliked");
                             _likePost();
                           });
                         },
@@ -190,6 +158,7 @@ class _DetailBookPageState extends State<DetailBookPage> {
                       const SizedBox(width: 10),
                     ],
                   ),
+                  //  Expanded(child: Container()),
                   Column(
                     children: [
                       Visibility(
@@ -252,70 +221,47 @@ class _DetailBookPageState extends State<DetailBookPage> {
       "Token has Refresh ",
       msg,
       snackPosition: SnackPosition.BOTTOM,
-      backgroundColor: greenClr,
+      backgroundColor: AppColors.cGreenClr,
     );
   }
 
   _likePost() async {
+    print("Is Liked : $isLike");
     if (isLike == 0) {
-      _postlike('likebook');
+      print("Is Liked : $isLike");
+      bool liked = await ApiService.likeBook(widget.bookInfo!.bookId!);
+      print("Is Liked : $liked");
+      if (liked) {
+        // Book liked successfully, update the UI or take further action
+        setState(() {
+          isLike = 1;
+        });
+      } else {
+        // Handle the case where liking the book failed
+        // You can show an error message or take other actions
+      }
     } else if (isLike == 1) {
-      _postlike('disLikebook');
+      print("Is Liked : $isLike");
+      // Handle disliking the book if needed
     }
   }
 
-  _postlike(endPoint) async {
-    // var data = {
-    //   'user_id': '$userId',
-    //   'post_id': '${widget.bookInfo!.bookId}',
-    // };
-    try {
-      // var responses = await CallApi().postLike(data, endPoint);
-      // var body = json.decode(responses.body);
-      // if (body['success'] != 'expired') {
-      //   print("Respons Body = ${body}");
-      //   setState(() {
-      //     _likeGet();
-      //   });
-      // } else {
-      //   var res = await CallApi().getData('refresh');
-      //   var body = json.decode(res.body);
-      //   SharedPreferences localStorage = await SharedPreferences.getInstance();
-      //   localStorage.setString('token', body['token']);
-      //   _showMsg("Your sesion is referesh ");
-      // }
-    } catch (e) {
-      print("Respons Body Fail $e");
-    }
-  }
-
-  likeGet() async {
-    // var data = {
-    //   'user_id': '$userId',
-    //   'book_id': '${widget.bookInfo?.id}',
-    // };
-    // var res = await CallApi().getPublicDataByRequest('alllikebook', data);
-    // var body = json.decode(res.body);
-    // print("Respons Body = ${body['is_liked']}");
-    // setState(() {
-    //   isLike = body['is_liked'];
-    // });
-  }
+  // Your existing likeGet() method can be used to fetch the like status
 
   Future<bool> _checkPermission() async {
-    // if (platform == TargetPlatform.android) {
-    //   final status = await Permission.storage.status;
-    //   if (status != PermissionStatus.granted) {
-    //     final result = await Permission.storage.request();
-    //     if (result == PermissionStatus.granted) {
-    //       return true;
-    //     }
-    //   } else {
-    //     return true;
-    //   }
-    // } else {
-    //   return true;
-    // }
+    if (platform == TargetPlatform.android) {
+      final status = await Permission.storage.status;
+      if (status != PermissionStatus.granted) {
+        final result = await Permission.storage.request();
+        if (result == PermissionStatus.granted) {
+          return true;
+        }
+      } else {
+        return true;
+      }
+    } else {
+      return true;
+    }
     return false;
   }
 
@@ -345,22 +291,29 @@ class _DetailBookPageState extends State<DetailBookPage> {
     _permissionReady = await _checkPermission();
     if (_permissionReady!) {
       await _prepareSaveDir();
-      print("Dawnloading");
+      print("Downloading");
+
       try {
-        //   await Dio().download(
-        //     "widget.bookInfo!.book_content,
-        //     "${_localPath}new_fitness_file.pdf",
-        //     onReceiveProgress: (received, total) {
-        //       setState(() {
-        //         downloadProgress = ((received / total) * 100).floor();
-        //       });
-        //     },
-        //     deleteOnError: true,
-        //   );
+        final dio = Dio();
+        final response = await dio.get(
+          "${Config.imageURL}/${widget.bookInfo!.bookFilePath}", // Replace with your book file URL
+          onReceiveProgress: (received, total) {
+            print("${Config.imageURL}${widget.bookInfo!.bookFilePath}");
+            setState(() {
+              downloadProgress = (received / total * 100).floor();
+            });
+          },
+        );
+
+        if (response.statusCode == 200) {
+          final file = File('$_localPath/new_fitness_file.pdf');
+          await file.writeAsBytes(response.data);
+        }
       } catch (e) {
-        print("Dawnload Faild " + e.toString());
+        print("Download Failed: $e");
       }
     }
+
     if (downloadProgress == 100) {
       setState(() {
         if (downloadProgress == 100) {

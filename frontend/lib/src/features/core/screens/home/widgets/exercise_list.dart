@@ -30,7 +30,6 @@ class ExerciseList extends ConsumerWidget {
                     "categories".tr,
                     style: TextStyle(
                       fontSize: 16.sp,
-                      color: Colors.black,
                       fontStyle: FontStyle.normal,
                       fontWeight: FontWeight.w600,
                     ),
@@ -82,7 +81,7 @@ class ExerciseList extends ConsumerWidget {
                                 color: const Color(0xff525252),
                                 child: Center(
                                   child: Text(
-                                    exercise.exerciseName,
+                                    exercise.exerciseName.tr,
                                     maxLines: 2,
                                     style: TextStyle(
                                       fontSize: 14.sp,

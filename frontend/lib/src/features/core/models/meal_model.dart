@@ -17,10 +17,10 @@ class Meal {
 final meals = [
   Meal(
       mealTime: "BREAKFAST",
-      name: "Fruit Granola",
-      kiloCaloriesBurnt: "271",
+      name: "Genfo",
+      kiloCaloriesBurnt: "881",
       timeTaken: "10",
-      imagePath: "assets/fruit_granola.jpg",
+      imagePath: "assets/genfo.jpg",
       ingredients: [
         "1 cup of granola",
         "1 banana",
@@ -28,57 +28,59 @@ final meals = [
         "1 tbsp of honey",
       ],
       preparation:
-          '''Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Elementum tempus egestas sed sed risus pretium quam. Platea dictumst quisque sagittis purus sit. Senectus et netus et malesuada fames ac turpis egestas sed. Nibh cras pulvinar mattis nunc. Amet consectetur adipiscing elit duis tristique. Interdum velit euismod in pellentesque massa placerat duis ultricies lacus. Lectus proin nibh nisl condimentum id venenatis. Sit amet massa vitae tortor condimentum lacinia quis vel eros. Sed adipiscing diam donec adipiscing tristique risus nec feugiat in. Enim tortor at auctor urna. In dictum non consectetur a.
+          '''Genfo, a native breakfast in Ethiopia, is a thick porridge made with barley or wheat flour. This meal is usually paired with niter kibbeh (Ethiopian spiced clarified butter) and berbere sauce, giving it that delicious taste and look.
 
-Sit amet risus nullam eget. Viverra adipiscing at in tellus integer feugiat scelerisque varius morbi. Quis risus sed vulputate odio ut enim blandit volutpat maecenas. Turpis cursus in hac habitasse platea dictumst quisque sagittis. Eget mi proin sed libero. Non diam phasellus vestibulum lorem sed risus ultricies tristique. Neque viverra justo nec ultrices dui. Gravida neque convallis a cras semper. Morbi tempus iaculis urna id volutpat lacus laoreet non. Pretium vulputate sapien nec sagittis aliquam malesuada bibendum. Amet mattis vulputate enim nulla aliquet. Lectus urna duis convallis convallis tellus. Porta non pulvinar neque laoreet suspendisse interdum consectetur libero id. Diam ut venenatis tellus in metus vulputate eu scelerisque felis. Adipiscing vitae proin sagittis nisl. Sed libero enim sed faucibus turpis in. Pulvinar mattis nunc sed blandit. Nisi scelerisque eu ultrices vitae auctor eu augue ut. Diam volutpat commodo sed egestas egestas fringilla phasellus faucibus. Sed id semper risus in hendrerit.
+Genfo is cooked with toasted barley flour, wheat flour, or even maize meal. The flour is poured into boiling water and stirred with a wooden spoon until it thickens and becomes smooth.
 
-Consectetur adipiscing elit duis tristique sollicitudin nibh. Dictumst quisque sagittis purus sit amet volutpat. Quis enim lobortis scelerisque fermentum dui faucibus in ornare. Pellentesque diam volutpat commodo sed egestas egestas fringilla phasellus. Mauris pharetra et ultrices neque. Leo duis ut diam quam nulla porttitor. Sit amet facilisis magna etiam tempor orci eu lobortis elementum. Blandit massa enim nec dui. Aliquam id diam maecenas ultricies mi eget mauris. Mattis rhoncus urna neque viverra justo nec ultrices. Nibh tellus molestie nunc non blandit. Non diam phasellus vestibulum lorem. Ut diam quam nulla porttitor massa id neque aliquam. Eget mauris pharetra et ultrices neque ornare aenean euismod. Urna id volutpat lacus laoreet non curabitur gravida arcu ac. Tellus in hac habitasse platea dictumst vestibulum.
+The porridge is usually molded like a Bundt cake. The porridge mold has a round orifice that serves to hold/contain the Ethiopian chili oil sauce made with chilies, clarified butter, and flax or sunflower seeds.
 
-Adipiscing commodo elit at imperdiet. Mollis nunc sed id semper risus. Magna fermentum iaculis eu non. Ut pharetra sit amet aliquam id diam maecenas ultricies mi. Amet consectetur adipiscing elit ut aliquam purus sit amet. Ultrices sagittis orci a scelerisque purus semper. Pharetra magna ac placerat vestibulum lectus mauris ultrices eros in. Massa tempor nec feugiat nisl pretium. Etiam dignissim diam quis enim lobortis scelerisque. Duis ut diam quam nulla.
-
-Ultricies lacus sed turpis tincidunt id aliquet risus feugiat. Vitae aliquet nec ullamcorper sit amet risus. Malesuada nunc vel risus commodo viverra. Id aliquet risus feugiat in ante metus dictum at tempor. Commodo sed egestas egestas fringilla phasellus faucibus scelerisque. Ipsum dolor sit amet consectetur. In nibh mauris cursus mattis molestie a. Duis at consectetur lorem donec massa sapien faucibus et molestie. Amet nisl purus in mollis nunc sed id. Sagittis vitae et leo duis ut. Purus in mollis nunc sed id. Mauris ultrices eros in cursus turpis.'''),
+Genfo is an excellent source of protein and can fill up the energy you need for half a day. Being a shared dish that’s mainly eaten with the hands, porridge chunks are taken outside and dipped into the center’s butter and spice mixture.'''),
   Meal(
       mealTime: "DINNER",
-      name: "Pesto Pasta",
-      kiloCaloriesBurnt: "612",
+      name: "Shiro Wot",
+      kiloCaloriesBurnt: "353",
       timeTaken: "15",
-      imagePath: "assets/pesto_pasta.jpg",
+      imagePath: "assets/shiro-wot.jpg",
       ingredients: [
-        "1 cup of granola",
-        "1 banana",
-        "1/2 cup of raisins",
-        "1 tbsp of honey",
+        "To make shiro powder, you'll need - chickpea flour, berbere powder, garlic powder, ground cardamom, and cumin powder",
+        "For the rest, you'll need olive oil, onions, tomato paste, minced garlic and salt. Easy, peasy",
       ],
       preparation:
-          '''Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Elementum tempus egestas sed sed risus pretium quam. Platea dictumst quisque sagittis purus sit. Senectus et netus et malesuada fames ac turpis egestas sed. Nibh cras pulvinar mattis nunc. Amet consectetur adipiscing elit duis tristique. Interdum velit euismod in pellentesque massa placerat duis ultricies lacus. Lectus proin nibh nisl condimentum id venenatis. Sit amet massa vitae tortor condimentum lacinia quis vel eros. Sed adipiscing diam donec adipiscing tristique risus nec feugiat in. Enim tortor at auctor urna. In dictum non consectetur a.
+          '''Shiro wot is another variety of Ethiopian stews, and you can almost always find it on a mixed plate at an Ethiopian restaurant, just like doro wot.
 
-Sit amet risus nullam eget. Viverra adipiscing at in tellus integer feugiat scelerisque varius morbi. Quis risus sed vulputate odio ut enim blandit volutpat maecenas. Turpis cursus in hac habitasse platea dictumst quisque sagittis. Eget mi proin sed libero. Non diam phasellus vestibulum lorem sed risus ultricies tristique. Neque viverra justo nec ultrices dui. Gravida neque convallis a cras semper. Morbi tempus iaculis urna id volutpat lacus laoreet non. Pretium vulputate sapien nec sagittis aliquam malesuada bibendum. Amet mattis vulputate enim nulla aliquet. Lectus urna duis convallis convallis tellus. Porta non pulvinar neque laoreet suspendisse interdum consectetur libero id. Diam ut venenatis tellus in metus vulputate eu scelerisque felis. Adipiscing vitae proin sagittis nisl. Sed libero enim sed faucibus turpis in. Pulvinar mattis nunc sed blandit. Nisi scelerisque eu ultrices vitae auctor eu augue ut. Diam volutpat commodo sed egestas egestas fringilla phasellus faucibus. Sed id semper risus in hendrerit.
+Shiro is a simple powder mixture of chickpea flour, dried onion, and granulated garlic. However, an elaborate mix usually constitutes ginger, berbere spices, tomatoes, and chili peppers.
 
-Consectetur adipiscing elit duis tristique sollicitudin nibh. Dictumst quisque sagittis purus sit amet volutpat. Quis enim lobortis scelerisque fermentum dui faucibus in ornare. Pellentesque diam volutpat commodo sed egestas egestas fringilla phasellus. Mauris pharetra et ultrices neque. Leo duis ut diam quam nulla porttitor. Sit amet facilisis magna etiam tempor orci eu lobortis elementum. Blandit massa enim nec dui. Aliquam id diam maecenas ultricies mi eget mauris. Mattis rhoncus urna neque viverra justo nec ultrices. Nibh tellus molestie nunc non blandit. Non diam phasellus vestibulum lorem. Ut diam quam nulla porttitor massa id neque aliquam. Eget mauris pharetra et ultrices neque ornare aenean euismod. Urna id volutpat lacus laoreet non curabitur gravida arcu ac. Tellus in hac habitasse platea dictumst vestibulum.
+While the chickpeas give the stew a nutty flavor, shiro wot generally has a smooth, creamy consistency that’s perfect for eating injera, rice rolls, or other flatbreads. However, it’s best served with the traditional injera to get every last taste of this soupy delight.
 
-Adipiscing commodo elit at imperdiet. Mollis nunc sed id semper risus. Magna fermentum iaculis eu non. Ut pharetra sit amet aliquam id diam maecenas ultricies mi. Amet consectetur adipiscing elit ut aliquam purus sit amet. Ultrices sagittis orci a scelerisque purus semper. Pharetra magna ac placerat vestibulum lectus mauris ultrices eros in. Massa tempor nec feugiat nisl pretium. Etiam dignissim diam quis enim lobortis scelerisque. Duis ut diam quam nulla.
-
-Ultricies lacus sed turpis tincidunt id aliquet risus feugiat. Vitae aliquet nec ullamcorper sit amet risus. Malesuada nunc vel risus commodo viverra. Id aliquet risus feugiat in ante metus dictum at tempor. Commodo sed egestas egestas fringilla phasellus faucibus scelerisque. Ipsum dolor sit amet consectetur. In nibh mauris cursus mattis molestie a. Duis at consectetur lorem donec massa sapien faucibus et molestie. Amet nisl purus in mollis nunc sed id. Sagittis vitae et leo duis ut. Purus in mollis nunc sed id. Mauris ultrices eros in cursus turpis.'''),
+A vibrant bowl of this delicious stew results from the various spices blending harmoniously. You may use it as a starter or garnish for other meals. Last but not least, although cost-effective—since meat isn’t introduced—this stew is highly nutritious.'''),
   Meal(
       mealTime: "SNACK",
-      name: "Keto Snack",
-      kiloCaloriesBurnt: "414",
+      name: "Sambusa",
+      kiloCaloriesBurnt: "202",
       timeTaken: "16",
-      imagePath: "assets/keto_snack.jpg",
+      imagePath: "assets/sambusa.jpg",
       ingredients: [
-        "1 cup of granola",
-        "1 banana",
-        "1/2 cup of raisins",
-        "1 tbsp of honey",
+        "1 cup brown lentils",
+        "1 medium yellow onion, diced",
+        "⅓ cup oil",
+        "2 jalapeños, deseeded and diced",
+        "2 cloves garlic, diced",
+        "1 tsp grated ginger",
+        "1 tsp ground coriander",
+        "Salt and pepper",
+        "½ (4.7-oz) package egg roll/spring roll wraps (or 8 sheets of phyllo pastry, halved)",
+        "Vegetable oil for frying (about 4 cups)",
       ],
       preparation:
-          '''Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Elementum tempus egestas sed sed risus pretium quam. Platea dictumst quisque sagittis purus sit. Senectus et netus et malesuada fames ac turpis egestas sed. Nibh cras pulvinar mattis nunc. Amet consectetur adipiscing elit duis tristique. Interdum velit euismod in pellentesque massa placerat duis ultricies lacus. Lectus proin nibh nisl condimentum id venenatis. Sit amet massa vitae tortor condimentum lacinia quis vel eros. Sed adipiscing diam donec adipiscing tristique risus nec feugiat in. Enim tortor at auctor urna. In dictum non consectetur a.
+          '''Place the lentils in a pot, add enough water to cover them by 2 inches, and bring to a boil over medium heat. Cook, stirring occasionally, until the lentils are al dente, about 5 minutes. You don’t want them fully cooked or mushy. Remove from the heat, drain, and set aside.
 
-Sit amet risus nullam eget. Viverra adipiscing at in tellus integer feugiat scelerisque varius morbi. Quis risus sed vulputate odio ut enim blandit volutpat maecenas. Turpis cursus in hac habitasse platea dictumst quisque sagittis. Eget mi proin sed libero. Non diam phasellus vestibulum lorem sed risus ultricies tristique. Neque viverra justo nec ultrices dui. Gravida neque convallis a cras semper. Morbi tempus iaculis urna id volutpat lacus laoreet non. Pretium vulputate sapien nec sagittis aliquam malesuada bibendum. Amet mattis vulputate enim nulla aliquet. Lectus urna duis convallis convallis tellus. Porta non pulvinar neque laoreet suspendisse interdum consectetur libero id. Diam ut venenatis tellus in metus vulputate eu scelerisque felis. Adipiscing vitae proin sagittis nisl. Sed libero enim sed faucibus turpis in. Pulvinar mattis nunc sed blandit. Nisi scelerisque eu ultrices vitae auctor eu augue ut. Diam volutpat commodo sed egestas egestas fringilla phasellus faucibus. Sed id semper risus in hendrerit.
+Place the onions and oil in a skillet. Cook over medium heat until the onions are translucent and beginning to brown, about 5 minutes. Stir in the jalapeños, garlic, and ginger. Cook to soften slightly, about 5 minutes. Stir in the lentils and coriander, making sure the coriander does not clump. Turn down the heat to low, add salt and pepper to taste, and stir. Cover the pot and let cook, stirring occasionally, until the lentils are fully cooked, 8–10 minutes. Remove from the heat and set aside.
 
-Consectetur adipiscing elit duis tristique sollicitudin nibh. Dictumst quisque sagittis purus sit amet volutpat. Quis enim lobortis scelerisque fermentum dui faucibus in ornare. Pellentesque diam volutpat commodo sed egestas egestas fringilla phasellus. Mauris pharetra et ultrices neque. Leo duis ut diam quam nulla porttitor. Sit amet facilisis magna etiam tempor orci eu lobortis elementum. Blandit massa enim nec dui. Aliquam id diam maecenas ultricies mi eget mauris. Mattis rhoncus urna neque viverra justo nec ultrices. Nibh tellus molestie nunc non blandit. Non diam phasellus vestibulum lorem. Ut diam quam nulla porttitor massa id neque aliquam. Eget mauris pharetra et ultrices neque ornare aenean euismod. Urna id volutpat lacus laoreet non curabitur gravida arcu ac. Tellus in hac habitasse platea dictumst vestibulum.
+Working with one egg roll wrapper at time, fold each sheet into a cone and add 2 tablespoons of lentils. Fold in the top edges of the wrapper to close it, brush a little water along each edge, and seal. Repeat the process with the remaining wrappers and filling.
 
-Adipiscing commodo elit at imperdiet. Mollis nunc sed id semper risus. Magna fermentum iaculis eu non. Ut pharetra sit amet aliquam id diam maecenas ultricies mi. Amet consectetur adipiscing elit ut aliquam purus sit amet. Ultrices sagittis orci a scelerisque purus semper. Pharetra magna ac placerat vestibulum lectus mauris ultrices eros in. Massa tempor nec feugiat nisl pretium. Etiam dignissim diam quis enim lobortis scelerisque. Duis ut diam quam nulla.
+Place 4 cups of oil in a deep, heavy-bottomed pot. The oil should be at least 4 inches deep, but it shouldn’t come more than halfway up the sides of the pot, so adjust the amount as required. Place the pot over high heat and bring the oil to boiling point (365°F). Deep-fry a few sambusas at a time, making sure they are submerged in the oil and gently turning them so they cook evenly on each side. Give the oil a few minutes to return to temperature between batches. Once they are golden brown, about 5 minutes, use a slotted spoon to remove them from the pot and place on paper towel or parchment paper to drain the oil.
 
-Ultricies lacus sed turpis tincidunt id aliquet risus feugiat. Vitae aliquet nec ullamcorper sit amet risus. Malesuada nunc vel risus commodo viverra. Id aliquet risus feugiat in ante metus dictum at tempor. Commodo sed egestas egestas fringilla phasellus faucibus scelerisque. Ipsum dolor sit amet consectetur. In nibh mauris cursus mattis molestie a. Duis at consectetur lorem donec massa sapien faucibus et molestie. Amet nisl purus in mollis nunc sed id. Sagittis vitae et leo duis ut. Purus in mollis nunc sed id. Mauris ultrices eros in cursus turpis.'''),
+Serve while warm with a side of sauce—my personal favorites are awaze or kochkocha—or by itself.
+
+Note: For the meat version of this dish, called ye siga sambusa (beef sambusas), substitute the lentils with 1 pound of ground beef. Place the beef in a pot and add enough water to cover it by 2 inches. Bring to a boil over medium heat and cook, stirring occasionally, until rare/medium-rare but not fully cooked, about 5 minutes. Remove from the heat, drain, and follow the method above from paragraph 2 to the end.'''),
 ];

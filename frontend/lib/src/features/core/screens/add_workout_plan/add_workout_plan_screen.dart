@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:frontend/src/constants/colors.dart';
 import 'package:frontend/src/database/hive_service.dart';
 import 'package:frontend/src/features/core/models/exercise_category_model.dart';
 import 'package:frontend/src/features/core/models/workout_model.dart';
@@ -23,15 +22,10 @@ class AddWorkoutPlanScreen extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.white,
-        centerTitle: true,
-        foregroundColor: Colors.black,
         title: Text(
           "chooseExercise".tr,
           style: const TextStyle(
             fontSize: 17.0,
-            color: Colors.black,
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -62,7 +56,6 @@ class AddWorkoutPlanScreen extends ConsumerWidget {
         },
         label: Text("createWorkout".tr),
         icon: const Icon(Icons.add),
-        backgroundColor: cSecondaryColor,
       ),
     );
   }

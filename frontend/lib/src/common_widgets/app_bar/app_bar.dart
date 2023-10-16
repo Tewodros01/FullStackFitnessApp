@@ -1,37 +1,33 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:frontend/src/constants/colors.dart';
 import 'package:frontend/src/utils/assets.dart';
 import 'package:frontend/src/utils/shared_service.dart';
+import 'package:get/get.dart';
 
 AppBar appBar(String title, BuildContext context) {
   return AppBar(
-    elevation: 0,
-    backgroundColor: Colors.white,
-    centerTitle: true,
     leading: Padding(
       padding: const EdgeInsets.all(12.0),
-      child: SvgPicture.asset(AssetsSvgs.drawerMenuSvg),
+      child: SvgPicture.asset(
+        AssetsSvgs.drawerMenuSvg,
+        color: AppColors.cOrange,
+      ),
     ),
     title: Text(
       title,
-      style: TextStyle(
-        fontSize: 17.sp,
-        color: Colors.black,
-        fontWeight: FontWeight.bold,
-      ),
     ),
     actions: [
       PopupMenuButton<int>(
         itemBuilder: (BuildContext context) {
           return [
-            const PopupMenuItem<int>(
+            PopupMenuItem<int>(
               value: 1,
-              child: Text('Setting'),
+              child: Text('setting'.tr),
             ),
-            const PopupMenuItem<int>(
+            PopupMenuItem<int>(
               value: 2,
-              child: Text('Logout'),
+              child: Text('logout'.tr),
             ),
           ];
         },
@@ -47,7 +43,7 @@ AppBar appBar(String title, BuildContext context) {
           AssetsSvgs.settingSvg,
           height: 20,
           width: 20,
-          color: Colors.black,
+          color: AppColors.cOrange,
         ),
       ),
       const SizedBox(width: 15),

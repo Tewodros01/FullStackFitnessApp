@@ -1,9 +1,8 @@
 import { Request, Response, NextFunction } from "express";
 import jwt, { JwtPayload, Secret } from "jsonwebtoken";
 import { User } from "../models/user.js";
-import dotenv from "dotenv";
-import { IUser } from "../adminjs/entity/user.entity.js";
 import { Gym } from "../models/gym.js";
+import dotenv from "dotenv";
 
 dotenv.config();
 const secret: Secret = process.env.TOKEN_SECRET as Secret;
@@ -23,9 +22,9 @@ const verifyToken = (req: IRequest, res: Response, next: NextFunction) => {
   if (!token) return res.status(403).send({ message: "No Token Provided" });
 
   try {
-    const decodedToken = jwt.verify(token, secret) as DecodedTokenPayload;
+    const decodedToken = jwt.verify(token, secret) as User;
     console.log("Print Message", decodedToken);
-    req.user = decodedToken.user;
+    req.user = decodedToken;
     console.log("Req User Message", req.user);
     next();
   } catch (error) {

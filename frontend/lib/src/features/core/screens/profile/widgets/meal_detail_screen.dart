@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/src/constants/colors.dart';
 import 'package:frontend/src/features/core/models/meal_model.dart';
 
 class MealDetailScreen extends StatelessWidget {
@@ -8,16 +9,16 @@ class MealDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFE9E9E9),
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
             snap: true,
             floating: true,
-            backgroundColor: const Color(0xFF200087),
+            backgroundColor: AppColors.cOrange,
             expandedHeight: 300,
             shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(Radius.circular(40))),
+              borderRadius: BorderRadius.all(Radius.circular(40)),
+            ),
             flexibleSpace: FlexibleSpaceBar(
               background: ClipRRect(
                 borderRadius:
@@ -47,7 +48,6 @@ class MealDetailScreen extends StatelessWidget {
                     style: const TextStyle(
                       fontWeight: FontWeight.w800,
                       fontSize: 24,
-                      color: Colors.black,
                     ),
                   ),
                   trailing: Column(

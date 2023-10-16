@@ -1,24 +1,32 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 class LangugeServices {
   final _boxs = GetStorage();
-  final _key = 'isAmharic';
-  _saveLangugeToBox(bool isAmharic) => _boxs.write(_key, isAmharic);
+  final _key = 'languge';
+  _saveLangugeToBox(String isAmharic) => _boxs.write(_key, isAmharic);
 
-  bool _loadLangugeFromBox() {
-    return _boxs.read(_key) ?? false;
+  String _loadLangugeFromBox() {
+    return _boxs.read(_key) ?? "et";
   }
 
-  Locale get local => _loadLangugeFromBox()
+  Locale get local => _loadLangugeFromBox() == "et"
       ? const Locale('et', 'ET')
-      : const Locale('en', 'US');
+      : _loadLangugeFromBox() == "en"
+          ? const Locale('en', 'US')
+          : _loadLangugeFromBox() == "tg"
+              ? const Locale('et', 'TG')
+              : const Locale('et', 'OR');
 
-  void switchLanguge() {
-    Get.updateLocale(_loadLangugeFromBox()
-        ? const Locale('en', 'US')
-        : const Locale('et', 'ET'));
-    _saveLangugeToBox(!_loadLangugeFromBox());
+  void switchLanguge(Locale languge) {
+    if (languge == const Locale('et', 'ET')) {
+      _saveLangugeToBox("et");
+    } else if (languge == const Locale('en', 'US')) {
+      _saveLangugeToBox("en");
+    } else if (languge == const Locale('et', 'TG')) {
+      _saveLangugeToBox("tg");
+    } else {
+      _saveLangugeToBox("or");
+    }
   }
 }

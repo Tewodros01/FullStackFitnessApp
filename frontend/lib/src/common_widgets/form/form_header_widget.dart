@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/src/constants/colors.dart';
+import 'package:get/get.dart';
 
 class FormHeaderWidget extends StatelessWidget {
   const FormHeaderWidget({
@@ -28,7 +30,8 @@ class FormHeaderWidget extends StatelessWidget {
         Center(
           child: Image(
             height: size.height * imageHeight,
-            color: imageColor,
+            color:
+                context.isDarkMode ? AppColors.cWhiteClr : AppColors.cDarkColor,
             image: AssetImage(image),
           ),
         ),

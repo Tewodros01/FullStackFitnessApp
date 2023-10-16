@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:frontend/src/constants/colors.dart';
 import 'package:frontend/src/features/authentication/models/user_model.dart';
 import 'package:frontend/src/features/core/models/meal_model.dart';
 import 'package:frontend/src/features/core/screens/food_display/food_display_screen.dart';
-import 'package:frontend/src/features/core/screens/home/widgets/body_measurement_view.dart';
+import 'package:frontend/src/features/core/screens/profile/widgets/body_measurement_view.dart';
 import 'package:frontend/src/features/core/screens/profile/update_profile_screen/updat_profile_screen.dart';
 import 'package:frontend/src/features/core/screens/profile/widgets/ingredient_progress.dart';
 import 'package:frontend/src/features/core/screens/profile/widgets/meal_card.dart';
@@ -62,150 +63,137 @@ class ProfileWidget extends StatelessWidget {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
     final today = DateTime.now();
-    print("User Profile ${user.fullImagePath}");
-    return Stack(
-      children: [
-        Positioned(
-          top: 0,
-          height: height * 0.4,
-          left: 0,
-          right: 0,
-          child: ClipRRect(
-            borderRadius: const BorderRadius.vertical(
-              bottom: Radius.circular(40),
-            ),
-            child: Container(
-              color: Colors.white,
-              padding: const EdgeInsets.only(
-                  top: 40, left: 32, right: 16, bottom: 10),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  ListTile(
-                    title: Text(
-                      "${DateFormat("EEEE").format(today)}, ${DateFormat("d MMMM").format(today)}",
-                      style: const TextStyle(
-                        fontWeight: FontWeight.w400,
-                        fontSize: 18,
+
+    return Scaffold(
+      body: Stack(
+        children: [
+          Positioned(
+            top: 0,
+            height: height * 0.37,
+            left: 0,
+            right: 0,
+            child: Card(
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.only(
+                  bottomRight: Radius.circular(20),
+                  bottomLeft: Radius.circular(20),
+                ),
+              ),
+              child: Container(
+                padding: const EdgeInsets.only(
+                    top: 40, left: 25, right: 10, bottom: 10),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    ListTile(
+                      title: Text(
+                        "${DateFormat("EEEE").format(today)}, ${DateFormat("d MMMM").format(today)}",
+                        style: const TextStyle(
+                          fontWeight: FontWeight.w400,
+                          fontSize: 18,
+                        ),
                       ),
-                    ),
-                    subtitle: Text(
-                      "${"hello".tr}, ${user.fullName}",
-                      style: const TextStyle(
-                        fontWeight: FontWeight.w800,
-                        fontSize: 26,
-                        color: Colors.black,
+                      subtitle: Text(
+                        "${"hello".tr}, ${user.fullName}",
+                        style: const TextStyle(
+                          fontWeight: FontWeight.w800,
+                          fontSize: 20,
+                        ),
                       ),
-                    ),
-                    trailing: GestureDetector(
-                      onTap: () {
-                        Get.to(() => UpdateProfileScreen(user: user));
-                      },
-                      child: SizedBox(
-                        height: 50,
-                        width: 50,
-                        child: ClipOval(
-                          child: user.profilePicture!.isNotEmpty
-                              ? Image.network(
-                                  user.fullImagePath,
-                                  fit: BoxFit.cover,
-                                )
-                              : Image.asset(
-                                  AssetsImages.userJpg,
-                                  fit: BoxFit.cover,
-                                ),
+                      trailing: GestureDetector(
+                        onTap: () {
+                          Get.to(() => UpdateProfileScreen(user: user));
+                        },
+                        child: SizedBox(
+                          height: 50,
+                          width: 50,
+                          child: ClipOval(
+                            child: user.profilePicture!.isNotEmpty
+                                ? Image.network(
+                                    user.fullImagePath,
+                                    fit: BoxFit.cover,
+                                  )
+                                : Image.asset(
+                                    AssetsImages.userJpg,
+                                    fit: BoxFit.cover,
+                                  ),
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  const SizedBox(height: 10),
-                  Row(
-                    children: [
-                      RadialProgress(
-                        width: width * 0.4,
-                        height: width * 0.4,
-                        progress: 0.7,
-                        result: tdee,
-                      ),
-                      const SizedBox(width: 10),
-                      Column(
+                    const SizedBox(height: 10),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        mainAxisSize: MainAxisSize.max,
-                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          IngredientProgress(
-                            ingredient: "protein".tr,
-                            progress: 0.3,
-                            progressColor: Colors.green,
-                            leftAmount:
-                                macronutrientsData.macronutrientProtein.toInt(),
-                            width: width * 0.28,
+                          RadialProgress(
+                            width: width * 0.33,
+                            height: width * 0.33,
+                            progress: 0.7,
+                            result: tdee,
                           ),
-                          const SizedBox(height: 10),
-                          IngredientProgress(
-                            ingredient: "carbs".tr,
-                            progress: 0.2,
-                            progressColor: Colors.red,
-                            leftAmount: macronutrientsData
-                                .macronutrientCarbohydrates
-                                .toInt(),
-                            width: width * 0.28,
-                          ),
-                          const SizedBox(height: 10),
-                          IngredientProgress(
-                            ingredient: "fat".tr,
-                            progress: 0.1,
-                            progressColor: Colors.yellow,
-                            leftAmount:
-                                macronutrientsData.macronutrientFat.toInt(),
-                            width: width * 0.28,
-                          ),
+                          const SizedBox(width: 10),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            mainAxisSize: MainAxisSize.max,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              IngredientProgress(
+                                ingredient: "protein".tr,
+                                progress: 0.3,
+                                progressColor: Colors.green,
+                                leftAmount: macronutrientsData
+                                    .macronutrientProtein
+                                    .toInt(),
+                                width: width * 0.28,
+                              ),
+                              const SizedBox(height: 10),
+                              IngredientProgress(
+                                ingredient: "carbs".tr,
+                                progress: 0.2,
+                                progressColor: Colors.red,
+                                leftAmount: macronutrientsData
+                                    .macronutrientCarbohydrates
+                                    .toInt(),
+                                width: width * 0.28,
+                              ),
+                              const SizedBox(height: 10),
+                              IngredientProgress(
+                                ingredient: "fat".tr,
+                                progress: 0.1,
+                                progressColor: Colors.yellow,
+                                leftAmount:
+                                    macronutrientsData.macronutrientFat.toInt(),
+                                width: width * 0.28,
+                              ),
+                            ],
+                          )
                         ],
-                      )
-                    ],
-                  ),
-                ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
-        ),
-        Positioned(
-          top: height * 0.42,
-          left: 0,
-          right: 0,
-          child: SizedBox(
-            height: height * 0.5,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(left: 10.0, bottom: 10.0),
-                      child: Text(
-                        "mealForToday".tr,
-                        style: const TextStyle(
-                          color: Colors.blueGrey,
-                          fontSize: 16,
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(right: 10.0, bottom: 10.0),
-                      child: GestureDetector(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => FoodListViewScreen(
-                                  macronutrientsData: macronutrientsData),
-                            ),
-                          );
-                        },
+          Positioned(
+            top: height * 0.4,
+            left: 0,
+            right: 0,
+            child: SizedBox(
+              height: height * 0.5,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Padding(
+                        padding:
+                            const EdgeInsets.only(left: 10.0, bottom: 10.0),
                         child: Text(
-                          "foodList".tr,
+                          "mealForToday".tr,
                           style: const TextStyle(
                             color: Colors.blueGrey,
                             fontSize: 16,
@@ -213,27 +201,50 @@ class ProfileWidget extends StatelessWidget {
                           ),
                         ),
                       ),
-                    ),
-                  ],
-                ),
-                Expanded(
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: meals.length,
-                    itemBuilder: (context, index) {
-                      return MealCard(
-                        meal: meals[index],
-                      );
-                    },
+                      Padding(
+                        padding:
+                            const EdgeInsets.only(right: 10.0, bottom: 10.0),
+                        child: GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => FoodListViewScreen(
+                                    macronutrientsData: macronutrientsData),
+                              ),
+                            );
+                          },
+                          child: Text(
+                            "foodList".tr,
+                            style: const TextStyle(
+                              color: AppColors.cOrange,
+                              fontSize: 16,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
-                ),
-                const SizedBox(height: 18),
-                Expanded(child: BodyMeasurementView(user: user)),
-              ],
+                  Expanded(
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: meals.length,
+                      itemBuilder: (context, index) {
+                        return MealCard(
+                          meal: meals[index],
+                        );
+                      },
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  Expanded(child: BodyMeasurementView(user: user)),
+                ],
+              ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

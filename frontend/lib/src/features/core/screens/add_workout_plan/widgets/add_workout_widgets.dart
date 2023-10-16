@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/src/constants/colors.dart';
 import 'package:frontend/src/constants/sizes.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -41,7 +42,7 @@ class _AddWorkoutPlanDialogState extends State<AddWorkoutPlanDialog> {
                 labelText: "workoutType".tr,
                 prefixIcon: const Icon(Icons.person_2_outlined),
               ),
-              validator: (value) => validate(value, "gender".tr),
+              validator: (value) => validate(value, "workoutType".tr),
               onChanged: (value) {
                 if (value != null) {
                   workoutType = value;
@@ -140,7 +141,7 @@ class _AddWorkoutPlanDialogState extends State<AddWorkoutPlanDialog> {
                             },
                           ),
                         ),
-                        validator: (value) => validate(value, _endTime),
+                        validator: (value) => validate(value, "endDate".tr),
                       ),
                     ],
                   ),
@@ -222,14 +223,14 @@ class _AddWorkoutPlanDialogState extends State<AddWorkoutPlanDialog> {
               children: [
                 _colorPalette(),
                 Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 8.0, top: 8.0),
-                    child: ElevatedButton(
-                      style: const ButtonStyle(alignment: Alignment.center),
-                      onPressed: () async {
-                        _validateData();
-                      },
-                      child: Text("createWorkout".tr),
+                  child: ElevatedButton(
+                    style: const ButtonStyle(alignment: Alignment.center),
+                    onPressed: () async {
+                      _validateData();
+                    },
+                    child: Text(
+                      "createWorkout".tr,
+                      style: const TextStyle(color: AppColors.cWhiteClr),
                     ),
                   ),
                 ),
@@ -273,10 +274,10 @@ class _AddWorkoutPlanDialogState extends State<AddWorkoutPlanDialog> {
                   child: CircleAvatar(
                     radius: 14,
                     backgroundColor: index == 0
-                        ? primaryClr
+                        ? AppColors.cOrange
                         : index == 1
-                            ? pinkClr
-                            : yellowClr,
+                            ? AppColors.cPinkClr
+                            : AppColors.cYellowClr,
                     child: _selectedColorIndex == index
                         ? const Icon(
                             Icons.done,
@@ -312,16 +313,17 @@ class _AddWorkoutPlanDialogState extends State<AddWorkoutPlanDialog> {
 
   Future<void> _getTimeFromUser({required bool isStartTime}) async {
     var pickedTime = await _showTimePicker();
-    String? formattedTime = pickedTime?.format(context);
     if (pickedTime == null) {
       print("Time canceled");
-    } else if (isStartTime) {
+    } else if (isStartTime == true) {
       setState(() {
-        _startTime = formattedTime!;
+        _startTime = pickedTime.format(context);
+        print("Star Time is true $_startTime");
       });
-    } else {
+    } else if (isStartTime == false) {
       setState(() {
-        _endTime = formattedTime!;
+        _endTime = pickedTime.format(context);
+        print("Star Time is false $_endTime");
       });
     }
   }

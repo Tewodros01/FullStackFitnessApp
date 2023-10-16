@@ -9,7 +9,7 @@ import { adminRouter } from "./adminjs/index.js";
 
 const app: express.Application = express();
 const port = process.env.PORT || 4500;
-const address = `127.0.0.1:${port}`;
+const address = `192.168.130.54:${port}`;
 
 app.use(express.json());
 app.use(cors());

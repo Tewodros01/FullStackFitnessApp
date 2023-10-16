@@ -45,7 +45,7 @@ class SignUpFormWidget extends StatelessWidget {
               label: Text("phoneNumber".tr),
               prefixIcon: const Icon(Icons.phone_outlined),
             ),
-            validator: (value) => validate(value, "phoneNumber".tr),
+            validator: (value) => validatePhoneNumber(value),
           ),
           const SizedBox(height: cFormHeigth - 10),
           DropdownButtonFormField<String>(
@@ -84,7 +84,7 @@ class SignUpFormWidget extends StatelessWidget {
                     controllers.hidePassword.value =
                         !controllers.hidePassword.value;
                   },
-                  color: Colors.redAccent.withOpacity(.4),
+                  color: AppColors.cOrange,
                   icon: Icon(
                     controllers.hidePassword.value
                         ? Icons.visibility_off
@@ -99,10 +99,10 @@ class SignUpFormWidget extends StatelessWidget {
           const SizedBox(height: 20),
           Obx(
             () => controllers.isAsyncCallProcess.value
-                ? const Center(
+                ? Center(
                     child: DottedCircularProgressIndicatorFb(
-                      currentDotColor: cSecondaryColor,
-                      defaultDotColor: cPrimaryColor,
+                      currentDotColor: Colors.white,
+                      defaultDotColor: AppColors.cOrange,
                       numDots: 8,
                     ),
                   )
@@ -190,7 +190,12 @@ class SignUpFormWidget extends StatelessWidget {
                           //   Get.to(() => const OTPScrenn());
                         }
                       },
-                      child: Text("signUp".tr),
+                      child: Text(
+                        "signUp".tr,
+                        style: const TextStyle(
+                          color: AppColors.cWhiteClr,
+                        ),
+                      ),
                     ),
                   ),
           ),
@@ -212,6 +217,16 @@ class SignUpFormWidget extends StatelessWidget {
     } else {
       return null;
     }
+  }
+
+  String? validatePhoneNumber(String? phoneNumber) {
+    if (phoneNumber == null || phoneNumber.isEmpty) {
+      return 'Phone number is required';
+    } else if (!RegExp(r'^\d{10}$').hasMatch(phoneNumber)) {
+      // You can adjust the regular expression pattern to match your desired phone number format
+      return 'Please enter a valid phone number';
+    }
+    return null;
   }
 
   String? validateEmail(String? email) {

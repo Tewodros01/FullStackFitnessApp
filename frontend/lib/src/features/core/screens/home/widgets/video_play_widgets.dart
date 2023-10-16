@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:frontend/src/constants/colors.dart';
 import 'package:frontend/src/features/core/models/exercise_model.dart';
 import 'package:frontend/src/features/core/screens/home/widgets/exercise_list.dart';
 import 'package:frontend/src/features/core/states/video_state.dart';
 import 'package:frontend/src/providers/providers.dart';
+import 'package:get/get.dart';
 import 'package:video_player/video_player.dart';
 
 class VideoDisplayWidget extends ConsumerStatefulWidget {
@@ -30,15 +32,10 @@ class _VideoDisplayWidgetState extends ConsumerState<VideoDisplayWidget> {
     final videoController = ref.watch(videoControllerProvider.notifier);
     return Scaffold(
       appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.white,
-        centerTitle: true,
-        foregroundColor: Colors.black,
         title: Text(
-          "Workout",
+          "workout".tr,
           style: TextStyle(
             fontSize: 17.sp,
-            color: Colors.black,
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -49,63 +46,72 @@ class _VideoDisplayWidgetState extends ConsumerState<VideoDisplayWidget> {
             )
           : Column(
               children: [
-                Stack(
-                  children: [
-                    AspectRatio(
-                      aspectRatio: videoState.aspectRatio!,
-                      child: VideoPlayer(videoController.controller!),
+                Container(
+                  decoration: const BoxDecoration(
+                    color: AppColors.cWhiteClr,
+                    borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(20),
+                      bottomRight: Radius.circular(20),
                     ),
-                    Positioned(
-                      bottom: 0,
-                      left: 0,
-                      right: 0,
-                      child: Container(
-                        color: Colors.transparent,
-                        padding: const EdgeInsets.all(16.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            IconButton(
-                              icon: const Icon(Icons.skip_previous),
-                              onPressed: () {
-                                videoController.moveToPreviousWorkout();
-                              },
-                              color: Colors.black,
-                            ),
-                            IconButton(
-                              icon: videoState.status == VideoStatus.playing
-                                  ? const Icon(Icons.pause)
-                                  : const Icon(Icons.play_arrow),
-                              onPressed: videoController.togglePlayPause,
-                              color: Colors.black,
-                            ),
-                            IconButton(
-                              icon: const Icon(Icons.skip_next),
-                              onPressed: () {
-                                videoController.moveToNextWorkout();
-                              },
-                              color: Colors.black,
-                            ),
-                            const SizedBox(width: 8.0),
-                            Text(
-                              '${videoState.position?.inMinutes.toString().padLeft(2, '0')}:${(videoState.position!.inSeconds % 60).toString().padLeft(2, '0')}',
-                              style: const TextStyle(
+                  ),
+                  child: Stack(
+                    children: [
+                      AspectRatio(
+                        aspectRatio: videoState.aspectRatio!,
+                        child: VideoPlayer(videoController.controller!),
+                      ),
+                      Positioned(
+                        bottom: 0,
+                        left: 0,
+                        right: 0,
+                        child: Container(
+                          color: Colors.transparent,
+                          padding: const EdgeInsets.all(16.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              IconButton(
+                                icon: const Icon(Icons.skip_previous),
+                                onPressed: () {
+                                  videoController.moveToPreviousWorkout();
+                                },
                                 color: Colors.black,
-                                fontWeight: FontWeight.bold,
                               ),
-                            ),
-                            Text(
-                              '${videoState.duration?.inMinutes.toString().padLeft(2, '0')}:${(videoState.duration!.inSeconds % 60).toString().padLeft(2, '0')}',
-                              style: const TextStyle(
+                              IconButton(
+                                icon: videoState.status == VideoStatus.playing
+                                    ? const Icon(Icons.pause)
+                                    : const Icon(Icons.play_arrow),
+                                onPressed: videoController.togglePlayPause,
                                 color: Colors.black,
-                                fontWeight: FontWeight.bold,
                               ),
-                            ),
-                          ],
+                              IconButton(
+                                icon: const Icon(Icons.skip_next),
+                                onPressed: () {
+                                  videoController.moveToNextWorkout();
+                                },
+                                color: Colors.black,
+                              ),
+                              const SizedBox(width: 8.0),
+                              Text(
+                                '${videoState.position?.inMinutes.toString().padLeft(2, '0')}:${(videoState.position!.inSeconds % 60).toString().padLeft(2, '0')}',
+                                style: const TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              Text(
+                                '${videoState.duration?.inMinutes.toString().padLeft(2, '0')}:${(videoState.duration!.inSeconds % 60).toString().padLeft(2, '0')}',
+                                style: const TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
                 const SizedBox(height: 20.0),
                 ExerciseList(exerciseList: exercise),

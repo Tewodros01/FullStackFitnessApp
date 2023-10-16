@@ -1,5 +1,8 @@
 import 'package:frontend/config.dart';
 
+List<UserModel> userModelFromJson(dynamic str) =>
+    List<UserModel>.from((str).map((x) => UserModel.fromJson(x)));
+
 class UserModel {
   final int? id;
   final String fullName;

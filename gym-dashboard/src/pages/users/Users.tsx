@@ -63,7 +63,7 @@ const Users = () => {
 
   useEffect(() => {
     if (user && user.user.gym_id) {
-      fetch(`http://127.0.0.1:4500/api/gym/${user.user.gym_id}`)
+      fetch(`http://127.0.0.1:4500/api/gym/user/${user.user.gym_id}`)
         .then((response) => response.json())
         .then((responseData) => {
           if (Array.isArray(responseData.data)) {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:frontend/src/constants/colors.dart';
 import 'package:frontend/src/features/core/screens/book/book_screen.dart';
+import 'package:frontend/src/features/core/screens/find_gym/gym_display_screen.dart';
 import 'package:frontend/src/features/core/screens/home/home_page.dart';
 import 'package:frontend/src/features/core/screens/profile/profile_screen.dart';
 import 'package:frontend/src/features/core/screens/workout_plan/workout_plan_screen.dart';
@@ -16,8 +16,9 @@ class DashBoardScreen extends StatefulWidget {
 class _DashBoardScreenState extends State<DashBoardScreen> {
   final List<Widget> _pageList = [
     const HomeScreen(),
-    const BookScreen(),
+    const GymListViewScreen(),
     const WorkoutPlanScreen(),
+    const BookScreen(),
     const ProfileScreen(),
   ];
   int selectedIndex = 0;
@@ -33,19 +34,11 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
           type: BottomNavigationBarType.fixed,
           elevation: 8,
           currentIndex: selectedIndex,
-          backgroundColor: Colors.white,
-          selectedItemColor: cDarkGrey,
           onTap: (index) {
             setState(() {
               selectedIndex = index;
             });
           },
-          selectedIconTheme: const IconThemeData(
-            color: cSecondaryColor,
-          ),
-          unselectedIconTheme: const IconThemeData(
-            color: Colors.black12,
-          ),
           items: [
             BottomNavigationBarItem(
               icon: const Padding(
@@ -57,16 +50,23 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
             BottomNavigationBarItem(
               icon: const Padding(
                 padding: EdgeInsets.only(top: 8.0),
-                child: Icon(Icons.book),
+                child: Icon(Icons.fitness_center),
               ),
-              label: "book".tr,
+              label: "findGym".tr,
             ),
             BottomNavigationBarItem(
               icon: const Padding(
                 padding: EdgeInsets.only(top: 8.0),
-                child: Icon(Icons.fitness_center),
+                child: Icon(Icons.calendar_today),
               ),
               label: "workoutPlan".tr,
+            ),
+            BottomNavigationBarItem(
+              icon: const Padding(
+                padding: EdgeInsets.only(top: 8.0),
+                child: Icon(Icons.book),
+              ),
+              label: "book".tr,
             ),
             BottomNavigationBarItem(
               icon: const Padding(

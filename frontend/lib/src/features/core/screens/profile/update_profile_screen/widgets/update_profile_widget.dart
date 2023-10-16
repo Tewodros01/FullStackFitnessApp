@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:frontend/config.dart';
 import 'package:frontend/src/common_widgets/circularProgressBar/circular_progress_widget.dart';
 import 'package:frontend/src/constants/colors.dart';
 import 'package:frontend/src/constants/sizes.dart';
@@ -12,8 +11,8 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 class UpdateProfileWidget extends ConsumerStatefulWidget {
-  const UpdateProfileWidget({super.key});
-
+  const UpdateProfileWidget({super.key, required this.user});
+  final UserModel user;
   @override
   ConsumerState<UpdateProfileWidget> createState() =>
       _UpdateProfileWidgetState();
@@ -34,8 +33,9 @@ class _UpdateProfileWidgetState extends ConsumerState<UpdateProfileWidget> {
           TextFormField(
             controller: controllers.fullname,
             decoration: InputDecoration(
-                label: Text("fullName".tr),
-                prefixIcon: const Icon(Icons.person_outline_rounded)),
+              label: Text("fullName".tr),
+              prefixIcon: const Icon(Icons.person_outline_rounded),
+            ),
             validator: (value) => validate(value, "fullName".tr),
           ),
           const SizedBox(height: cFormHeigth - 20),
@@ -162,8 +162,8 @@ class _UpdateProfileWidgetState extends ConsumerState<UpdateProfileWidget> {
             () => controllers.isAsyncCallProcess.value
                 ? const Center(
                     child: DottedCircularProgressIndicatorFb(
-                      currentDotColor: cSecondaryColor,
-                      defaultDotColor: cPrimaryColor,
+                      currentDotColor: AppColors.cSecondaryColor,
+                      defaultDotColor: AppColors.cPrimaryColor,
                       numDots: 8,
                     ),
                   )
@@ -175,14 +175,16 @@ class _UpdateProfileWidgetState extends ConsumerState<UpdateProfileWidget> {
                           // Show circular progress indicator while creating user
                           controllers.isAsyncCallProcess.value = true;
                           final UserModel user = UserModel(
-                            fullName: controllers.fullname.text.trim(),
+                            fullName: controllers.fullname.value.text.trim(),
                             gender: controllers.gender,
-                            birthday:
-                                controllers.birthdayController.text.trim(),
-                            height: int.parse(controllers.height.text.trim()),
-                            weight: int.parse(controllers.weight.text.trim()),
-                            email: controllers.email.text.trim(),
-                            phoneNo: controllers.phoneNo.text.trim(),
+                            birthday: controllers.birthdayController.value.text
+                                .trim(),
+                            height:
+                                int.parse(controllers.height.value.text.trim()),
+                            weight:
+                                int.parse(controllers.weight.value.text.trim()),
+                            email: controllers.email.value.text.trim(),
+                            phoneNo: controllers.phoneNo.value.text.trim(),
                             aim: controllers.aim,
                             activityExtent: controllers.activityExtent,
                           );
@@ -205,7 +207,7 @@ class _UpdateProfileWidgetState extends ConsumerState<UpdateProfileWidget> {
                                     context: context,
                                     builder: (BuildContext context) {
                                       return AlertDialog(
-                                        title: const Text(Config.appName),
+                                        title: Text("fitnessApp".tr),
                                         content: Text(
                                             "updatCompletedSuccessfully".tr),
                                         actions: [
@@ -265,7 +267,12 @@ class _UpdateProfileWidgetState extends ConsumerState<UpdateProfileWidget> {
                           }
                         }
                       },
-                      child: Text("update".tr),
+                      child: Text(
+                        "update".tr,
+                        style: const TextStyle(
+                          color: AppColors.cWhiteClr,
+                        ),
+                      ),
                     ),
                   ),
           ),

@@ -11,11 +11,9 @@ class MealCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(
-        right: 20,
-        bottom: 5,
+        left: 15,
       ),
-      child: Material(
-        borderRadius: const BorderRadius.all(Radius.circular(20)),
+      child: Card(
         elevation: 4,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -61,7 +59,7 @@ class MealCard extends StatelessWidget {
                       meal.mealTime,
                       style: const TextStyle(
                         fontWeight: FontWeight.w500,
-                        fontSize: 14,
+                        fontSize: 13,
                         color: Colors.blueGrey,
                       ),
                     ),
@@ -69,15 +67,14 @@ class MealCard extends StatelessWidget {
                       meal.name,
                       style: const TextStyle(
                         fontWeight: FontWeight.w700,
-                        fontSize: 18,
-                        color: Colors.black,
+                        fontSize: 16,
                       ),
                     ),
                     Text(
                       "${meal.kiloCaloriesBurnt} kcal",
                       style: const TextStyle(
                         fontWeight: FontWeight.w500,
-                        fontSize: 14,
+                        fontSize: 13,
                         color: Colors.blueGrey,
                       ),
                     ),
@@ -85,7 +82,7 @@ class MealCard extends StatelessWidget {
                       children: [
                         const Icon(
                           Icons.access_time,
-                          size: 15,
+                          size: 14,
                           color: Colors.black12,
                         ),
                         const SizedBox(width: 4),

@@ -6,20 +6,20 @@ class CTextFormFieldTheme {
   static InputDecorationTheme ligthInputDecorationTheme =
       const InputDecorationTheme(
     border: OutlineInputBorder(),
-    prefixIconColor: cSecondaryColor,
-    floatingLabelStyle: TextStyle(color: cSecondaryColor),
+    prefixIconColor: AppColors.cSecondaryColor,
+    floatingLabelStyle: TextStyle(color: AppColors.cSecondaryColor),
     focusedBorder: OutlineInputBorder(
-      borderSide: BorderSide(width: 2.0, color: cSecondaryColor),
+      borderSide: BorderSide(width: 2.0, color: AppColors.cSecondaryColor),
     ),
   );
 
   static InputDecorationTheme darkInputDecorationTheme =
       const InputDecorationTheme(
     border: OutlineInputBorder(),
-    prefixIconColor: cPrimaryColor,
-    floatingLabelStyle: TextStyle(color: cPrimaryColor),
+    prefixIconColor: AppColors.cPrimaryColor,
+    floatingLabelStyle: TextStyle(color: AppColors.cPrimaryColor),
     focusedBorder: OutlineInputBorder(
-      borderSide: BorderSide(width: 2.0, color: cPrimaryColor),
+      borderSide: BorderSide(width: 2.0, color: AppColors.cPrimaryColor),
     ),
   );
 }

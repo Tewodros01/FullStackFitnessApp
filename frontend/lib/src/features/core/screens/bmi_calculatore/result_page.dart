@@ -12,15 +12,10 @@ class ResultPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.white,
-        centerTitle: true,
-        foregroundColor: Colors.black,
         title: Text(
           "bmiTitle".tr,
           style: const TextStyle(
             fontSize: 17.0,
-            color: Colors.black,
             fontWeight: FontWeight.bold,
           ),
         ),

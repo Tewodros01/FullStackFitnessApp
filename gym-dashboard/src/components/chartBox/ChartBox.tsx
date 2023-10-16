@@ -7,12 +7,14 @@ type Props = {
   icon: string;
   title: string;
   dataKey: string;
-  number: number | string;
+  number: number | string; // Include number in the prop types
   percentage: number;
   chartData: object[];
+  link: string;
 };
 
 const ChartBox = (props: Props) => {
+  // Remove the additional "number" parameter
   return (
     <div className="chartBox">
       <div className="boxInfo">
@@ -20,8 +22,8 @@ const ChartBox = (props: Props) => {
           <img src={props.icon} alt="" />
           <span>{props.title}</span>
         </div>
-        <h1>{props.number}</h1>
-        <Link to="/" style={{ color: props.color }}>
+        <h1>{props.number}</h1> {/* Use props.number to display the number */}
+        <Link to={props.link} style={{ color: props.color }}>
           View all
         </Link>
       </div>

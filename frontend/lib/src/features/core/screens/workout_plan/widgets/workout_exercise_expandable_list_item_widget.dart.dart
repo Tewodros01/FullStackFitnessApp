@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/src/constants/colors.dart';
 import 'package:frontend/src/database/hive_service.dart';
 import 'package:frontend/src/features/core/models/exercise_category_model.dart';
 import 'package:frontend/src/features/core/models/exercise_model.dart';
 import 'package:frontend/src/features/core/screens/home/widgets/video_play_widgets.dart';
+import 'package:get/get.dart';
 
 class WorkoutExerciseExpandableListItem extends StatefulWidget {
   const WorkoutExerciseExpandableListItem(
-      {super.key, required this.exerciseCategory});
+      {super.key, required this.exerciseCategory, required this.workoutColor});
 
   final ExerciseCategory exerciseCategory;
+  final int workoutColor;
   @override
   State<WorkoutExerciseExpandableListItem> createState() =>
       _WorkoutExerciseExpandableListItemState();
@@ -55,29 +58,22 @@ class _WorkoutExerciseExpandableListItemState
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(top: 20),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(5),
-        boxShadow: const [
-          BoxShadow(
-            color: Colors.black12,
-            blurRadius: 0.2,
-            offset: Offset(0.3, 0.5),
-            spreadRadius: 0.5,
-          )
-        ],
-      ),
       child: ExpansionTile(
+        backgroundColor: _getBGCLr(widget.workoutColor),
+        textColor: AppColors.cWhiteClr,
+        collapsedTextColor: AppColors.cWhiteClr,
+        collapsedBackgroundColor: _getBGCLr(widget.workoutColor),
         leading: CircleAvatar(
           backgroundImage: ExactAssetImage(
-              widget.exerciseCategory.exerciseCategoryThumbnailImageUrl),
+            widget.exerciseCategory.exerciseCategoryThumbnailImageUrl,
+          ),
           radius: 25,
         ),
         title: Text(
-          widget.exerciseCategory.exerciseCategoryName,
+          widget.exerciseCategory.exerciseCategoryName.tr,
           style: const TextStyle(
             fontWeight: FontWeight.w600,
             fontSize: 20,
-            color: Colors.white,
           ),
         ),
         initiallyExpanded: isExpanded,
@@ -126,9 +122,8 @@ class _WorkoutExerciseExpandableListItemState
                         radius: 25,
                       ),
                       title: Text(
-                        exercise.exerciseName,
+                        exercise.exerciseName.tr,
                         style: const TextStyle(
-                          color: Colors.white,
                           fontSize: 18,
                           fontWeight: FontWeight.w400,
                         ),
@@ -140,23 +135,6 @@ class _WorkoutExerciseExpandableListItemState
                           fontWeight: FontWeight.normal,
                         ),
                       ),
-                      trailing: GestureDetector(
-                        onTap: () {
-                          toggleItemSelection(index);
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: exerciseItem[index].isSelected!
-                                ? Colors.green
-                                : Colors.grey,
-                            borderRadius: BorderRadius.circular(50),
-                          ),
-                          child: const Icon(
-                            Icons.check,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
                     ),
                   ),
                 ),
@@ -166,5 +144,18 @@ class _WorkoutExerciseExpandableListItemState
         ],
       ),
     );
+  }
+
+  _getBGCLr(int no) {
+    switch (no) {
+      case 0:
+        return AppColors.cOrange;
+      case 1:
+        return AppColors.cPinkClr;
+      case 2:
+        return AppColors.cYellowClr;
+      default:
+        return AppColors.cOrange;
+    }
   }
 }

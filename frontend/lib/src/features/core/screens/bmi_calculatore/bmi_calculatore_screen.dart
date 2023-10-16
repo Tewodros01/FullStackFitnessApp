@@ -1,3 +1,4 @@
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:frontend/src/constants/sizes.dart';
 import 'package:frontend/src/constants/styles.dart';
 import 'package:frontend/src/features/core/screens/bmi_calculatore/result_page.dart';
@@ -28,15 +29,10 @@ class _BmiCalculatoreScreenState extends State<BmiCalculatoreScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.white,
-        centerTitle: true,
-        foregroundColor: Colors.black,
         title: Text(
           "bmiTitle".tr,
           style: const TextStyle(
             fontSize: 17.0,
-            color: Colors.black,
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -44,110 +40,140 @@ class _BmiCalculatoreScreenState extends State<BmiCalculatoreScreen> {
       body: Padding(
         padding: const EdgeInsets.symmetric(
           vertical: 20,
-          horizontal: 12,
+          horizontal: 20,
         ),
         child: Form(
           key: _formKey,
           child: Column(
             children: [
-              const SizedBox(height: 20),
-              DropdownButtonFormField<String>(
-                decoration: InputDecoration(
-                  labelText: 'aim'.tr,
-                ),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'pleaseSelectYourAim'.tr;
-                  }
-                  return null;
-                },
-                onChanged: (value) {
-                  if (value != null) {
-                    setState(() {
-                      aim = value;
-                    });
-                  }
-                },
-                onSaved: (value) {
-                  if (value != null) {
-                    aim = value;
-                  }
-                },
-                items: ['Loose', 'Maintain', 'Gain'].map((String value) {
-                  return DropdownMenuItem<String>(
-                    value: value,
-                    child: Text(value),
-                  );
-                }).toList(),
-              ),
-              const SizedBox(height: 20),
-              DropdownButtonFormField<String>(
-                decoration: InputDecoration(
-                  labelText: "exercise".tr,
-                ),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'pleaseSelectYourExerciseLevel'.tr;
-                  }
-                  return null;
-                },
-                onChanged: (value) {
-                  if (value != null) {
-                    setState(() {
-                      excercise = value;
-                    });
-                  }
-                },
-                onSaved: (value) {
-                  if (value != null) {
-                    excercise = value;
-                  }
-                },
-                items: [
-                  'Little To No Exercise',
-                  'Moderately Active',
-                  'Very Active',
-                ].map((String value) {
-                  return DropdownMenuItem<String>(
-                    value: value,
-                    child: Text(
-                      value,
-                      style: const TextStyle(
-                        overflow: TextOverflow.ellipsis,
+              Padding(
+                padding: EdgeInsets.only(left: 4.0.w, right: 4.0.w),
+                child: Column(
+                  children: [
+                    const SizedBox(height: 20),
+                    DropdownButtonFormField<String>(
+                      decoration: InputDecoration(
+                        labelText: 'aim'.tr,
                       ),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'pleaseSelectYourAim'.tr;
+                        }
+                        return null;
+                      },
+                      onChanged: (value) {
+                        if (value != null) {
+                          setState(() {
+                            aim = value;
+                          });
+                        }
+                      },
+                      onSaved: (value) {
+                        if (value != null) {
+                          aim = value;
+                        }
+                      },
+                      items: ['Loose', 'Maintain', 'Gain'].map((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(value),
+                        );
+                      }).toList(),
                     ),
-                  );
-                }).toList(),
+                    const SizedBox(height: 20),
+                    DropdownButtonFormField<String>(
+                      decoration: InputDecoration(
+                        labelText: "exercise".tr,
+                      ),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'pleaseSelectYourExerciseLevel'.tr;
+                        }
+                        return null;
+                      },
+                      onChanged: (value) {
+                        if (value != null) {
+                          setState(() {
+                            excercise = value;
+                          });
+                        }
+                      },
+                      onSaved: (value) {
+                        if (value != null) {
+                          excercise = value;
+                        }
+                      },
+                      items: [
+                        'Little To No Exercise',
+                        'Moderately Active',
+                        'Very Active',
+                      ].map((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(
+                            value,
+                            style: const TextStyle(
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                        );
+                      }).toList(),
+                    ),
+                    const SizedBox(height: 20),
+                    DropdownButtonFormField<String>(
+                      decoration: InputDecoration(
+                        labelText: 'gender'.tr,
+                      ),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'pleaseSelectYourGender'.tr;
+                        }
+                        return null;
+                      },
+                      onChanged: (value) {
+                        if (value != null) {
+                          setState(() {
+                            selectedGender = value;
+                          });
+                        }
+                      },
+                      onSaved: (value) {
+                        if (value != null) {
+                          selectedGender = value;
+                        }
+                      },
+                      items: ['Male', 'Female'].map((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(value),
+                        );
+                      }).toList(),
+                    ),
+                  ],
+                ),
               ),
               const SizedBox(height: 20),
-              DropdownButtonFormField<String>(
-                decoration: InputDecoration(
-                  labelText: 'gender'.tr,
+              BMICard(
+                heights: 65.0,
+                widths: MediaQuery.of(context).size.width,
+                child: BMIContentControl(
+                  label: 'wigth'.tr,
+                  value: weight,
+                  unit: 'kg',
+                  onDecrease: () => setState(() => weight--),
+                  onIncrease: () => setState(() => weight++),
                 ),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'pleaseSelectYourGender'.tr;
-                  }
-                  return null;
-                },
-                onChanged: (value) {
-                  if (value != null) {
-                    setState(() {
-                      selectedGender = value;
-                    });
-                  }
-                },
-                onSaved: (value) {
-                  if (value != null) {
-                    selectedGender = value;
-                  }
-                },
-                items: ['Male', 'Female'].map((String value) {
-                  return DropdownMenuItem<String>(
-                    value: value,
-                    child: Text(value),
-                  );
-                }).toList(),
+              ),
+              const SizedBox(height: 20),
+              BMICard(
+                heights: 65.0,
+                widths: MediaQuery.of(context).size.width,
+                child: BMIContentControl(
+                  label: 'age'.tr,
+                  value: age,
+                  onDecrease: () => setState(() => age--),
+                  onIncrease: () => setState(() => age++),
+                ),
               ),
               const SizedBox(height: 20),
               BMICard(
@@ -188,8 +214,6 @@ class _BmiCalculatoreScreenState extends State<BmiCalculatoreScreen> {
                           min: cMinHeight,
                           max: cMaxHeight,
                           value: height.toDouble(),
-                          activeColor: Colors.grey,
-                          inactiveColor: Colors.black12,
                           onChanged: (newHeight) {
                             setState(() {
                               height = newHeight.round();
@@ -197,29 +221,6 @@ class _BmiCalculatoreScreenState extends State<BmiCalculatoreScreen> {
                           }),
                     ),
                   ],
-                ),
-              ),
-              const SizedBox(height: 20),
-              BMICard(
-                heights: 60.0,
-                widths: MediaQuery.of(context).size.width,
-                child: BMIContentControl(
-                  label: 'wigth'.tr,
-                  value: weight,
-                  unit: 'kg',
-                  onDecrease: () => weight--,
-                  onIncrease: () => weight++,
-                ),
-              ),
-              const SizedBox(height: 20),
-              BMICard(
-                heights: 60.0,
-                widths: MediaQuery.of(context).size.width,
-                child: BMIContentControl(
-                  label: 'age'.tr,
-                  value: age,
-                  onDecrease: () => setState(() => age--),
-                  onIncrease: () => setState(() => age++),
                 ),
               ),
               const SizedBox(height: 20),

@@ -17,7 +17,8 @@ const Add = (props: Props) => {
 
     try {
       // Send a POST request to your server to add a new user
-      const response = await fetch(`http://localhost:8800/api/${props.slug}s`, {
+      console.log(JSON.stringify(formData));
+      const response = await fetch(` http://127.0.0.1:4500/api/${props.slug}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -32,13 +33,13 @@ const Add = (props: Props) => {
       } else {
         // Handle errors or show a message to the user
         console.error(
-          "Error adding user:",
+          "Error adding post:",
           response.status,
           response.statusText
         );
       }
     } catch (error) {
-      console.error("Error adding user:", error);
+      console.error("Error adding post:", error);
     }
   };
 
@@ -61,7 +62,7 @@ const Add = (props: Props) => {
               <div className="item" key={column.field}>
                 <label>{column.headerName}</label>
                 <input
-                  type={column.type === "number" ? "number" : "text"}
+                  type={column.type === "text" ? "text" : "file"}
                   placeholder={column.headerName}
                   name={column.field}
                   value={formData[column.field] || ""}

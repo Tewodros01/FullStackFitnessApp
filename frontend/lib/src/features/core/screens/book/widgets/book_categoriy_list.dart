@@ -35,8 +35,8 @@ class _BookCategoryListState extends State<BookCategoryList> {
                 width: 150,
                 decoration: BoxDecoration(
                   color: currentSelected == i
-                      ? cDarkGrey.withOpacity(0.8)
-                      : cDarkColor.withOpacity(0.1),
+                      ? AppColors.cDarkGrey.withOpacity(0.8)
+                      : AppColors.cDarkColor.withOpacity(0.1),
                   borderRadius: BorderRadius.circular(8.0),
                 ),
                 child: Column(

@@ -12,6 +12,9 @@ class BookCategoryNotifier extends StateNotifier<CategoryState> {
       if (state.isLoading || !state.hasNext) {
         return;
       }
+      Future.delayed(const Duration(microseconds: 1500), () {
+        state = state.copyWith(isLoading: true);
+      });
       final categories = await _bookService.fetchCategories();
       final newCategories = [...state.categories, ...categories!];
       if (categories.length % 10 != 0 || categories.isEmpty) {

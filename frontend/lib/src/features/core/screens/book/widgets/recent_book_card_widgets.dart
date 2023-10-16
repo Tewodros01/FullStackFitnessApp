@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/src/constants/colors.dart';
 import 'package:frontend/src/features/core/models/book_model.dart';
 import 'package:frontend/src/features/core/screens/book/detail_book/detail_book_screen.dart';
 import 'package:get/get.dart';
@@ -34,7 +35,8 @@ class RecentBookCardWidget extends StatelessWidget {
                   height: 180.0,
                   width: width,
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    color:
+                        context.isDarkMode ? AppColors.cDarkGrey : Colors.white,
                     borderRadius: BorderRadius.circular(8.0),
                   ),
                 ),
@@ -45,6 +47,9 @@ class RecentBookCardWidget extends StatelessWidget {
               left: 0,
               child: Card(
                 elevation: 10.0,
+                shadowColor: context.isDarkMode
+                    ? AppColors.cDarkColor
+                    : AppColors.cWhiteClr,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(15.0),
                 ),
@@ -77,7 +82,6 @@ class RecentBookCardWidget extends StatelessWidget {
                         fontSize: 18,
                         fontFamily: "Avenir",
                         fontWeight: FontWeight.w900,
-                        color: Colors.black87,
                       ),
                     ),
                     const SizedBox(height: 4.0),
@@ -87,16 +91,15 @@ class RecentBookCardWidget extends StatelessWidget {
                         fontSize: 16,
                         fontFamily: "Avenir",
                         fontWeight: FontWeight.w900,
-                        color: Colors.black54,
                       ),
                     ),
-                    const Divider(color: Colors.black),
+                    const Divider(color: Colors.orange),
                     Text(
                       '${"categories".tr}: ${book.bookId}',
                       style: const TextStyle(
                         fontSize: 14,
                         fontFamily: "Avenir",
-                        color: Colors.black54,
+                        color: AppColors.cGrey,
                       ),
                     ),
                     const SizedBox(height: 8.0),
@@ -105,7 +108,7 @@ class RecentBookCardWidget extends StatelessWidget {
                       style: const TextStyle(
                         fontSize: 14,
                         fontFamily: "Avenir",
-                        color: Colors.black54,
+                        color: AppColors.cGrey,
                       ),
                     ),
                   ],

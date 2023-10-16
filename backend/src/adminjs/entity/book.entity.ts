@@ -24,9 +24,9 @@ export class Book extends BaseEntity<Book, "book_id"> implements IBook {
   @Property({ fieldName: "book_author_name", columnType: "text" })
   bookAuthorName!: string;
 
-  @Property({ fieldName: "book_thumbnail", columnType: "file" }) // Set the correct columnType to "file"
+  @Property({ fieldName: "book_thumbnail", columnType: "file", type: "file" }) // Set the correct columnType to "file"
   bookThumbnail!: string;
 
-  @Property({ fieldName: "book_file_path", columnType: "file" }) // Set the correct columnType to "file"
+  @Property({ fieldName: "book_file_path", columnType: "file", type: "file" }) // Set the correct columnType to "file"
   bookFilePath!: string;
 }

@@ -136,4 +136,72 @@ class ApiService {
       return false;
     }
   }
+
+  static Future<bool> likeBook(int bookId) async {
+    try {
+      var loginDetails = await SharedService.loginDetails();
+      Map<String, dynamic> data = {
+        'book_id': bookId,
+      };
+
+      var url = Uri.http(
+        Config.apiURL,
+        Config.likeBookEndpoint, // Replace with your like book endpoint
+      );
+
+      var response = await http.post(
+        url,
+        headers: {
+          "Content-Type": "application/json",
+          'Authorization': 'Basic ${loginDetails!.data.token.toString()}',
+        },
+        body: jsonEncode(data),
+      );
+
+      if (response.statusCode == 200) {
+        print(response.body);
+        var responseData = jsonDecode(response.body);
+        // Assuming the API response contains a "success" field
+        if (responseData['success'] == true) {
+          return true; // Book liked successfully
+        } else {
+          return false; // Book like operation failed
+        }
+      } else {
+        return false; // Request to like book failed
+      }
+    } catch (e) {
+      // Handle network errors here
+      print("Network error: $e");
+      return false; // Network error occurred
+    }
+  }
+
+//   _likePost() async {
+//   String endPoint = isLike == 0 ? 'likebook' : 'disLikebook';
+//   Map<String, dynamic> data = {
+//     'user_id': userId.toString(),
+//     'book_id': widget.bookInfo!.bookId.toString(),
+//   };
+
+//   try {
+//     Response response = await Dio().post(
+//       yourServerApiEndpoint, // Replace with your server's API endpoint URL
+//       data: data,
+//     );
+
+//     if (response.statusCode == 200) {
+//       // Update the like status locally.
+//       setState(() {
+//         isLike = isLike == 0 ? 1 : 0; // Toggle like status
+//       });
+//     } else {
+//       // Handle errors here
+//       print("Failed to like/dislike the book.");
+//     }
+//   } catch (e) {
+//     // Handle network errors here
+//     print("Network error: $e");
+//   }
+// }
 }

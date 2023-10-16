@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:frontend/src/database/hive_service.dart';
 import 'package:frontend/src/features/core/models/exercise_category_model.dart';
 import 'package:frontend/src/features/core/models/exercise_model.dart';
+import 'package:get/get.dart';
 
 class ExerciseExpandableListItem extends StatefulWidget {
   const ExerciseExpandableListItem({super.key, required this.exerciseCategory});
@@ -54,7 +55,6 @@ class _ExerciseExpandableListItemState
     return Container(
       margin: const EdgeInsets.only(top: 20),
       decoration: BoxDecoration(
-        color: Colors.white,
         borderRadius: BorderRadius.circular(5),
         boxShadow: const [
           BoxShadow(
@@ -68,10 +68,11 @@ class _ExerciseExpandableListItemState
       child: ExpansionTile(
         leading: CircleAvatar(
           backgroundImage: ExactAssetImage(
-              widget.exerciseCategory.exerciseCategoryThumbnailImageUrl),
+            widget.exerciseCategory.exerciseCategoryThumbnailImageUrl,
+          ),
           radius: 25,
         ),
-        title: Text(widget.exerciseCategory.exerciseCategoryName),
+        title: Text(widget.exerciseCategory.exerciseCategoryName.tr),
         initiallyExpanded: isExpanded,
         onExpansionChanged: (value) {
           setState(() {
@@ -89,7 +90,6 @@ class _ExerciseExpandableListItemState
                 child: Container(
                   margin: const EdgeInsets.only(top: 10),
                   decoration: BoxDecoration(
-                    color: Colors.white,
                     borderRadius: BorderRadius.circular(5),
                     boxShadow: const [
                       BoxShadow(
@@ -107,7 +107,7 @@ class _ExerciseExpandableListItemState
                       radius: 25,
                     ),
                     title: Text(
-                      exercise.exerciseName,
+                      exercise.exerciseName.tr,
                       style: const TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,

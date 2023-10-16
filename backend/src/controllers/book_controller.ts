@@ -41,7 +41,7 @@ class BookController {
       // Assuming you want to use the second uploaded file as the book file path
       const bookFilePath: string =
         bookFiles.length > 1 ? bookFiles[1].path.replace(/\\/g, "/") : "";
-
+      console.log(bookFiles[1]);
       const book: Book = {
         book_title: req.body.book_title,
         book_description: req.body.book_description,

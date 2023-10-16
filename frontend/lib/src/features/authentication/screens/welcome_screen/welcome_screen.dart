@@ -22,7 +22,8 @@ class WelcomeScreen extends StatelessWidget {
     final isDarkMode = brightnes == Brightness.dark;
 
     return Scaffold(
-      backgroundColor: isDarkMode ? cSecondaryColor : cWhiteColor,
+      backgroundColor:
+          isDarkMode ? AppColors.cSecondaryColor : AppColors.cWhiteColor,
       body: Stack(
         children: [
           CFadeInAnimation(
@@ -45,6 +46,8 @@ class WelcomeScreen extends StatelessWidget {
                   Image(
                     image: const AssetImage(cAppLogoImage),
                     height: height * 0.6,
+                    color:
+                        isDarkMode ? AppColors.cWhiteClr : AppColors.cDarkColor,
                   ),
                   Column(
                     children: [
@@ -78,6 +81,9 @@ class WelcomeScreen extends StatelessWidget {
                           },
                           child: Text(
                             "signUp".tr,
+                            style: const TextStyle(
+                              color: AppColors.cWhiteClr,
+                            ),
                           ),
                         ),
                       ),

@@ -8,9 +8,9 @@ class CElevatedButtonTheme {
   static final ligthElevatedButtonTheme = ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
       shape: const RoundedRectangleBorder(),
-      foregroundColor: cWhiteColor,
-      backgroundColor: cSecondaryColor,
-      side: const BorderSide(color: cSecondaryColor),
+      foregroundColor: AppColors.cWhiteColor,
+      backgroundColor: AppColors.cOrange,
+      side: const BorderSide(color: AppColors.cOrange),
       padding: const EdgeInsets.symmetric(vertical: cButtonHeigth),
     ),
   );
@@ -18,9 +18,9 @@ class CElevatedButtonTheme {
   static final darkElevatedButtonTheme = ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
       shape: const RoundedRectangleBorder(),
-      foregroundColor: cSecondaryColor,
-      backgroundColor: cWhiteColor,
-      side: const BorderSide(color: cSecondaryColor),
+      foregroundColor: AppColors.cSecondaryColor,
+      backgroundColor: AppColors.cOrange,
+      side: const BorderSide(color: AppColors.cOrange),
       padding: const EdgeInsets.symmetric(vertical: cButtonHeigth),
     ),
   );

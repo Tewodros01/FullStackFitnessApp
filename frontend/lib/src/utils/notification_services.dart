@@ -43,7 +43,7 @@ class NotifiyHelper {
       'your channel id',
       'your channel name',
       channelDescription: 'your channel description',
-      importance: Importance.max,
+      importance: Importance.high,
       priority: Priority.high,
     );
     const NotificationDetails notificationDetails =
@@ -59,10 +59,10 @@ class NotifiyHelper {
 
   scheduledNotification(int hour, int minute, Workout workout) async {
     await flutterLocalNotificationsPlugin.zonedSchedule(
-      workout.workoutId!.toInt(),
+      1,
       workout.workoutName,
       workout.workoutNote,
-      _convertTime(hour, minute),
+      _convertTime(14, 03),
       const NotificationDetails(
         android: AndroidNotificationDetails(
           'your channel id',
@@ -104,6 +104,8 @@ class NotifiyHelper {
     if (scheduleDate.isBefore(now)) {
       scheduleDate = scheduleDate.add(const Duration(days: 1));
     }
+    print("Now $now");
+    print("ScheduleDate $scheduleDate");
     return scheduleDate;
   }
 }

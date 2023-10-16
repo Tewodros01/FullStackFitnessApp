@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/src/constants/colors.dart';
 import 'package:frontend/src/features/core/models/exercise_category_model.dart';
 import 'package:frontend/src/features/core/models/workout_model.dart';
-import 'package:frontend/src/utils/themes/theme.dart';
 import 'package:get/get.dart';
 
 class WorkoutPlanCardWidget extends StatelessWidget {
@@ -28,21 +28,21 @@ class WorkoutPlanCardWidget extends StatelessWidget {
                 Text(
                   "yourNextWorkout".tr,
                   style: const TextStyle(
-                    color: Colors.white70,
+                    color: AppColors.cWhiteClr,
                     fontSize: 14,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
-                const SizedBox(height: 8),
+                const SizedBox(height: 7),
                 Text(
                   workoutPlan.workoutName,
                   style: const TextStyle(
-                    color: Colors.white,
+                    color: AppColors.cWhiteClr,
                     fontSize: 15,
                     fontWeight: FontWeight.w800,
                   ),
                 ),
-                const SizedBox(height: 8),
+                const SizedBox(height: 7),
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
@@ -72,7 +72,7 @@ class WorkoutPlanCardWidget extends StatelessWidget {
                       ExerciseCategory exerciseCategory =
                           workoutPlan.exerciseCategory![index];
                       return Padding(
-                        padding: const EdgeInsets.only(top: 8.0, right: 10),
+                        padding: const EdgeInsets.only(top: 8.0, right: 8.0),
                         child: Container(
                           decoration: const BoxDecoration(
                             borderRadius: BorderRadius.all(Radius.circular(25)),
@@ -89,7 +89,7 @@ class WorkoutPlanCardWidget extends StatelessWidget {
                     },
                   ),
                 ),
-                const SizedBox(height: 8),
+                const SizedBox(height: 7),
                 Text(
                   workoutPlan.workoutNote ?? "",
                   style: const TextStyle(
@@ -100,8 +100,8 @@ class WorkoutPlanCardWidget extends StatelessWidget {
               ],
             ),
             Container(
-              margin: const EdgeInsets.symmetric(horizontal: 10),
-              height: 60,
+              margin: const EdgeInsets.symmetric(horizontal: 9),
+              height: 50,
               width: 0.5,
               color: Colors.grey[200]!.withOpacity(0.7),
             ),
@@ -127,13 +127,13 @@ class WorkoutPlanCardWidget extends StatelessWidget {
   _getBGCLr(int no) {
     switch (no) {
       case 0:
-        return blueishClr;
+        return AppColors.cOrange;
       case 1:
-        return pinkClr;
+        return AppColors.cPinkClr;
       case 2:
-        return yellowClr;
+        return AppColors.cYellowClr;
       default:
-        return blueishClr;
+        return AppColors.cOrange;
     }
   }
 }

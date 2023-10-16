@@ -15,105 +15,79 @@ class ExerciseCategoryWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Column(
-      children: [
-        Padding(
-          padding: EdgeInsets.only(left: 24.w, right: 24.w),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "categories".tr,
-                    style: TextStyle(
-                      fontSize: 16.sp,
-                      color: Colors.black,
-                      fontStyle: FontStyle.normal,
-                      fontWeight: FontWeight.w600,
-                    ),
+    return SliverToBoxAdapter(
+      child: SizedBox(
+        height: 170.h,
+        child: ListView.separated(
+          padding: EdgeInsets.only(left: 24.w),
+          physics: const BouncingScrollPhysics(
+              parent: AlwaysScrollableScrollPhysics()),
+          scrollDirection: Axis.horizontal,
+          itemCount: exerciseCategories.length,
+          itemBuilder: (context, index) {
+            final exercise = exerciseCategories[index];
+            return GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        VideoDisplayWidget(exercise: exercise.exercise!),
                   ),
-                ],
-              ),
-              SizedBox(height: 30.h),
-            ],
-          ),
-        ),
-        SizedBox(
-          height: 170.h,
-          child: ListView.separated(
-            padding: EdgeInsets.only(left: 24.w),
-            physics: const BouncingScrollPhysics(
-                parent: AlwaysScrollableScrollPhysics()),
-            scrollDirection: Axis.horizontal,
-            itemCount: exerciseCategories.length,
-            itemBuilder: (context, index) {
-              final exercise = exerciseCategories[index];
-              return GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) =>
-                          VideoDisplayWidget(exercise: exercise.exercise!),
-                    ),
-                  );
-                },
-                child: Column(
-                  children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(8.r),
-                      child: Container(
-                        width: 150.w,
-                        height: 170.h,
-                        decoration: BoxDecoration(
-                          color: Colors.grey,
-                          image: DecorationImage(
-                            image: AssetImage(
-                              exercise.exerciseCategoryThumbnailImageUrl,
-                            ),
-                            fit: BoxFit.cover,
+                );
+              },
+              child: Column(
+                children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(8.r),
+                    child: Container(
+                      width: 150.w,
+                      height: 170.h,
+                      decoration: BoxDecoration(
+                        color: Colors.grey,
+                        image: DecorationImage(
+                          image: AssetImage(
+                            exercise.exerciseCategoryThumbnailImageUrl,
                           ),
+                          fit: BoxFit.cover,
                         ),
-                        child: Stack(
-                          children: [
-                            Align(
-                              alignment: Alignment.bottomCenter,
-                              child: Container(
-                                height: 39.h,
-                                color: const Color(0xff525252),
-                                child: Center(
-                                  child: Text(
-                                    exercise.exerciseCategoryName,
-                                    maxLines: 2,
-                                    style: TextStyle(
-                                      fontSize: 14.sp,
-                                      color: const Color.fromARGB(255, 5, 3, 3),
-                                      fontStyle: FontStyle.normal,
-                                      fontWeight: FontWeight.w400,
-                                    ),
+                      ),
+                      child: Stack(
+                        children: [
+                          Align(
+                            alignment: Alignment.bottomCenter,
+                            child: Container(
+                              height: 39.h,
+                              color: const Color(0xff525252).withOpacity(0.7),
+                              child: Center(
+                                child: Text(
+                                  exercise.exerciseCategoryName.tr,
+                                  maxLines: 2,
+                                  style: TextStyle(
+                                    fontSize: 14.sp,
+                                    color: Colors.white,
+                                    fontStyle: FontStyle.normal,
+                                    fontWeight: FontWeight.w400,
                                   ),
                                 ),
                               ),
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                     ),
-                  ],
-                ),
-              );
-            },
-            separatorBuilder: (BuildContext context, int index) {
-              return SizedBox(
-                width: 17.w,
-              );
-            },
-          ),
+                  ),
+                ],
+              ),
+            );
+          },
+          separatorBuilder: (BuildContext context, int index) {
+            return SizedBox(
+              width: 17.w,
+            );
+          },
         ),
-      ],
+      ),
     );
   }
 }

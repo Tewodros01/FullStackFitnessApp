@@ -63,9 +63,7 @@ class UserController {
       };
       console.log(user);
       const newUser = await userStore.createUser(user);
-      let tokenSecret: any = process.env.TOKEN_SECRET;
-      const token = jwt.sign({ user: newUser }, tokenSecret);
-      newUser.token = token;
+
       res.json({ message: "Success", data: newUser });
     } catch (err) {
       res.status(400).json(`${err}`);
@@ -147,6 +145,12 @@ class UserController {
       console.log(`User Activity Extent: ${user.activity_extent}`);
       console.log(`User Age : ${user.age}`);
       // Call the updateUserById method of UserStore (Assuming it returns a promise)
+      if (!id) {
+        res.status(400).json({
+          error: "User ID are required.",
+        });
+        return;
+      }
       const result = await userStore.updateUserById(id!, user);
       return res.json({ message: "Success", data: result });
     } catch (error) {
@@ -173,13 +177,17 @@ class UserController {
       return next(error);
     }
   };
-  static userLikeBook = async (req: Request, res: Response) => {
+  static userLikeBook = async (req: IRequest, res: Response) => {
     try {
+      const userId = req.user?.user_id;
+      if (!userId) {
+        res.status(400).json({
+          error: "userId are required for like book.",
+        });
+        return;
+      }
       const userStore: UserStore = new UserStore();
-      const userLikeBook = userStore.userLikeBook(
-        req.body.user_id,
-        req.body.book_id
-      );
+      const userLikeBook = userStore.userLikeBook(userId!, req.body.book_id);
       res.json({ message: "Success", data: userLikeBook });
     } catch (err) {
       res.status(400).json(`${err}`);
@@ -249,6 +257,18 @@ class UserController {
         join_date
       );
       res.json({ message: "Success", data: userJoin });
+    } catch (err) {
+      res.status(400).json(`${err}`);
+    }
+  };
+  static leaveUserToGym = async (req: IRequest, res: Response) => {
+    try {
+      console.log(req.user?.user_id);
+      const userId = req.user!.user_id;
+      const gymId = req.params.gymId;
+      const userStore: UserStore = new UserStore();
+      const userLeave = await userStore.leaveGym(userId!, parseInt(gymId));
+      res.json({ message: "Success", data: userLeave });
     } catch (err) {
       res.status(400).json(`${err}`);
     }

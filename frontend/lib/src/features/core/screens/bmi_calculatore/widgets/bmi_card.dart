@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/src/constants/colors.dart';
 
 class BMICard extends StatelessWidget {
   const BMICard({
     super.key,
-    this.color = Colors.white,
     this.child,
     this.onSelect,
     required this.heights,
     required this.widths,
   });
-  final Color color;
+
   final Widget? child;
   final Function()? onSelect;
   final double heights;
@@ -18,20 +18,18 @@ class BMICard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onSelect,
-      child: Container(
-        height: heights,
-        width: widths,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(5),
-          boxShadow: const [
-            BoxShadow(
-              blurStyle: BlurStyle.outer,
-              spreadRadius: 0,
-              blurRadius: 1,
-            )
-          ],
+      child: Card(
+        shadowColor: Colors.white,
+        shape: BeveledRectangleBorder(
+          side: BorderSide(
+            color: AppColors.cGrey.withOpacity(0.5),
+          ),
         ),
-        child: child,
+        child: SizedBox(
+          height: heights,
+          width: widths,
+          child: child,
+        ),
       ),
     );
   }

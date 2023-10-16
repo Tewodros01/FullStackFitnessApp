@@ -29,8 +29,20 @@ export class UserStore {
   async createUser(user: User): Promise<User> {
     try {
       const conn = await DB.connect();
+
+      // Check if the email already exists
+      const emailExistsQuery = "SELECT email FROM users WHERE email = $1";
+      const emailExistsResult = await conn.query(emailExistsQuery, [
+        user.email,
+      ]);
+
+      if (emailExistsResult.rows.length > 0) {
+        conn.release();
+        throw new Error("Email already exists");
+      }
+
       const sql =
-        "INSERT INTO users (full_name,gender,age, height, weightt,email,phone_number,user_password) VALUES($1,$2,$3,$4,$5,$6,$7,$8) RETURNING *";
+        "INSERT INTO users (full_name, gender, age, height, weightt, email, phone_number, user_password) VALUES($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *";
       const hash = bcrypt.hashSync(
         user.user_password + pepper,
         parseInt(saltRound)
@@ -46,7 +58,13 @@ export class UserStore {
         hash,
       ]);
       conn.release();
-      return result.rows[0];
+
+      const newUser: User = result.rows[0];
+      const token = auth.assignAccessToken(newUser);
+      console.log(token);
+      // Update user token and save
+      newUser.token = token;
+      return newUser;
     } catch (err) {
       throw new Error(`Could not create user ${err}`);
     }
@@ -217,6 +235,7 @@ export class UserStore {
       throw new Error(`Could not select ${err} `);
     }
   }
+
   joinGym = async (userId: number, gymId: number, joinDate: Date) => {
     try {
       const conn = await DB.connect();
@@ -227,6 +246,19 @@ export class UserStore {
       return result.rowCount > 0;
     } catch (error) {
       console.error("Error joining gym:", error);
+      return false;
+    }
+  };
+  leaveGym = async (userId: number, gymId: number) => {
+    try {
+      const conn = await DB.connect();
+      const sql =
+        "DELETE FROM user_gym_membership  WHERE user_id = $1 AND gym_id = $2";
+      const result = await conn.query(sql, [userId, gymId]);
+      conn.release();
+      return result.rowCount > 0;
+    } catch (error) {
+      console.error("Error leaveng gym:", error);
       return false;
     }
   };

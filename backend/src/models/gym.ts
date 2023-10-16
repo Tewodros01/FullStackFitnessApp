@@ -76,6 +76,23 @@ export class GymStore {
       return [];
     }
   };
+  getGymProvider = async (user_id: number): Promise<Gym[]> => {
+    try {
+      const conn = await DB.connect();
+      const sql = `
+        SELECT g.*
+        FROM gym g
+        INNER JOIN user_gym_membership m ON g.gym_id = m.gym_id
+        WHERE m.user_id = $1
+      `;
+      const result = await conn.query(sql, [user_id]);
+      conn.release();
+      return result.rows;
+    } catch (error) {
+      console.error("Error listing gym users:", error);
+      return [];
+    }
+  };
   async gymLogin(gym_name: string, gym_password: string) {
     try {
       const conn = await DB.connect();
@@ -98,6 +115,42 @@ export class GymStore {
     } catch (error) {
       const errorData = { message: "Log in failed", error: error };
       return errorData;
+    }
+  }
+  // Method to count gym users
+  countGymUsers = async (gym_id: number): Promise<number> => {
+    try {
+      const conn = await DB.connect();
+      const sql = `
+          SELECT COUNT(*) as user_count
+          FROM users u
+          INNER JOIN user_gym_membership m ON u.user_id = m.user_id
+          WHERE m.gym_id = $1
+        `;
+      const result = await conn.query(sql, [gym_id]);
+      conn.release();
+
+      // Extract the user count from the result
+      const userCount = result.rows[0]?.user_count || 0;
+
+      return userCount;
+    } catch (error) {
+      console.error("Error counting gym users:", error);
+      return 0; // Return 0 in case of an error
+    }
+  };
+
+  async getGymById(id: string): Promise<User> {
+    try {
+      const conn = await DB.connect();
+      // Find the user by ID
+      const sql = "SELECT * FROM gym WHERE gym_id = $1";
+      const result = await conn.query(sql, [id]);
+      conn.release();
+      if (!result) throw new Error("Gym not found"); // Throw an error if the user is not found
+      return result.rows[0]; // Return the user if it exists
+    } catch (error) {
+      throw new Error(`Retrieving user failed: ${error}`);
     }
   }
 }

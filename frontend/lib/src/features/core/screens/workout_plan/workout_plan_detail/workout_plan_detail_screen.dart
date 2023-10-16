@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/src/constants/colors.dart';
 import 'package:frontend/src/features/core/models/exercise_category_model.dart';
 import 'package:frontend/src/features/core/models/workout_model.dart';
 import 'package:frontend/src/features/core/screens/workout_plan/widgets/workout_exercise_expandable_list_item_widget.dart.dart';
-import 'package:frontend/src/utils/themes/theme.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
@@ -17,10 +17,7 @@ class WorkoutPlanDetailScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: _getBGCLr(workout.workoutColor!),
       appBar: AppBar(
-        elevation: 0.0,
         backgroundColor: _getBGCLr(workout.workoutColor!),
-        foregroundColor: Colors.white,
-        actions: [],
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -101,6 +98,7 @@ class WorkoutPlanDetailScreen extends StatelessWidget {
                         workout.exerciseCategory![index];
                     return WorkoutExerciseExpandableListItem(
                       exerciseCategory: exerciseCategory,
+                      workoutColor: workout.workoutColor!,
                     );
                   },
                 ),
@@ -115,13 +113,13 @@ class WorkoutPlanDetailScreen extends StatelessWidget {
   _getBGCLr(int no) {
     switch (no) {
       case 0:
-        return blueishClr;
+        return AppColors.cOrange;
       case 1:
-        return pinkClr;
+        return AppColors.cPinkClr;
       case 2:
-        return yellowClr;
+        return AppColors.cYellowClr;
       default:
-        return blueishClr;
+        return AppColors.cOrange;
     }
   }
 }

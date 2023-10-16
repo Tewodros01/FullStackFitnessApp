@@ -27,7 +27,6 @@ class _WorkoutPlanScreenState extends State<WorkoutPlanScreen> {
   int slectedItem = 2;
   DateTime _selectedDate = DateTime.now();
   final workoutPlanController = Get.put(WorkoutPlanController());
-  String currentUser = "";
 
   @override
   void initState() {
@@ -65,13 +64,16 @@ class _WorkoutPlanScreenState extends State<WorkoutPlanScreen> {
             itemBuilder: (_, index) {
               Workout workoutPlan =
                   workoutPlanController.workoutPlanList[index];
+              print(
+                  "Workout Star Time ${workoutPlan.workoutStartTime.toString()}");
               if (workoutPlan.workoutRepeat == 'Daily') {
-                DateTime date = DateFormat.jm()
-                    .parse(workoutPlan.workoutStartTime.toString());
-                var myTime = DateFormat("HH:mm").format(date);
+                String? hourMinit = workoutPlan.workoutStartTime?.split(" ")[0];
+                print(hourMinit);
+                // DateTime date = DateFormat.jm().parse(hourMinit!);
+                // var myTime = DateFormat("HH:mm").format(date);
                 notifiyHelper.scheduledNotification(
-                  int.parse(myTime.toString().split(":")[0]),
-                  int.parse(myTime.toString().split(":")[1]),
+                  int.parse(hourMinit.toString().split(":")[0]),
+                  int.parse(hourMinit.toString().split(":")[1]),
                   workoutPlan,
                 );
                 return AnimationConfiguration.staggeredGrid(
@@ -82,6 +84,8 @@ class _WorkoutPlanScreenState extends State<WorkoutPlanScreen> {
                       child: Row(
                         children: [
                           OpenContainer(
+                            closedColor: Colors.transparent,
+                            openColor: Colors.transparent,
                             closedElevation: 0,
                             transitionType: ContainerTransitionType.fade,
                             transitionDuration:
@@ -95,7 +99,8 @@ class _WorkoutPlanScreenState extends State<WorkoutPlanScreen> {
                               return GestureDetector(
                                 onTap: openContainer,
                                 child: WorkoutPlanCardWidget(
-                                    workoutPlan: workoutPlan),
+                                  workoutPlan: workoutPlan,
+                                ),
                               );
                             },
                           ),
@@ -115,6 +120,8 @@ class _WorkoutPlanScreenState extends State<WorkoutPlanScreen> {
                       child: Row(
                         children: [
                           OpenContainer(
+                            closedColor: Colors.transparent,
+                            openColor: Colors.transparent,
                             closedElevation: 0,
                             transitionType: ContainerTransitionType.fade,
                             transitionDuration:
@@ -128,7 +135,8 @@ class _WorkoutPlanScreenState extends State<WorkoutPlanScreen> {
                               return GestureDetector(
                                 onTap: openContainer,
                                 child: WorkoutPlanCardWidget(
-                                    workoutPlan: workoutPlan),
+                                  workoutPlan: workoutPlan,
+                                ),
                               );
                             },
                           ),
@@ -155,8 +163,8 @@ class _WorkoutPlanScreenState extends State<WorkoutPlanScreen> {
         height: 100,
         width: 80,
         initialSelectedDate: DateTime.now(),
-        selectionColor: cSecondaryColor,
-        selectedTextColor: Colors.white,
+        selectionColor: AppColors.cOrange,
+        selectedTextColor: AppColors.cWhiteClr,
         dateTextStyle: TextStyle(
           fontSize: 17.sp,
           fontWeight: FontWeight.w600,
@@ -212,7 +220,7 @@ class _WorkoutPlanScreenState extends State<WorkoutPlanScreen> {
               height: 60,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
-                color: cSecondaryColor,
+                color: AppColors.cOrange,
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -220,7 +228,7 @@ class _WorkoutPlanScreenState extends State<WorkoutPlanScreen> {
                   Text(
                     "addWorkoutPlan".tr,
                     style: const TextStyle(
-                      color: Colors.white,
+                      color: AppColors.cWhiteClr,
                     ),
                   ),
                 ],
@@ -239,7 +247,9 @@ class _WorkoutPlanScreenState extends State<WorkoutPlanScreen> {
             ? MediaQuery.of(context).size.height * 0.24
             : MediaQuery.of(context).size.height * 0.32,
         padding: const EdgeInsets.only(top: 4),
-        color: Get.isDarkMode ? darkGreyClr : Colors.white,
+        color: Get.isDarkMode
+            ? AppColors.cSecondaryColor
+            : AppColors.cPrimaryColor,
         child: Column(
           children: [
             Container(
@@ -260,7 +270,7 @@ class _WorkoutPlanScreenState extends State<WorkoutPlanScreen> {
                           .markTaskCompleted(workoutPlan.workoutId!);
                       Get.back();
                     },
-                    clr: primaryClr,
+                    clr: AppColors.cOrange,
                     context: context,
                   ),
             const SizedBox(height: 20),

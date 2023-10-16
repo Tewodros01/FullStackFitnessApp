@@ -8,8 +8,8 @@ class COutlinedButtonTheme {
   static final ligthOutlinedButtonTheme = OutlinedButtonThemeData(
     style: OutlinedButton.styleFrom(
       shape: const RoundedRectangleBorder(),
-      foregroundColor: cSecondaryColor,
-      side: const BorderSide(color: cSecondaryColor),
+      foregroundColor: AppColors.cSecondaryColor,
+      side: const BorderSide(color: AppColors.cSecondaryColor),
       padding: const EdgeInsets.symmetric(vertical: cButtonHeigth),
     ),
   );
@@ -17,8 +17,8 @@ class COutlinedButtonTheme {
   static final darkOutlinedButtonTheme = OutlinedButtonThemeData(
     style: OutlinedButton.styleFrom(
       shape: const RoundedRectangleBorder(),
-      foregroundColor: cWhiteColor,
-      side: const BorderSide(color: cWhiteColor),
+      foregroundColor: AppColors.cWhiteColor,
+      side: const BorderSide(color: AppColors.cWhiteColor),
       padding: const EdgeInsets.symmetric(vertical: cButtonHeigth),
     ),
   );

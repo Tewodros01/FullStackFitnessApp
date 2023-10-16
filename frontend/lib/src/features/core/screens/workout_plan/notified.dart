@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:frontend/src/utils/themes/theme.dart';
+import 'package:frontend/src/constants/colors.dart';
 import 'package:get/get.dart';
 
 class NotifiedPage extends StatelessWidget {
@@ -11,12 +11,10 @@ class NotifiedPage extends StatelessWidget {
     print(label.toString().split("|")[0]);
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Get.isDarkMode ? darkGreyClr : Colors.white,
         leading: IconButton(
           onPressed: () => Get.back(),
-          icon: Icon(
+          icon: const Icon(
             Icons.arrow_back_ios,
-            color: Get.isDarkMode ? Colors.grey : Colors.grey,
           ),
         ),
         title: Text(
@@ -60,14 +58,14 @@ class NotifiedPage extends StatelessWidget {
                 height: 50,
                 width: 330,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  color: greenClr,
+                  borderRadius: BorderRadius.circular(15),
+                  color: AppColors.cOrange,
                 ),
                 child: const Center(
                   child: Text(
                     "Ok",
                     style: TextStyle(
-                      color: Colors.white,
+                      color: AppColors.cWhiteClr,
                       fontSize: 20,
                     ),
                   ),

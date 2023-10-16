@@ -28,14 +28,10 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.white,
-        centerTitle: true,
         title: Text(
           "moreInfo".tr,
           style: const TextStyle(
             fontSize: 17,
-            color: cSecondaryColor,
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -192,7 +188,8 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                               min: cMinHeight,
                               max: cMaxHeight,
                               value: controllers.height.toDouble(),
-                              activeColor: cSecondaryColor.withOpacity(0.7),
+                              activeColor:
+                                  AppColors.cSecondaryColor.withOpacity(0.7),
                               inactiveColor: Colors.grey.shade400,
                               onChanged: (newHeight) {
                                 controllers.height.value = newHeight.round();

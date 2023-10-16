@@ -5,36 +5,53 @@ import 'package:frontend/src/features/core/models/book_category_model.dart';
 import 'package:frontend/src/features/core/models/book_model.dart';
 import 'package:frontend/src/features/core/screens/book/widgets/book_categoriy_list.dart';
 import 'package:frontend/src/features/core/screens/book/widgets/book_category.dart';
-import 'package:frontend/src/features/core/screens/book/widgets/custom_serach_bar.dart';
 import 'package:frontend/src/features/core/screens/book/widgets/recent_book_card_widgets.dart';
 import 'package:frontend/src/providers/providers.dart';
 import 'package:get/get.dart';
 
-class BookScreen extends ConsumerWidget {
+class BookScreen extends StatelessWidget {
   const BookScreen({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final booksState = ref.watch(booksProvider);
-    final categoryState = ref.watch(bookCategoryProvider);
-
-    // if (categoryState.categories.isEmpty || booksState.books.isEmpty) {
-    //   print("The categories or books are empty");
-    // }
-    if (categoryState.categories.isEmpty) {
-      // Fetch categoriess if they are empty
-      ref.watch(bookCategoryProvider.notifier).fetchCategories();
-      return _buildLoadingIndicator();
-    }
-    if (booksState.books.isEmpty) {
-      // Fetch  books if they are empty
-      ref.watch(booksProvider.notifier).getBookss();
-      return _buildLoadingIndicator();
-    }
-
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: appBar("book".tr, context),
-      body: _buildBody(booksState.books, categoryState.categories),
+      body: _buildGetData(context),
+    );
+  }
+
+  Widget _buildGetData(BuildContext context) {
+    return Consumer(
+      builder: (context, ref, _) {
+        final booksState = ref.watch(booksProvider);
+        final categoryState = ref.watch(bookCategoryProvider);
+        // if (categoryState.categories.isEmpty || booksState.books.isEmpty) {
+        //   print("The categories or books are empty");
+        // }
+        if (categoryState.categories.isEmpty) {
+          // Fetch categoriess if they are empty
+          ref.read(bookCategoryProvider.notifier).fetchCategories();
+          if (!categoryState.hasNext && !categoryState.isLoading) {
+            return const Center(
+              child: Text("No book category"),
+            );
+          }
+          return _buildLoadingIndicator();
+        } else {
+          if (booksState.books.isEmpty) {
+            // Fetch  books if they are empty
+            ref.read(booksProvider.notifier).getBookss();
+            if (!booksState.hasNext && !booksState.isLoading) {
+              return const Center(
+                child: Text("No book "),
+              );
+            }
+            return _buildLoadingIndicator();
+          } else {
+            return _buildBody(booksState.books, categoryState.categories);
+          }
+        }
+      },
     );
   }
 
@@ -48,7 +65,7 @@ class BookScreen extends ConsumerWidget {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            const CustomeSearchBar(),
+            // const CustomeSearchBar(),
             BookCategories(bookCategories: books),
             const SizedBox(height: 20.0),
             _buildSectionTitle("categories".tr),

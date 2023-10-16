@@ -17,7 +17,7 @@ class CustomeSearchBar extends StatelessWidget {
               borderSide: BorderSide.none,
               borderRadius: BorderRadius.circular(10),
             ),
-            fillColor: cDarkWhite,
+            fillColor: AppColors.cDarkGrey,
             filled: true,
             contentPadding: const EdgeInsets.all(10),
             hintText: "search".tr,

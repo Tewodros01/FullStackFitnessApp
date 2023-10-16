@@ -11,50 +11,48 @@ class SignUpScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: SingleChildScrollView(
-          child: Container(
-            padding: const EdgeInsets.only(
-              left: cDefaultSize,
-              right: cDefaultSize,
-              bottom: cDefaultSize,
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                FormHeaderWidget(
-                  image: cAppLogoImage,
-                  title: "signUpTitle".tr,
-                  subTitle: "signUpSubTitle".tr,
-                ),
-                const SizedBox(height: cDefaultSize - 10),
-                const SignUpFormWidget(),
-                const SizedBox(height: cDefaultSize - 10),
-                Column(
-                  children: [
-                    Center(child: Text("or".tr)),
-                    const SizedBox(height: cDefaultSize - 10),
-                    TextButton(
-                      onPressed: () {
-                        Get.to(() => const SigninScreen());
-                      },
-                      child: Text.rich(
-                        TextSpan(
-                          children: [
-                            TextSpan(
-                              text: "alreadyHaveAnAccount".tr,
-                              style: Theme.of(context).textTheme.bodyLarge,
-                            ),
-                            TextSpan(text: "signIn".tr),
-                          ],
-                        ),
+    return Scaffold(
+      body: SingleChildScrollView(
+        child: Container(
+          padding: const EdgeInsets.only(
+            left: cDefaultSize,
+            right: cDefaultSize,
+            bottom: cDefaultSize,
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              FormHeaderWidget(
+                image: cAppLogoImage,
+                title: "signUpTitle".tr,
+                subTitle: "signUpSubTitle".tr,
+              ),
+              const SizedBox(height: cDefaultSize - 10),
+              const SignUpFormWidget(),
+              const SizedBox(height: cDefaultSize - 10),
+              Column(
+                children: [
+                  Center(child: Text("or".tr)),
+                  const SizedBox(height: cDefaultSize - 10),
+                  TextButton(
+                    onPressed: () {
+                      Get.to(() => const SigninScreen());
+                    },
+                    child: Text.rich(
+                      TextSpan(
+                        children: [
+                          TextSpan(
+                            text: "alreadyHaveAnAccount".tr,
+                            style: Theme.of(context).textTheme.bodyLarge,
+                          ),
+                          TextSpan(text: "signIn".tr),
+                        ],
                       ),
-                    )
-                  ],
-                ),
-              ],
-            ),
+                    ),
+                  )
+                ],
+              ),
+            ],
           ),
         ),
       ),

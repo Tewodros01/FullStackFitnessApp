@@ -68,10 +68,10 @@ class SignInForm extends StatelessWidget {
             // ),
             Obx(
               () => controllers.isAsyncCallProcess.value
-                  ? const Center(
+                  ? Center(
                       child: DottedCircularProgressIndicatorFb(
-                        currentDotColor: cSecondaryColor,
-                        defaultDotColor: cPrimaryColor,
+                        currentDotColor: Colors.white,
+                        defaultDotColor: AppColors.cOrange,
                         numDots: 8,
                       ),
                     )
@@ -156,7 +156,12 @@ class SignInForm extends StatelessWidget {
                             }
                           }
                         },
-                        child: Text("signIn".tr),
+                        child: Text(
+                          "signIn".tr,
+                          style: const TextStyle(
+                            color: AppColors.cWhiteClr,
+                          ),
+                        ),
                       ),
                     ),
             ),

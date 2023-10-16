@@ -14,15 +14,10 @@ class UpdateProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.white,
-        centerTitle: true,
-        foregroundColor: Colors.black,
         title: Text(
           "updateProfile".tr,
           style: TextStyle(
             fontSize: 17.sp,
-            color: Colors.black,
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -31,37 +26,42 @@ class UpdateProfileScreen extends StatelessWidget {
         height: MediaQuery.of(context).size.height,
         child: Column(
           children: [
-            const ProfilePicture(),
-            const SizedBox(width: 10),
-            Column(
-              children: [
-                Text(
-                  user.fullName,
-                  style: const TextStyle(color: Colors.white),
-                ),
-                Text(
-                  "",
-                  style: TextStyle(color: Colors.white),
-                )
-              ],
-            ),
-            Expanded(
-              child: Container(
-                width: double.infinity,
-                decoration: const BoxDecoration(
-                  color: Colors.white,
+            SizedBox(
+              width: double.infinity,
+              child: Card(
+                shape: const RoundedRectangleBorder(
                   borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(30),
-                    topRight: Radius.circular(30),
+                    bottomLeft: Radius.circular(20),
+                    bottomRight: Radius.circular(20),
                   ),
                 ),
+                child: Column(
+                  children: [
+                    const ProfilePicture(),
+                    Padding(
+                      padding: const EdgeInsets.all(15.0),
+                      child: Text(
+                        user.fullName,
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 15,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Expanded(
+              child: SizedBox(
+                width: double.infinity,
                 child: SingleChildScrollView(
                   child: Container(
                     padding: const EdgeInsets.all(cDefaultSize),
-                    child: const Column(
+                    child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        UpdateProfileWidget(),
+                        UpdateProfileWidget(user: user),
                       ],
                     ),
                   ),

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:frontend/src/constants/colors.dart';
 
 class BMIRoundIconButton extends StatelessWidget {
   const BMIRoundIconButton(
@@ -15,13 +14,11 @@ class BMIRoundIconButton extends StatelessWidget {
         width: 35.0,
         height: 35.0,
       ),
-      fillColor: cSecondaryColor.withOpacity(0.7),
       elevation: 6,
       onPressed: onPressed,
       child: Icon(
         icon,
         size: 20,
-        color: Colors.white,
       ),
     );
   }

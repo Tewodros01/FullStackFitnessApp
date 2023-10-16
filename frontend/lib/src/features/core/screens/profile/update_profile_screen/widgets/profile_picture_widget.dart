@@ -27,43 +27,41 @@ class ProfilePicture extends StatelessWidget {
             user.profilePicture!.isEmpty
                 ? const CircleAvatarWithTransition(
                     image: AssetImage(AssetsImages.userJpg),
-                    primaryColor: Colors.white60,
+                    primaryColor: AppColors.cOrange,
                     size: 130,
-                    transitionBorderwidth: 8.0,
+                    transitionBorderwidth: 1.0,
                   )
                 : CircleAvatarWithTransition(
                     image: NetworkImage(user.fullImagePath),
-                    primaryColor: Colors.white60,
+                    primaryColor: AppColors.cOrange,
                     size: 130,
-                    transitionBorderwidth: 8.0,
+                    transitionBorderwidth: 1.0,
                   ),
             Positioned(
               bottom: 5,
               right: 5,
-              child: Container(
-                width: 35,
-                height: 35,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(100),
-                  color: cSecondaryColor,
-                ),
-                child: IconButton(
-                  icon: const Icon(
-                    LineAwesomeIcons.camera,
-                    color: Colors.white,
-                    size: 20,
+              child: CircleAvatar(
+                child: SizedBox(
+                  width: 35,
+                  height: 35,
+                  child: IconButton(
+                    icon: const Icon(
+                      LineAwesomeIcons.camera,
+                      size: 20,
+                    ),
+                    onPressed: () async {
+                      //  pick imaGe
+                      // install image_picker
+                      // import the corresponding library
+                      ImagePicker imagePicker = ImagePicker();
+                      XFile? file = await imagePicker.pickImage(
+                        source: ImageSource.camera,
+                      );
+                      print("${file?.path}");
+                      if (file == null) return;
+                      controllers.imageFile.value = File(file.path);
+                    },
                   ),
-                  onPressed: () async {
-                    //  pick imaGe
-                    // install image_picker
-                    // import the corresponding library
-                    ImagePicker imagePicker = ImagePicker();
-                    XFile? file =
-                        await imagePicker.pickImage(source: ImageSource.camera);
-                    print("${file?.path}");
-                    if (file == null) return;
-                    controllers.imageFile.value = File(file.path);
-                  },
                 ),
               ),
             ),

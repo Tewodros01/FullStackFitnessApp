@@ -46,7 +46,7 @@ class Workout extends HiveObject {
   });
   factory Workout.fromJson(Map<String, dynamic> json) {
     return Workout(
-      workoutId: json['workout_id'],
+      workoutId: json['key'],
       workoutName: json['workout_name'],
       workoutNote: json['workoutNote'],
       workoutIsCompleted: json['workoutIsCompleted'],

@@ -24,23 +24,28 @@ class SplashScreen extends StatelessWidget {
               () => AnimatedOpacity(
                 duration: const Duration(milliseconds: 2000),
                 opacity: splashController.animate.value ? 1 : 0,
-                child: const Image(
-                  image: AssetImage(cAppLogoImage),
+                child: Image(
+                  image: const AssetImage(cAppLogoImage),
                   width: cDefaultSize,
+                  color: context.isDarkMode
+                      ? AppColors.cWhiteClr
+                      : AppColors.cSecondaryColor,
                 ),
               ),
             ),
             Obx(
               () => Shimmer.fromColors(
-                baseColor: cSecondaryColor,
-                highlightColor: cPrimaryColor,
+                baseColor: AppColors.cOrange,
+                highlightColor: context.isDarkMode
+                    ? AppColors.cWhiteClr
+                    : AppColors.cSecondaryColor,
                 child: AnimatedOpacity(
                   duration: const Duration(milliseconds: 2000),
                   opacity: splashController.animate.value ? 1 : 0,
                   child: Text(
                     "Fitness App",
                     style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                          color: cPrimaryColor,
+                          color: AppColors.cPrimaryColor,
                           fontWeight: FontWeight.bold,
                           fontStyle: FontStyle.italic,
                         ),

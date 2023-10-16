@@ -2,14 +2,14 @@ List<Gym> gymFromJson(dynamic str) =>
     List<Gym>.from((str).map((x) => Gym.fromJson(x)));
 
 class Gym {
-  final int gymId;
+  final int? gymId;
   final String gymName;
   final String gymMonthlyPayment;
   final String gymLocation;
   final String? gymImage;
 
   Gym({
-    required this.gymId,
+    this.gymId,
     required this.gymName,
     required this.gymMonthlyPayment,
     required this.gymLocation,

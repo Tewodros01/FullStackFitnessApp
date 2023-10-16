@@ -2,7 +2,6 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:frontend/src/features/core/models/exercise_model.dart';
 import 'package:frontend/src/features/core/models/exercise_category_model.dart';
-import 'package:frontend/src/utils/themes/theme.dart';
 import 'package:get/get.dart';
 import 'package:video_player/video_player.dart';
 
@@ -49,11 +48,7 @@ class _LocalExcerciseScreenState extends State<LocalExcerciseScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0.0,
-        backgroundColor: Colors.white,
-        foregroundColor: Colors.black,
-      ),
+      appBar: AppBar(),
       body: Container(
         margin: const EdgeInsets.only(top: 20),
         child: Column(
@@ -131,7 +126,6 @@ class _LocalExcerciseScreenState extends State<LocalExcerciseScreen> {
         Container(
           height: 30,
           width: MediaQuery.of(context).size.width,
-          color: Get.isDarkMode ? darkGreyClr : Colors.white,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -161,7 +155,6 @@ class _LocalExcerciseScreenState extends State<LocalExcerciseScreen> {
                     ),
                     child: Icon(
                       noMute ? Icons.volume_up : Icons.volume_off,
-                      color: Colors.white,
                     ),
                   ),
                 ),
@@ -179,7 +172,6 @@ class _LocalExcerciseScreenState extends State<LocalExcerciseScreen> {
                       icon: const Icon(
                         Icons.face,
                         size: 20,
-                        color: Colors.white,
                       ),
                       backgroundColor: Colors.grey,
                       colorText: Colors.white,
@@ -187,7 +179,6 @@ class _LocalExcerciseScreenState extends State<LocalExcerciseScreen> {
                         "no_video_a_head".tr,
                         style: const TextStyle(
                           fontSize: 20,
-                          color: Colors.white,
                         ),
                       ),
                     );
@@ -255,7 +246,6 @@ class _LocalExcerciseScreenState extends State<LocalExcerciseScreen> {
               Text(
                 "$mins:$secs",
                 style: const TextStyle(
-                  color: Colors.white,
                   shadows: <Shadow>[
                     Shadow(
                       offset: Offset(0.0, 1.0),
