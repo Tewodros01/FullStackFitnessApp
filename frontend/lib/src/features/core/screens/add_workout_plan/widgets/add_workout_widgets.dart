@@ -315,17 +315,33 @@ class _AddWorkoutPlanDialogState extends State<AddWorkoutPlanDialog> {
     var pickedTime = await _showTimePicker();
     if (pickedTime == null) {
       print("Time canceled");
-    } else if (isStartTime == true) {
-      setState(() {
-        _startTime = pickedTime.format(context);
-        print("Star Time is true $_startTime");
-      });
-    } else if (isStartTime == false) {
-      setState(() {
-        _endTime = pickedTime.format(context);
-        print("Star Time is false $_endTime");
-      });
+    } else {
+      // Convert the picked time to 24-hour format
+      String formattedTime = _formatTime(pickedTime);
+
+      if (isStartTime) {
+        setState(() {
+          _startTime = formattedTime;
+          print("Start Time is true $_startTime");
+        });
+      } else {
+        setState(() {
+          _endTime = formattedTime;
+          print("Start Time is false $_endTime");
+        });
+      }
     }
+  }
+
+  String _formatTime(TimeOfDay time) {
+    // Format the time in 24-hour format
+    final int hour = time.hourOfPeriod == 12 ? 0 : time.hour;
+    final String formattedHour = hour < 10 ? '0$hour' : '$hour';
+    final String formattedMinute =
+        time.minute < 10 ? '0${time.minute}' : '${time.minute}';
+    final String period = time.period == DayPeriod.am ? 'AM' : 'PM';
+
+    return '$formattedHour:$formattedMinute $period';
   }
 
   Future<TimeOfDay?> _showTimePicker() {

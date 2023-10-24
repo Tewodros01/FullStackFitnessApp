@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:frontend/src/constants/colors.dart';
 import 'package:frontend/src/features/core/models/exercise_category_model.dart';
 import 'package:frontend/src/features/core/models/workout_model.dart';
@@ -14,11 +15,11 @@ class WorkoutPlanCardWidget extends StatelessWidget {
       margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       height: MediaQuery.of(context).size.height * 0.24,
       decoration: BoxDecoration(
-        borderRadius: const BorderRadius.all(Radius.circular(15)),
+        borderRadius: BorderRadius.all(Radius.circular(15.h)),
         color: _getBGCLr(workoutPlan.workoutColor ?? 0),
       ),
       child: Padding(
-        padding: const EdgeInsets.all(15),
+        padding: EdgeInsets.all(13.h),
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -27,42 +28,42 @@ class WorkoutPlanCardWidget extends StatelessWidget {
               children: [
                 Text(
                   "yourNextWorkout".tr,
-                  style: const TextStyle(
+                  style: TextStyle(
                     color: AppColors.cWhiteClr,
-                    fontSize: 14,
+                    fontSize: 14.h,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
-                const SizedBox(height: 7),
+                SizedBox(height: 7.h),
                 Text(
                   workoutPlan.workoutName,
-                  style: const TextStyle(
+                  style: TextStyle(
                     color: AppColors.cWhiteClr,
-                    fontSize: 15,
+                    fontSize: 15.h,
                     fontWeight: FontWeight.w800,
                   ),
                 ),
-                const SizedBox(height: 7),
+                SizedBox(height: 7.h),
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Icon(
                       Icons.account_tree_rounded,
                       color: Colors.grey[200],
-                      size: 18,
+                      size: 18.h,
                     ),
-                    const SizedBox(width: 4),
+                    SizedBox(width: 4.w),
                     Text(
                       "${workoutPlan.workoutStartTime}-${workoutPlan.workoutEndTime}",
-                      style: const TextStyle(
-                        fontSize: 15,
+                      style: TextStyle(
+                        fontSize: 15.h,
                         color: Colors.grey,
                       ),
                     )
                   ],
                 ),
                 SizedBox(
-                  height: 80,
+                  height: 80.h,
                   width: MediaQuery.of(context).size.width * 0.75,
                   child: ListView.builder(
                     itemCount: workoutPlan.exerciseCategory!.length,
@@ -72,37 +73,37 @@ class WorkoutPlanCardWidget extends StatelessWidget {
                       ExerciseCategory exerciseCategory =
                           workoutPlan.exerciseCategory![index];
                       return Padding(
-                        padding: const EdgeInsets.only(top: 8.0, right: 8.0),
+                        padding: EdgeInsets.only(top: 8.0.h, right: 8.0.w),
                         child: Container(
                           decoration: const BoxDecoration(
                             borderRadius: BorderRadius.all(Radius.circular(25)),
                             color: Color(0xFFFFFFFF),
                           ),
-                          padding: const EdgeInsets.all(10),
+                          padding: EdgeInsets.all(10.h),
                           child: Image.asset(
                             exerciseCategory.exerciseCategoryThumbnailImageUrl,
-                            width: 50,
-                            height: 50,
+                            width: 50.h,
+                            height: 50.h,
                           ),
                         ),
                       );
                     },
                   ),
                 ),
-                const SizedBox(height: 7),
+                SizedBox(height: 7.h),
                 Text(
                   workoutPlan.workoutNote ?? "",
-                  style: const TextStyle(
-                    fontSize: 14,
+                  style: TextStyle(
+                    fontSize: 14.h,
                     color: Colors.grey,
                   ),
                 ),
               ],
             ),
             Container(
-              margin: const EdgeInsets.symmetric(horizontal: 9),
-              height: 50,
-              width: 0.5,
+              margin: EdgeInsets.symmetric(horizontal: 8.w),
+              height: 50.h,
+              width: 0.5.h,
               color: Colors.grey[200]!.withOpacity(0.7),
             ),
             RotatedBox(
@@ -111,8 +112,8 @@ class WorkoutPlanCardWidget extends StatelessWidget {
                 workoutPlan.workoutIsCompleted == 1
                     ? "completed".tr
                     : "todo".tr,
-                style: const TextStyle(
-                  fontSize: 10,
+                style: TextStyle(
+                  fontSize: 10.h,
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
                 ),

@@ -69,7 +69,7 @@ class _GymDetaileScreenState extends State<GymDetaileScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      makeFollowWidgets(count: 400, name: "member".tr),
+                      makeFollowWidgets(name: "member".tr),
                     ],
                   ),
                   const SizedBox(height: 20),
@@ -156,25 +156,45 @@ class _GymDetaileScreenState extends State<GymDetaileScreen> {
     );
   }
 
-  Widget makeFollowWidgets({count, name}) {
-    return Row(
-      children: [
-        Text(
-          count.toString(),
-          style: const TextStyle(
-            fontSize: 15,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        const SizedBox(width: 5),
-        Text(
-          name,
-          style: const TextStyle(
-            fontSize: 15,
-            color: AppColors.cGrey,
-          ),
-        ),
-      ],
+  Widget makeFollowWidgets({name}) {
+    return Consumer(
+      builder: (BuildContext context, WidgetRef ref, Widget? child) {
+        final gymNotifier = ref.watch(gymsProvider.notifier);
+
+        return FutureBuilder<String>(
+          future: gymNotifier.getGymUserCount(widget.gym.gymId!),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const CircularProgressIndicator(
+                color: AppColors.cOrange,
+              );
+            } else if (snapshot.hasError) {
+              return Text('Error: ${snapshot.error}');
+            } else {
+              final gymUserCount = snapshot.data;
+              return Row(
+                children: [
+                  Text(
+                    gymUserCount.toString(),
+                    style: const TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(width: 5),
+                  Text(
+                    name,
+                    style: const TextStyle(
+                      fontSize: 15,
+                      color: AppColors.cGrey,
+                    ),
+                  ),
+                ],
+              );
+            }
+          },
+        );
+      },
     );
   }
 

@@ -13,7 +13,7 @@ Welcome to the FullStack Mobile and Web Fitness App project! This repository con
 
 ## Introduction
 
-The FullStack Fitness App is a comprehensive mobile and web fitness application designed to assist users in their fitness journey. In the React project, users can register a ther gym and manage their gym user and gym-related activities, including user control. On the Flutter Mobile App, users can effectively track their fitness progress and register new gyms as desired. The application offers various features, including workout planning, progress tracking, and more, to enhance the overall fitness experience.
+The FullStack Fitness App is a comprehensive mobile and web fitness application designed to assist users in their fitness journey. In the React project, users can register their gym and manage their gym user and gym-related activities, including user control. On the Flutter Mobile App, users can effectively track their fitness progress and register new gyms as desired. The application offers various features, including workout planning, progress tracking, and more, to enhance the overall fitness experience.
 
 ## Prerequisites
 

@@ -11,6 +11,8 @@ class AppColors {
   static const Color cDarkGrey = Color.fromRGBO(64, 64, 64, 1);
 
   static const Color cOrange = Color.fromRGBO(243, 99, 67, 1);
+  static const Color cLowSaturationOrange = Color.fromRGBO(243, 99, 67, 0.5);
+
   static const Color cGrey = Color.fromRGBO(112, 112, 112, 1);
 
   static const Color cGreenClr = Color(0XFF40D876);

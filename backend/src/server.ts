@@ -2,14 +2,14 @@ import express from "express";
 import path from "path";
 import router from "./routes/index.js";
 import logger from "./middleware/logger.js";
-import { sendMonthlyPaymentReminders } from "./controllers/user_controller.js";
+import { sendMonthlyPaymentReminders } from "./controllers/user_gym_controllers.js";
 
 import cors from "cors";
 import { adminRouter } from "./adminjs/index.js";
 
 const app: express.Application = express();
 const port = process.env.PORT || 4500;
-const address = `192.168.130.54:${port}`;
+const address = `127.0.0.1:${port}`;
 
 app.use(express.json());
 app.use(cors());

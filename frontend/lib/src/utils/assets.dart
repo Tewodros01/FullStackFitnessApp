@@ -15,18 +15,6 @@ class AssetsIcons {
   static const pinPNG = 'assets/icons/pin.png';
   static const searchPNG = 'assets/icons/search.png';
   static const starPNG = 'assets/icons/star.png';
-  static const starFilledPNG = 'assets/icons/star_filled.png';
-  static const softwareIcon = 'assets/icons/sw_icon.png';
-  static const itIcon = 'assets/icons/it_icon.png';
-  static const isIcon = 'assets/icons/is_icon.png';
-  static const csIcon = 'assets/icons/cs_icon.png';
-  static const civilIcon = 'assets/icons/civil_icon.png';
-  static const elecIcon = 'assets/icons/elec_icon.png';
-  static const fashinIcon = 'assets/icons/fashion_icon.png';
-  static const hydroIcon = 'assets/icons/hydro_icon.png';
-  static const garmentIcon = 'assets/icons/textile_icon.png';
-  static const textileIcon = 'assets/icons/textile_icon.png';
-  static const mecaIcon = 'assets/icons/me_icon.png';
 }
 
 class AssetsImages {

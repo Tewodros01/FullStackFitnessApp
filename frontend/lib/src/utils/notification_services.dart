@@ -62,7 +62,7 @@ class NotifiyHelper {
       1,
       workout.workoutName,
       workout.workoutNote,
-      _convertTime(14, 03),
+      _convertTime(hour, minute),
       const NotificationDetails(
         android: AndroidNotificationDetails(
           'your channel id',

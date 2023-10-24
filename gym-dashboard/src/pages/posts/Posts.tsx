@@ -28,10 +28,15 @@ const columns: GridColDef[] = [
   {
     field: "post_image_path",
     headerName: "Image",
-    type: "image",
+    type: "string", // Change the type to "string"
     width: 100,
     renderCell: (params) => {
-      return <img src={params.value || "/default-avatar.png"} alt="Profile" />;
+      return (
+        <img
+          src={`http://127.0.0.1:4500/${params.value || "/default-avatar.png"}`}
+          alt="Profile"
+        />
+      );
     },
   },
 ];

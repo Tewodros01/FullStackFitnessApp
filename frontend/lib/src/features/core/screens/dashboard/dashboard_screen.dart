@@ -18,7 +18,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
     const HomeScreen(),
     const GymListViewScreen(),
     const WorkoutPlanScreen(),
-    const BookScreen(),
+    //const BookScreen(),
     const ProfileScreen(),
   ];
   int selectedIndex = 0;
@@ -61,13 +61,13 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
               ),
               label: "workoutPlan".tr,
             ),
-            BottomNavigationBarItem(
-              icon: const Padding(
-                padding: EdgeInsets.only(top: 8.0),
-                child: Icon(Icons.book),
-              ),
-              label: "book".tr,
-            ),
+            // BottomNavigationBarItem(
+            //   icon: const Padding(
+            //     padding: EdgeInsets.only(top: 8.0),
+            //     child: Icon(Icons.book),
+            //   ),
+            //   label: "book".tr,
+            // ),
             BottomNavigationBarItem(
               icon: const Padding(
                 padding: EdgeInsets.only(top: 8.0),

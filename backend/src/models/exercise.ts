@@ -2,11 +2,13 @@ import DB from "../configs/db.js";
 
 export type ExerciseCategory = {
   id?: number;
+  gym_id?: number;
   category_name: string;
 };
 
 export type Exercise = {
   id?: number;
+  gym_id?: number;
   exercise_name: string;
   exercise_description: string;
   exercise_thumbnail: string;

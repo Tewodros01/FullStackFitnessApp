@@ -220,31 +220,39 @@ class _GymProfileScreenState extends State<GymProfileScreen> {
     return Consumer(
       builder: (BuildContext context, WidgetRef ref, Widget? child) {
         final gymNotifier = ref.watch(gymsProvider.notifier);
-        final gymUserCount = gymNotifier.getGymUserCount(widget.gym.gymId!);
 
-        if (gymUserCount == 0) {
-          return const CircularProgressIndicator(
-            color: AppColors.cOrange,
-          );
-        }
-        return Row(
-          children: [
-            Text(
-              gymUserCount.toString(),
-              style: const TextStyle(
-                fontSize: 15,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            const SizedBox(width: 5),
-            Text(
-              name,
-              style: const TextStyle(
-                fontSize: 15,
-                color: AppColors.cGrey,
-              ),
-            ),
-          ],
+        return FutureBuilder<String>(
+          future: gymNotifier.getGymUserCount(widget.gym.gymId!),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const CircularProgressIndicator(
+                color: AppColors.cOrange,
+              );
+            } else if (snapshot.hasError) {
+              return Text('Error: ${snapshot.error}');
+            } else {
+              final gymUserCount = snapshot.data;
+              return Row(
+                children: [
+                  Text(
+                    gymUserCount.toString(),
+                    style: const TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(width: 5),
+                  Text(
+                    name,
+                    style: const TextStyle(
+                      fontSize: 15,
+                      color: AppColors.cGrey,
+                    ),
+                  ),
+                ],
+              );
+            }
+          },
         );
       },
     );

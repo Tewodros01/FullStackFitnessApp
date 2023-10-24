@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:frontend/src/common_widgets/app_bar/app_bar.dart';
 import 'package:frontend/src/features/core/screens/home/widgets/gym_news_widget.dart';
 import 'package:frontend/src/features/core/screens/home/widgets/exercise_category.dart';
+import 'package:frontend/src/features/core/screens/home/widgets/trainer_widget.dart';
 import 'package:frontend/src/providers/providers.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -30,14 +31,17 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         controller: _scrollController,
         physics: const BouncingScrollPhysics(),
         slivers: [
-          SliverToBoxAdapter(
-            child: SizedBox(height: 10.h),
-          ),
-          const CategoryTitle(title: "categories"),
-          ExerciseCategoryWidget(exerciseCategories: exerciseCategories),
-          SliverToBoxAdapter(child: SizedBox(height: 20.h)),
+          // SliverToBoxAdapter(
+          //   child: SizedBox(height: 10.h),
+          // ),
+          // const CategoryTitle(title: "categories"),
+          // ExerciseCategoryWidget(exerciseCategories: exerciseCategories),
+          // SliverToBoxAdapter(child: SizedBox(height: 20.h)),
+          // const CategoryTitle(title: "forYou"),
+
+          TrainerWidgets(),
           const CategoryTitle(title: "forYou"),
-          const GymNewsWidget(),
+          // const GymNewsWidget(),
           SliverToBoxAdapter(child: SizedBox(height: 52.h)),
         ],
       ),

@@ -6,7 +6,7 @@ import Navbar from "./components/navbar/Navbar";
 import Menu from "./components/menu/Menu";
 import { useUser } from "./context/UserContext";
 import "./styles/global.scss";
-import Footer from "./components/footer/Footer";
+//import Footer from "./components/footer/Footer";
 
 const queryClient = new QueryClient();
 const App: React.FC = () => {

@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:frontend/src/common_widgets/app_bar/app_bar.dart';
 import 'package:frontend/src/constants/colors.dart';
 import 'package:frontend/src/features/core/models/gym_model.dart';
+import 'package:frontend/src/features/core/screens/find_gym/gym_detail/gym_detail.dart';
 import 'package:frontend/src/features/core/screens/find_gym/gym_detail/gym_detailsa_screen.dart';
 import 'package:frontend/src/providers/providers.dart';
 import 'package:get/get.dart';
@@ -48,7 +49,7 @@ class _GymListViewScreenState extends ConsumerState<GymListViewScreen> {
   Widget _buildBody(List<Gym> gyms) {
     return Column(
       children: [
-        searchBox(),
+        // searchBox(),
         Expanded(
           child: Padding(
             padding: const EdgeInsets.all(20.0),
@@ -61,7 +62,7 @@ class _GymListViewScreenState extends ConsumerState<GymListViewScreen> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => GymDetaileScreen(gym: gymItem),
+                        builder: (context) => GymDetalScreen(),
                       ),
                     );
                   },

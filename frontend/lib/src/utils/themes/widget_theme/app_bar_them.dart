@@ -6,7 +6,7 @@ class AppBarThem {
   AppBarThem._();
 
   static AppBarTheme ligthAppBarTheme = AppBarTheme(
-    backgroundColor: AppColors.cPrimaryColor,
+    backgroundColor: AppColors.cWhiteClr,
     foregroundColor: AppColors.cSecondaryColor,
     centerTitle: true,
     elevation: 0,

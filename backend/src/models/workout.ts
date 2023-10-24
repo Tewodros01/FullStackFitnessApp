@@ -2,6 +2,7 @@ import DB from "../configs/db.js";
 
 export type Workout = {
   id?: number;
+  gym_id?: number;
   workout_name: string;
   workout_description: string;
 };

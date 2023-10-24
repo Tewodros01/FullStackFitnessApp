@@ -55,7 +55,7 @@ class _GymMemmberViewScreenState extends ConsumerState<GymMemmberViewScreen> {
   Widget _buildBody(List<UserModel> gymMember) {
     return Column(
       children: [
-        searchBox(),
+        // searchBox(),
         Expanded(
           child: Padding(
             padding: const EdgeInsets.all(20.0),

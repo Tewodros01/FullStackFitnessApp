@@ -69,7 +69,7 @@ class ProfileWidget extends StatelessWidget {
         children: [
           Positioned(
             top: 0,
-            height: height * 0.37,
+            height: height * 0.38,
             left: 0,
             right: 0,
             child: Card(
@@ -128,8 +128,8 @@ class ProfileWidget extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           RadialProgress(
-                            width: width * 0.33,
-                            height: width * 0.33,
+                            width: width * 0.32,
+                            height: width * 0.32,
                             progress: 0.7,
                             result: tdee,
                           ),
@@ -182,7 +182,7 @@ class ProfileWidget extends StatelessWidget {
             left: 0,
             right: 0,
             child: SizedBox(
-              height: height * 0.5,
+              height: height * 0.6,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -238,7 +238,7 @@ class ProfileWidget extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 10),
-                  Expanded(child: BodyMeasurementView(user: user)),
+                  Container(child: BodyMeasurementView(user: user)),
                 ],
               ),
             ),

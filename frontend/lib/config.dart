@@ -1,7 +1,7 @@
 class Config {
   static const String appName = "Grocery App";
-  static const String apiURL = "192.168.130.54:4500";
-  static const String imageURL = "http://192.168.130.54:4500/";
+  static const String apiURL = "10.0.2.2:4500";
+  static const String imageURL = "http://10.0.2.2:4500/";
   static const String registorAPI = "api/users/registor";
   static const String loginAPI = "api/users/login";
   static const String getUserById = "api/users/";

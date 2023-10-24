@@ -69,6 +69,7 @@ export class UserStore {
       throw new Error(`Could not create user ${err}`);
     }
   }
+
   async getAllUsers(): Promise<User> {
     try {
       const conn = await DB.connect();
@@ -78,22 +79,6 @@ export class UserStore {
       return result.rows;
     } catch (err) {
       throw new Error(`Colud not select ${err}`);
-    }
-  }
-  async getAllUsersNotPaid(): Promise<User[]> {
-    try {
-      const conn = await DB.connect();
-      const sql = `
-        SELECT u.*
-        FROM users u
-        JOIN user_gym_membership ugm ON u.user_id = ugm.user_id
-        WHERE ugm.is_paid = false
-      `;
-      const result = await conn.query(sql);
-      conn.release();
-      return result.rows;
-    } catch (err) {
-      throw new Error(`Could not select users who have not paid: ${err}`);
     }
   }
 
@@ -120,6 +105,7 @@ export class UserStore {
       return errorData;
     }
   }
+
   async updateUserById(id: number, user: User): Promise<User | null> {
     try {
       const conn = await DB.connect(); // Assuming DB.connect() returns a connection from the pool
@@ -166,102 +152,7 @@ export class UserStore {
       throw new Error(`Retrieving user failed: ${error}`);
     }
   }
-  async userLikeBook(user_id: number, book_id: number) {
-    try {
-      const conn = await DB.connect();
-      const sql =
-        "INSERT INTO user_book_interaction (user_id, book_id) VALUES($1,$2) RETURNING *";
-      const result = await conn.query(sql, [user_id, book_id]);
-      conn.release();
-      return result.rows[0];
-    } catch (err) {
-      throw new Error(`${err}`);
-    }
-  }
-  async getAllUserLikeBook() {
-    try {
-      const conn = await DB.connect();
-      const sql = "SELECT * FROM user_book_interaction";
-      const result = await conn.query(sql);
-      conn.release();
-      return result.rows;
-    } catch (err) {
-      throw new Error(`Could not select ${err} `);
-    }
-  }
-  async userLikeExcercise(user_id: number, exercise_id: number) {
-    try {
-      const conn = await DB.connect();
-      const sql =
-        "INSERT INTO user_liked_exercise (user_id, exercise_id) VALUES($1,$2) RETURNING *";
-      const result = await conn.query(sql, [user_id, exercise_id]);
-      conn.release();
-      return result.rows[0];
-    } catch (err) {
-      throw new Error(`${err}`);
-    }
-  }
-  async getAllUserLikeExcercise() {
-    try {
-      const conn = await DB.connect();
-      const sql = "SELECT * FROM user_liked_exercise";
-      const result = await conn.query(sql);
-      conn.release();
-      return result.rows;
-    } catch (err) {
-      throw new Error(`Could not select ${err} `);
-    }
-  }
-  async userLikeFood(user_id: number, food_id: number) {
-    try {
-      const conn = await DB.connect();
-      const sql =
-        "INSERT INTO user_likes_food (user_id, food_id) VALUES($1,$2) RETURNING *";
-      const result = await conn.query(sql, [user_id, food_id]);
-      conn.release();
-      return result.rows[0];
-    } catch (err) {
-      throw new Error(`${err}`);
-    }
-  }
-  async getAllUserLikeFood() {
-    try {
-      const conn = await DB.connect();
-      const sql = "SELECT * FROM user_likes_food";
-      const result = await conn.query(sql);
-      conn.release();
-      return result.rows;
-    } catch (err) {
-      throw new Error(`Could not select ${err} `);
-    }
-  }
 
-  joinGym = async (userId: number, gymId: number, joinDate: Date) => {
-    try {
-      const conn = await DB.connect();
-      const sql =
-        "INSERT INTO user_gym_membership (user_id, gym_id, join_date) VALUES ($1, $2, $3)";
-      const result = await conn.query(sql, [userId, gymId, joinDate]);
-      conn.release();
-      return result.rowCount > 0;
-    } catch (error) {
-      console.error("Error joining gym:", error);
-      return false;
-    }
-  };
-  leaveGym = async (userId: number, gymId: number) => {
-    try {
-      const conn = await DB.connect();
-      const sql =
-        "DELETE FROM user_gym_membership  WHERE user_id = $1 AND gym_id = $2";
-      const result = await conn.query(sql, [userId, gymId]);
-      conn.release();
-      return result.rowCount > 0;
-    } catch (error) {
-      console.error("Error leaveng gym:", error);
-      return false;
-    }
-  };
   async updateUserJoinDate(
     userId: number,
     newJoinDate: Date
@@ -275,39 +166,6 @@ export class UserStore {
     } catch (error) {
       console.error("Error updating user join date:", error);
       return false;
-    }
-  }
-  async updateUserPaymentStatus(
-    userId: number,
-    gymId: number,
-    isPaid: boolean
-  ): Promise<User | null | undefined> {
-    try {
-      const conn = await DB.connect(); // Assuming DB.connect() returns a connection from the pool
-      // Prepare the SQL query to update the user's payment status in the user_gym_membership table
-      const sql =
-        "UPDATE user_gym_membership SET is_paid = $1 WHERE user_id = $2 AND gym_id = $3";
-      // Execute the update query and await the result
-      const result = await conn.query(sql, [isPaid, userId, gymId]);
-
-      // If a row was affected, return the updated user
-      if (result.rowCount > 0) {
-        // You may want to fetch the user information here if needed
-        // For example, retrieve the user's details from the "users" table
-        const userSql = "SELECT * FROM users WHERE id = $1";
-        const userResult = await conn.query(userSql, [userId]);
-
-        if (userResult.rowCount > 0) {
-          return userResult.rows[0];
-        } else {
-          console.error("Error retrieving user:");
-        }
-      }
-
-      return null;
-    } catch (error) {
-      console.error("Error updating user payment status:", error);
-      return null;
     }
   }
 }

@@ -1,53 +1,7 @@
 import { Request, Response, NextFunction } from "express";
-import jwt from "jsonwebtoken";
 import { User, UserStore } from "../models/user.js";
 import { IRequest } from "../middleware/auth.js";
 import transporter from "../configs/emailConfig.js";
-import cron from "node-cron";
-
-// Define a function for sending monthly payment reminders
-export const sendMonthlyPaymentReminders = () => {
-  // Schedule the job to run every day (or at a suitable frequency)
-  cron.schedule("0 0 * * *", async () => {
-    try {
-      const currentDate = new Date();
-
-      // Get all users who have not paid and need a reminder
-      const userStore: UserStore = new UserStore();
-      const unpaidUsers = await userStore.getAllUsersNotPaid();
-
-      // Define the email content
-      const emailSubject = "Monthly Payment Reminder";
-      const emailText =
-        "Dear user, your monthly payment is due. Please make your payment as soon as possible.";
-
-      for (const user of unpaidUsers) {
-        const joinDate = new Date(user.join_date!); // Assuming you have a join_date field in your user object
-        const nextPaymentDueDate = new Date(joinDate);
-        nextPaymentDueDate.setMonth(nextPaymentDueDate.getMonth() + 1); // Add one month to the join date
-
-        if (currentDate >= nextPaymentDueDate) {
-          // Send an email to the user
-          const mailOptions = {
-            from: "tewodrosm01@email.com",
-            to: user.email,
-            subject: emailSubject,
-            text: emailText,
-          };
-          await transporter.sendMail(mailOptions);
-
-          // Calculate the new next payment due date
-          nextPaymentDueDate.setMonth(nextPaymentDueDate.getMonth() + 1);
-
-          // Update the user's join date to the new next payment due date
-          await userStore.updateUserJoinDate(user.user_id!, nextPaymentDueDate);
-        }
-      }
-    } catch (error) {
-      console.error("Error sending monthly emails:", error);
-    }
-  });
-};
 
 class UserController {
   static createNewUser = async (req: Request, res: Response) => {
@@ -61,8 +15,29 @@ class UserController {
         phone_number: req.body.phone_number,
         user_password: req.body.user_password,
       };
-      console.log(user);
+      if (
+        !user.full_name ||
+        !user.gender ||
+        !user.age ||
+        !user.email ||
+        user.phone_number ||
+        user.user_password
+      ) {
+        res.status(400).json({
+          error:
+            "Full Name, Gender, Age, Email, Phone Number and Password are required for the registration.",
+        });
+        return;
+      }
+
       const newUser = await userStore.createUser(user);
+      const mailOptions = {
+        from: "tewodrosm01@email.com",
+        to: user.email,
+        subject: newUser.email,
+        text: "Wellcome",
+      };
+      await transporter.sendMail(mailOptions);
 
       res.json({ message: "Success", data: newUser });
     } catch (err) {
@@ -79,6 +54,7 @@ class UserController {
       res.status(400).json(`${err}`);
     }
   };
+
   static userLogin = async (req: Request, res: Response, next: Function) => {
     try {
       const userStore: UserStore = new UserStore();
@@ -98,6 +74,7 @@ class UserController {
       return next(error);
     }
   };
+
   static updateUserById = async (
     req: IRequest,
     res: Response,
@@ -135,19 +112,24 @@ class UserController {
         ); // Assuming a year has 365.25 days on average
         user.age = ageInYears;
       }
-      console.log(`User id: ${id}`);
-      console.log(`User Name: ${user.full_name}`);
-      console.log(`User birthday: ${user.birthday}`);
-      console.log(`User age: ${user.age}`);
-      console.log(`User Height: ${user.height}`);
-      console.log(`User Weight: ${user.weight}`);
-      console.log(`User Aim: ${user.aim}`);
-      console.log(`User Activity Extent: ${user.activity_extent}`);
-      console.log(`User Age : ${user.age}`);
-      // Call the updateUserById method of UserStore (Assuming it returns a promise)
+
       if (!id) {
         res.status(400).json({
           error: "User ID are required.",
+        });
+        return;
+      }
+      if (
+        !user.full_name ||
+        !user.gender ||
+        !user.age ||
+        !user.email ||
+        user.phone_number ||
+        user.user_password
+      ) {
+        res.status(400).json({
+          error:
+            "Full Name, Gender, Age, Email, Phone Number and Password are required for the update.",
         });
         return;
       }
@@ -163,151 +145,9 @@ class UserController {
       const userStore: UserStore = new UserStore();
       console.log("GetUserById Executed");
       const userWithId = await userStore.getUserById(req.params.id!.toString());
-      console.log(`User id: ${userWithId.user_id}`);
-      console.log(`User Name: ${userWithId.full_name}`);
-      console.log(`userWithId birthday: ${userWithId.birthday}`);
-      console.log(`userWithId age: ${userWithId.age}`);
-      console.log(`userWithId Height: ${userWithId.height}`);
-      console.log(`userWithId Weight: ${userWithId.weight}`);
-      console.log(`userWithId Aim: ${userWithId.aim}`);
-      console.log(`userWithId Activity Extent: ${userWithId.activity_extent}`);
-      console.log(`userWithId Age : ${userWithId.age}`);
       return res.json({ message: "Success", data: userWithId });
     } catch (error) {
       return next(error);
-    }
-  };
-  static userLikeBook = async (req: IRequest, res: Response) => {
-    try {
-      const userId = req.user?.user_id;
-      if (!userId) {
-        res.status(400).json({
-          error: "userId are required for like book.",
-        });
-        return;
-      }
-      const userStore: UserStore = new UserStore();
-      const userLikeBook = userStore.userLikeBook(userId!, req.body.book_id);
-      res.json({ message: "Success", data: userLikeBook });
-    } catch (err) {
-      res.status(400).json(`${err}`);
-    }
-  };
-  static getAllUserLikeBook = async (req: Request, res: Response) => {
-    try {
-      const userStore: UserStore = new UserStore();
-      const alluserLikeBook = await userStore.getAllUserLikeBook();
-      res.json({ message: "Success", data: alluserLikeBook });
-    } catch (err) {
-      res.status(400).json(`${err}`);
-    }
-  };
-  static userLikeExcercise = async (req: Request, res: Response) => {
-    try {
-      const userStore: UserStore = new UserStore();
-      const userLikeExcercise = userStore.userLikeExcercise(
-        req.body.user_id,
-        req.body.exercise_id
-      );
-      res.json({ message: "Success", data: userLikeExcercise });
-    } catch (err) {
-      res.status(400).json(`${err}`);
-    }
-  };
-  static getAllUserLikeExcercise = async (req: Request, res: Response) => {
-    try {
-      const userStore: UserStore = new UserStore();
-      const alluserLikeExcercise = await userStore.getAllUserLikeExcercise();
-      res.json({ message: "Success", data: alluserLikeExcercise });
-    } catch (err) {
-      res.status(400).json(`${err}`);
-    }
-  };
-  static userLikeFood = async (req: Request, res: Response) => {
-    try {
-      const userStore: UserStore = new UserStore();
-      const userLikeFood = userStore.userLikeFood(
-        req.body.user_id,
-        req.body.food_id
-      );
-      res.json({ message: "Success", data: userLikeFood });
-    } catch (err) {
-      res.status(400).json(`${err}`);
-    }
-  };
-  static getAllUserLikeFood = async (req: Request, res: Response) => {
-    try {
-      const userStore: UserStore = new UserStore();
-      const alluserLikeFood = await userStore.getAllUserLikeFood();
-      res.json({ message: "Success", data: alluserLikeFood });
-    } catch (err) {
-      res.status(400).json(`${err}`);
-    }
-  };
-  static joinUserToGym = async (req: IRequest, res: Response) => {
-    try {
-      console.log(req.user?.user_id);
-      const userId = req.user!.user_id;
-      const gymId = req.params.gymId;
-      const join_date = new Date(); // Get the current date as the join date
-      const userStore: UserStore = new UserStore();
-      const userJoin = await userStore.joinGym(
-        userId!,
-        parseInt(gymId),
-        join_date
-      );
-      res.json({ message: "Success", data: userJoin });
-    } catch (err) {
-      res.status(400).json(`${err}`);
-    }
-  };
-  static leaveUserToGym = async (req: IRequest, res: Response) => {
-    try {
-      console.log(req.user?.user_id);
-      const userId = req.user!.user_id;
-      const gymId = req.params.gymId;
-      const userStore: UserStore = new UserStore();
-      const userLeave = await userStore.leaveGym(userId!, parseInt(gymId));
-      res.json({ message: "Success", data: userLeave });
-    } catch (err) {
-      res.status(400).json(`${err}`);
-    }
-  };
-  static updateUserPaymentStatus = async (
-    req: Request,
-    res: Response
-  ): Promise<void> => {
-    const userStore: UserStore = new UserStore();
-    const userId = parseInt(req.params.userId, 10); // Assuming userId is in the URL parameters
-    const gymId = parseInt(req.params.gymId, 10); // Assuming gymId is in the URL parameters
-    const isPaid = req.body.is_paid;
-
-    if (isNaN(userId) || isNaN(gymId)) {
-      res.status(400).json({ error: "Invalid user or gym ID." });
-      return;
-    }
-
-    if (typeof isPaid !== "boolean") {
-      res.status(400).json({ error: "is_paid must be a boolean value." });
-      return;
-    }
-
-    try {
-      const updatedUser = await userStore.updateUserPaymentStatus(
-        userId,
-        gymId,
-        isPaid
-      );
-      if (updatedUser !== null) {
-        res.status(200).json(updatedUser);
-      } else {
-        res
-          .status(404)
-          .json({ error: "User or gym not found, or no update occurred." });
-      }
-    } catch (error) {
-      console.error("Error updating user payment status:", error);
-      res.status(500).json({ error: "Internal Server Error" });
     }
   };
 }
